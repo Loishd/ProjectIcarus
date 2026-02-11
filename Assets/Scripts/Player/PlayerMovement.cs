@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
     public float changeSpeed = 5f;
@@ -11,6 +12,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         LaneSwapper();
+    }
+
+    void FixedUpdate()
+    {
+        AutoWalk();
+    }
+
+    void AutoWalk()
+    {
+        Vector3 movement = new Vector3(0f, 1f, 0f).normalized;
+
+        transform.Translate(movement * moveSpeed * Time.deltaTime);
     }
 
     void LaneSwapper()
