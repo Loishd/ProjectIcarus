@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CoinSpawning : MonoBehaviour
 {
+    [SerializeField] PlayerMovement player;
     [SerializeField] Transform spawnedFeatherParent;
     [SerializeField] List<Transform> lanes = new List<Transform>();
     [SerializeField] GameObject feather;
+    [SerializeField] float CoinGap;
     [SerializeField] public int _coinAmount;
     [SerializeField] int _coinMax;
     float LatestY;
@@ -26,16 +28,20 @@ public class CoinSpawning : MonoBehaviour
         if (_coinAmount < MaxCoin)
         {
             int lanesIndex = UnityEngine.Random.Range(0, lanes.Count);
-            Vector3 nextSpawnPos = new Vector3(lanes[lanesIndex].position.x, LatestY + 3, 0);
+            Vector3 nextSpawnPos = new Vector3(lanes[lanesIndex].position.x, LatestY + CoinGap, 0);
             if (_coinAmount == 0)
             {
-                GameObject firstFeather = Instantiate(feather, lanes[lanesIndex].position, Quaternion.identity, spawnedFeatherParent);
+                GameObject firstFeather = Instantiate(feather, new Vector3(lanes[lanesIndex].position.x, 10, 0), Quaternion.identity, spawnedFeatherParent);
+                FeatherScript featherScript = firstFeather.GetComponent<FeatherScript>();
+                featherScript.SetData(player, this);
                 LatestY = firstFeather.transform.position.y;
                 _coinAmount++;
             }
             else
             {
                 GameObject firstFeather = Instantiate(feather, nextSpawnPos, Quaternion.identity, spawnedFeatherParent);
+                FeatherScript featherScript = firstFeather.GetComponent<FeatherScript>();
+                featherScript.SetData(player, this);
                 LatestY = firstFeather.transform.position.y;
                 _coinAmount++;
             }

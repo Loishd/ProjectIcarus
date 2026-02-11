@@ -9,31 +9,34 @@ public class FeatherScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerMovement>();
-        coinSpawning = GetComponent<CoinSpawning>();
+        //if (ScoreManager.Instance != null)
+        //{
+        //    Debug.Log("Mae mung tai");
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (player.transform.position.y > transform.position.y +10)
+        {
+            coinSpawning._coinAmount--;
+            Destroy(gameObject);
+        }
     }
 
-    public void SetPlayer(PlayerMovement playerRef)
+    public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawnerRef)
     {
         player = playerRef;
-    }
-    public void SetCoinSpawner(CoinSpawning coinSpawnerRef)
-    {
         coinSpawning = coinSpawnerRef;
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (player != null)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            //ADd player score
+            Debug.Log("Luy");
+            ScoreManager.Instance.AddScore(1);
             coinSpawning._coinAmount--;
             Destroy(gameObject);
         }
