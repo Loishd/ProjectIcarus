@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 12504709}
   - component: {fileID: 12504710}
   - component: {fileID: 12504711}
+  - component: {fileID: 12504712}
+  - component: {fileID: 12504713}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -300,6 +302,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &12504712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12504706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc0a15f496cc5b42a213aecec894f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHeight: 50
+  increaseSpeed: 3
+  decreaseSpeed: 1
+  sprite: {fileID: 12504707}
+  playerStatus: {fileID: 12504713}
+--- !u!114 &12504713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12504706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dfa985873988f4b83d64615d5b7496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainScore: 0
+  feverScore: 0
+  isDeath: 0
 --- !u!1 &19015469
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +391,8 @@ Transform:
   m_GameObject: {fileID: 31951434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3, y: -0.0657, z: -0.04563271}
-  m_LocalScale: {x: 0.27366325, y: 8.3914, z: 1}
+  m_LocalPosition: {x: -1.3, y: -0.2897, z: -0.04563271}
+  m_LocalScale: {x: 0.27366325, y: 11.528046, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542371635}
@@ -645,7 +679,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1326,7 +1360,7 @@ MonoBehaviour:
   - {fileID: 2124645758}
   - {fileID: 1179436791}
   feather: {fileID: 3501354685122141511, guid: 057f53345eb5f564db4535788e56f2b9, type: 3}
-  CoinGap: 3
+  CoinGap: 4
   _coinAmount: 0
   _coinMax: 10
 --- !u!1 &1001211654
@@ -1582,6 +1616,7 @@ MonoBehaviour:
   increaseSpeed: 6
   decreaseSpeed: 3
   sprite: {fileID: 0}
+  playerStatus: {fileID: 0}
 --- !u!4 &1205335991
 Transform:
   m_ObjectHideFlags: 0
@@ -2066,8 +2101,8 @@ Transform:
   m_GameObject: {fileID: 1984950859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -0.0657, z: -0.04563271}
-  m_LocalScale: {x: 0.27366325, y: 8.3914, z: 1}
+  m_LocalPosition: {x: 3, y: -0.3092, z: -0.04563271}
+  m_LocalScale: {x: 0.27366325, y: 11.4884205, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542371635}

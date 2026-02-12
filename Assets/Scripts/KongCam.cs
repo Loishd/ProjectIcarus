@@ -11,7 +11,6 @@ public class KongCam : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {

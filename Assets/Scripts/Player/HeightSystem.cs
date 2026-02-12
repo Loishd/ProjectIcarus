@@ -17,7 +17,7 @@ public class HeightSystem : MonoBehaviour
     Color redColor = Color.red;
     Color blueColor = Color.blue;
 
-    PlayerStatus playerStatus;
+    [SerializeField] PlayerStatus playerStatus;
 
     void Update()
     {
