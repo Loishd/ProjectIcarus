@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonCode : MonoBehaviour
 {
+    [SerializeField] GameObject deathScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,17 @@ public class ButtonCode : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         ScoreManager.Instance.OpenAndCloseMenu();
+    }
+
+    public void Retry()
+    {
+        Time.timeScale = 1.0f;
+        deathScreen.SetActive(false);
+        LoadingScene("KongSceneTest");
+    }
+
+    public void LoadingScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

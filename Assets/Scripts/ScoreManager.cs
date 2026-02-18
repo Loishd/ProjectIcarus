@@ -5,10 +5,10 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenu;
     [SerializeField] CoinSpawning coinSpawning;
-    [SerializeField] int _currentScore;
+    [SerializeField] int _currentCoins;
     [SerializeField] TMP_Text ScoreText;
 
-    public int CurrentScore => _currentScore;
+    public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
     private void Awake()
@@ -17,13 +17,13 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
-        _currentScore = 0;
+        _currentCoins = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = _currentScore.ToString();
+        ScoreText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -32,9 +32,9 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    public void AddScore(int score)
+    public void AddScore(int coins)
     {
-        _currentScore+=score;
+        _currentCoins += coins;
     }
 
     public void OpenAndCloseMenu()

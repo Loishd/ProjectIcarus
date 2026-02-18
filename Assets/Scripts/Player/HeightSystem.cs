@@ -7,8 +7,8 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private float currentHeight = 50f;
     [SerializeField] private float increaseSpeed = 3f;
     [SerializeField] private float decreaseSpeed = 1f;
-    private float dangerHeatZone = 90f;
-    private float dangerFreezeZone = 10;
+    private float dangerHeatZone = 100f;
+    private float dangerFreezeZone = 0f;
     private float maxHeight = 100f;
     private float minHeight = 0f;
     [SerializeField] private SpriteRenderer sprite;
@@ -54,8 +54,8 @@ public class HeightSystem : MonoBehaviour
     void HeightVisual()
     {
         //If dangerZone = 90, so it is 80-89.
-        float HeatZoneMax = dangerHeatZone - 1f;
-        float HeatZoneMin = dangerHeatZone - 10f;
+        float HeatZoneMax = 90;
+        float HeatZoneMin = 10f;
 
         //------------------------------ Heat Zone :fire: -------------------------------------
         if (currentHeight >= dangerHeatZone)
@@ -82,9 +82,9 @@ public class HeightSystem : MonoBehaviour
         }
 
         //--------------------------- Slowly Turn Red ----------------------------------------
-        if (currentHeight >= 70f)
+        if (currentHeight >= 30f)
         {
-            float t = Mathf.InverseLerp(70f, maxHeight, currentHeight);
+            float t = Mathf.InverseLerp(30f, maxHeight, currentHeight);
 
             sprite.color = Color.Lerp(normalColor, redColor, t);
         }
@@ -94,9 +94,9 @@ public class HeightSystem : MonoBehaviour
         }
 
         //--------------------------- Slowly Turn Blue ----------------------------------------
-        if (currentHeight <= 30f)
+        if (currentHeight <= -30f)
         {
-            float t = Mathf.InverseLerp(30f, minHeight, currentHeight);
+            float t = Mathf.InverseLerp(-30f, minHeight, currentHeight);
 
             sprite.color = Color.Lerp(normalColor, blueColor, t);
         }

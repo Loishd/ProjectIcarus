@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] GameObject deathScreen;
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E)) Death();
         LaneSwapper();
     }
 
@@ -46,5 +48,11 @@ public class PlayerMovement : MonoBehaviour
         else if (currentLane == 2) targetPosition += Vector3.right * laneDistance;
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, changeSpeed * Time.deltaTime);
+    }
+
+    public void Death()
+    {
+        deathScreen.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
