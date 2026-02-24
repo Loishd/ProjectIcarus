@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CoinSpawning : MonoBehaviour
 {
+    [Header("Pattern1")]
+    [SerializeField] List<Transform> Pattern1Pos = new List<Transform>();
     [SerializeField] PlayerMovement player;
+
+
     [SerializeField] Transform spawnedFeatherParent;
     [SerializeField] List<Transform> lanes = new List<Transform>();
     [SerializeField] GameObject feather;
@@ -21,6 +25,7 @@ public class CoinSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //SpawnPattern1();
         SpawnCoin(_coinMax);
     }
     public void SpawnCoin(int MaxCoin)
@@ -45,6 +50,17 @@ public class CoinSpawning : MonoBehaviour
                 LatestY = firstFeather.transform.position.y;
                 _coinAmount++;
             }
+        }
+    }
+    public void SpawnPattern1()
+    {
+        if (_coinAmount < Pattern1Pos.Count)
+        {
+            GameObject firstFeather = Instantiate(feather, Pattern1Pos[_coinAmount].position, Quaternion.identity, spawnedFeatherParent);
+            FeatherScript featherScript = firstFeather.GetComponent<FeatherScript>();
+            featherScript.SetData(player, this);
+            LatestY = firstFeather.transform.position.y;
+            _coinAmount++;
         }
     }
 }

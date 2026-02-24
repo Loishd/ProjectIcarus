@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HeightSystem : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer background;
     [SerializeField] private float currentHeight = 50f;
+    public float CurrentHeight => currentHeight;
     [SerializeField] private float increaseSpeed = 3f;
     [SerializeField] private float decreaseSpeed = 1f;
     private float dangerHeatZone = 100f;
@@ -22,6 +24,7 @@ public class HeightSystem : MonoBehaviour
     void Update()
     {
         HeightManager();
+        BackgroundColor();
         HeightVisual();
     }
     
@@ -106,9 +109,10 @@ public class HeightSystem : MonoBehaviour
         }
 
 
-
-
-
     }
 
+    void BackgroundColor()
+    {
+        background.color = Color.Lerp(Color.blue, Color.red, (currentHeight/maxHeight));
+    }
 }
