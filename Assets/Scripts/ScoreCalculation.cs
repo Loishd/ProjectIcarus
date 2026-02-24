@@ -19,7 +19,7 @@ public class ScoreCalculation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentScore += (float)(Time.deltaTime * (1 * math.abs(heightSystem.CurrentHeight / 10)) * math.pow(10, 1));
+        _currentScore += (float)(Time.deltaTime * (1 * math.abs(heightSystem.CurrentHeight - 50/ 10)) * math.pow(10, 1));
         scoreText.text = _currentScore.ToString();
     }
 }

@@ -1,12 +1,20 @@
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    [Header("Text")]
+    [SerializeField] TMP_Text CoinText;
+    [SerializeField] TMP_Text ScoreText;
+    [SerializeField] TMP_Text MultiplierText;
+
     [SerializeField] GameObject PauseMenu;
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
-    [SerializeField] TMP_Text ScoreText;
+    [SerializeField] float _currentScore;
+    [SerializeField] HeightSystem heightSystem;
+    [SerializeField] float increaseAmount;
 
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
@@ -23,7 +31,10 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = "Coins: " + _currentCoins.ToString();
+        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount);
+        MultiplierText.text = "x" + (1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
+        ScoreText.text = _currentScore.ToString();
+        CoinText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

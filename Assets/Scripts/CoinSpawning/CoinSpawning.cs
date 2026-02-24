@@ -25,8 +25,8 @@ public class CoinSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //SpawnPattern1();
-        SpawnCoin(_coinMax);
+        SpawnPattern1();
+        //SpawnCoin(_coinMax);
     }
     public void SpawnCoin(int MaxCoin)
     {
@@ -54,13 +54,16 @@ public class CoinSpawning : MonoBehaviour
     }
     public void SpawnPattern1()
     {
-        if (_coinAmount < Pattern1Pos.Count)
+        //int spawnCount = 0;
+        //int spawnMax = 9;
+        if (_coinAmount < Pattern1Pos.Count-1)
         {
             GameObject firstFeather = Instantiate(feather, Pattern1Pos[_coinAmount].position, Quaternion.identity, spawnedFeatherParent);
             FeatherScript featherScript = firstFeather.GetComponent<FeatherScript>();
             featherScript.SetData(player, this);
             LatestY = firstFeather.transform.position.y;
             _coinAmount++;
+            //spawnCount++;
         }
     }
 }
