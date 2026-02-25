@@ -21,7 +21,14 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     private void Awake()
     {
-        if (Instance != null) Destroy(this.gameObject); else DontDestroyOnLoad(this.gameObject); Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            //Destroy(gameObject); // sometimes causes issues
+        }
     }
     void Start()
     {
@@ -32,8 +39,10 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount);
-        MultiplierText.text = "x" + (1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
-        ScoreText.text = _currentScore.ToString();
+        //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
+        float multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
+        MultiplierText.text = "x" + multiplier.ToString("F2");
+        ScoreText.text = ((int)_currentScore).ToString();
         CoinText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
         if (Input.GetKeyDown(KeyCode.Escape))

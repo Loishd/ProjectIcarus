@@ -24,11 +24,11 @@ public class ButtonCode : MonoBehaviour
         ScoreManager.Instance.OpenAndCloseMenu();
     }
 
-    public void Retry()
+    public void Retry(string name)
     {
         Time.timeScale = 1.0f;
         deathScreen.SetActive(false);
-        LoadingScene("KongSceneTest");
+        LoadingScene(name);
     }
 
     public void LoadingScene(string sceneName)

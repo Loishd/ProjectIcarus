@@ -575,7 +575,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 713633527}
   - component: {fileID: 713633528}
   m_Layer: 0
-  m_Name: SpawnedFeather
+  m_Name: SpawnedObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1952,17 +1952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc3c6d114665ef44a85658445b24115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pattern1Pos:
-  - {fileID: 668127797}
-  - {fileID: 1409641701}
-  - {fileID: 1042627766}
-  - {fileID: 1375631958}
-  - {fileID: 897090585}
-  - {fileID: 2082659593}
-  - {fileID: 1102430248}
-  - {fileID: 1245043449}
-  - {fileID: 125427010}
   player: {fileID: 12504709}
+  pattern1: {fileID: 1008509290081575650, guid: 98cbe38bd8efd794c8012e3ea73bcd92, type: 3}
+  obstacle1: {fileID: 9147973505444674321, guid: 54399e5421af59e4ba50f90ef0f110c6, type: 3}
   spawnedFeatherParent: {fileID: 713633527}
   lanes:
   - {fileID: 19015470}
@@ -2170,7 +2162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1107749525
 Transform:
   m_ObjectHideFlags: 0
@@ -2691,7 +2683,7 @@ GameObject:
   - component: {fileID: 1576540209}
   - component: {fileID: 1576540208}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2777,13 +2769,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1576540208}
         m_TargetAssemblyTypeName: ButtonCode, Assembly-CSharp
         m_MethodName: Retry
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: KongSceneTest
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1576540210
