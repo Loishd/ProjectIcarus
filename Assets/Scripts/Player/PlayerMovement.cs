@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -52,7 +53,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void Death()
     {
+        SetHighestScore();
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    void SetHighestScore()
+    {
+        if (ScoreManager.Instance._currentScore > PlayerPrefs.GetFloat("HighestScore"))
+        {
+            PlayerPrefs.SetFloat("HighestScore", ScoreManager.Instance._currentScore);
+        }
     }
 }

@@ -6,13 +6,15 @@ public class ScoreManager : MonoBehaviour
 {
     [Header("Text")]
     [SerializeField] TMP_Text CoinText;
+    [SerializeField] TMP_Text HighestScoreText;
     [SerializeField] TMP_Text ScoreText;
     [SerializeField] TMP_Text MultiplierText;
 
     [SerializeField] GameObject PauseMenu;
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
-    [SerializeField] float _currentScore;
+    [SerializeField] float _highestScore;
+    [SerializeField] public float _currentScore;
     [SerializeField] HeightSystem heightSystem;
     [SerializeField] float increaseAmount;
 
@@ -33,6 +35,8 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         _currentCoins = 0;
+        _highestScore = PlayerPrefs.GetFloat("HighestScore");
+        HighestScoreText.text = ((int)_highestScore).ToString();
     }
 
     // Update is called once per frame
@@ -45,6 +49,9 @@ public class ScoreManager : MonoBehaviour
         ScoreText.text = ((int)_currentScore).ToString();
         CoinText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
+
+        UpdateHighestScore();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OpenAndCloseMenu();
@@ -68,6 +75,15 @@ public class ScoreManager : MonoBehaviour
         {
             PauseMenu.SetActive(false);
             Time.timeScale = 1;
+        }
+    }
+
+    void UpdateHighestScore()
+    {
+        if (_currentScore > _highestScore)
+        {
+            _highestScore = _currentScore;
+            HighestScoreText.text = ((int)_highestScore).ToString();
         }
     }
 }
