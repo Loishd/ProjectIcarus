@@ -19,6 +19,8 @@ public class CoinSpawning : MonoBehaviour
     [SerializeField] float CoinGap;
     [SerializeField] public int _coinAmount;
     [SerializeField] int _coinMax;
+    [SerializeField] int PatternMax;
+    [SerializeField] int CurrentPattern;
     float LatestY;
     // Start is called before the first frame update
     void Start()

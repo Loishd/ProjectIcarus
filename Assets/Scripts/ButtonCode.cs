@@ -39,4 +39,10 @@ public class ButtonCode : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Play(string sceneName)
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(sceneName);
+    }
 }

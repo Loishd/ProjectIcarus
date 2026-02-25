@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeightSystem : MonoBehaviour
 {
+    [SerializeField] PlayerMovement player;
     [SerializeField] SpriteRenderer background;
     [SerializeField] private float currentHeight = 50f;
     public float CurrentHeight => currentHeight;
@@ -85,11 +86,12 @@ public class HeightSystem : MonoBehaviour
         }
 
         //--------------------------- Slowly Turn Red ----------------------------------------
-        if (currentHeight >= 30f)
+        if (currentHeight >= 100f)
         {
             float t = Mathf.InverseLerp(30f, maxHeight, currentHeight);
 
             sprite.color = Color.Lerp(normalColor, redColor, t);
+            player.Death();
         }
         else
         {
@@ -97,11 +99,12 @@ public class HeightSystem : MonoBehaviour
         }
 
         //--------------------------- Slowly Turn Blue ----------------------------------------
-        if (currentHeight <= -30f)
+        if (currentHeight <= 0f)
         {
             float t = Mathf.InverseLerp(-30f, minHeight, currentHeight);
 
             sprite.color = Color.Lerp(normalColor, blueColor, t);
+            player.Death();
         }
         else
         {
