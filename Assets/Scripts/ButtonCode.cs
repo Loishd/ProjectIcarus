@@ -35,4 +35,8 @@ public class ButtonCode : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
