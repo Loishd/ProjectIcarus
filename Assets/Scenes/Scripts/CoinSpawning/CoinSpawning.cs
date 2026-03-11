@@ -8,7 +8,7 @@ public class CoinSpawning : MonoBehaviour
     [SerializeField] PlayerMovement player;
 
     [Header("Coin Pattern")]
-    [SerializeField] Pattern1 pattern1;
+    [SerializeField] List <Pattern1> PatternList = new List<Pattern1>();
 
     [Header("Obstacle Pattern")]
     [SerializeField] Obstacle1 obstacle1;
@@ -20,17 +20,21 @@ public class CoinSpawning : MonoBehaviour
     [SerializeField] public int _coinAmount;
     [SerializeField] int _coinMax;
     [SerializeField] int PatternMax;
-    [SerializeField] int CurrentPattern;
+    [SerializeField] int currentPattern;
+    public int CurrentPattern => currentPattern;
+
+    Vector3 HighestInpattern;
     float LatestY;
     // Start is called before the first frame update
     void Start()
     {
-
+        HighestInpattern = player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        AutoSpawn();
         //SpawnPattern1();
         //SpawnCoin(_coinMax);
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -43,6 +47,24 @@ public class CoinSpawning : MonoBehaviour
             SpawnObstacle1();
         }
     }
+
+    public void AutoSpawn()
+    {
+
+        if (currentPattern < PatternMax)
+        {
+            int PatternNum = Random.Range(0, PatternList.Count);
+            GameObject spawnedPattern1 = Instantiate(PatternList[PatternNum].gameObject, new Vector3(0, HighestInpattern.y, 0), Quaternion.identity, spawnedFeatherParent);
+            Pattern1 _pattern1 = spawnedPattern1.GetComponent<Pattern1>();
+            _pattern1.SetPatternData(player, this);
+            _pattern1.GetHighestPos();
+            HighestInpattern = _pattern1.GetHighestPos();
+            currentPattern++;
+            _coinAmount += _pattern1.FeatherList.Count;
+        }
+    }
+
+
     public void SpawnCoin(int MaxCoin)
     {
         if (_coinAmount < MaxCoin)
@@ -69,7 +91,7 @@ public class CoinSpawning : MonoBehaviour
     }
     public void SpawnPattern1()
     {
-        GameObject spawnedPattern1 = Instantiate(pattern1.gameObject, new Vector3(0, player.transform.position.y, 0), Quaternion.identity, spawnedFeatherParent);
+        GameObject spawnedPattern1 = Instantiate(PatternList[0].gameObject, new Vector3(0, player.transform.position.y, 0), Quaternion.identity, spawnedFeatherParent);
         Pattern1 _pattern1 = spawnedPattern1.GetComponent<Pattern1>();
         _pattern1.SetPatternData(player, this);
         _coinAmount += _pattern1.FeatherList.Count;
@@ -81,5 +103,10 @@ public class CoinSpawning : MonoBehaviour
         Obstacle1 _obstacle1 = spawnedObstacle1.GetComponent<Obstacle1>();
         _obstacle1.SetObstacleData(player, this);
         //_coinAmount += _obstacle1.FeatherList.Count;
+    }
+
+    public void DecreasePattern()
+    {
+        currentPattern--;
     }
 }
