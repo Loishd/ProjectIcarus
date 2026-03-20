@@ -10,11 +10,17 @@ public class PlayerMovement : MonoBehaviour
     public int currentLane = 1;
     public float laneDistance = 5f;
     public float changeSpeed = 5f;
-    
+    public float speedIncrease = 1;
+
+    private void Start()
+    {
+        speedIncrease = 1;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) Death();
         LaneSwapper();
+        speedIncrease += Time.deltaTime/2000;
     }
 
     void FixedUpdate()
@@ -26,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movement = new Vector3(0f, 1f, 0f).normalized;
 
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
+        transform.Translate(movement * moveSpeed * Time.deltaTime * speedIncrease);
     }
 
     void LaneSwapper()
