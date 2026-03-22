@@ -116,6 +116,9 @@ public class HeightSystem : MonoBehaviour
 
     void BackgroundColor()
     {
-        background.color = Color.Lerp(Color.blue, Color.red, (currentHeight/maxHeight));
+        Color start = new Color(0f, 0f, 1f, 0.6f); // blue, low alpha
+        Color end = new Color(1f, 0f, 0f, 0.6f); // red, same low alpha
+
+        background.color = Color.Lerp(start, end, currentHeight / maxHeight);
     }
 }

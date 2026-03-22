@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] GameObject deathScreen;
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
     public float changeSpeed = 5f;
     public float speedIncrease = 1;
+    [SerializeField] GameObject deathScreen;
 
     private void Start()
     {
