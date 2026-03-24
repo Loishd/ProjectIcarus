@@ -59,7 +59,12 @@ public class ScoreManager : MonoBehaviour
         {
             OpenAndCloseMenu();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            _currentCoins += 1000;
+        }
+
     }
 
     public void AddScore(int coins)
