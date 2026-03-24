@@ -9,6 +9,7 @@ public class Saves : MonoBehaviour
         if (!PlayerPrefs.HasKey("HasLaunchedBefore"))
         {
             PlayerPrefs.SetFloat("HighestScore", 0);
+            PlayerPrefs.SetFloat("CoinAmount", 0);
 
             PlayerPrefs.SetInt("HasLaunchedBefore", 1);
             PlayerPrefs.Save();
