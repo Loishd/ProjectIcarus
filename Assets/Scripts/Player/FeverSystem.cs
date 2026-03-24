@@ -33,10 +33,10 @@ public class FeverSystem : MonoBehaviour
     private IEnumerator ActiveFever()
     {
         PlayerStatus.Instance.isInvulnerability = true;
-        ScoreManager.Instance.multiplier += feverMultiplier - 1;
+        ScoreManager.Instance.multiplier += feverMultiplier;
         yield return new WaitForSeconds(feverDuration);
         feverMeter = feverMeterMin;
         PlayerStatus.Instance.isInvulnerability = false;
-        ScoreManager.Instance.multiplier -= feverMultiplier - 1;
+        ScoreManager.Instance.multiplier -= feverMultiplier;
     }
 }
