@@ -20,6 +20,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] HeightSystem heightSystem;
     [SerializeField] float increaseAmount;
 
+    [Header("Sound")]
+    [SerializeField] AudioSource audioSource;
+
+
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
