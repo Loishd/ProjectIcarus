@@ -5,15 +5,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Buff Time")]
     public float InvulnerabilityShieldTime;
+    public float MagnetTimer;
+
+    [Header("Movement Variable")]
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
     public float changeSpeed = 5f;
     public float speedIncrease = 1;
+
+    [Header("Buff Collider")]
     [SerializeField] GameObject InvulnerabilityShield;
-    [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject MagnetCollider;
+
+    [SerializeField] GameObject deathScreen;
 
     private void Start()
     {
@@ -27,9 +34,16 @@ public class PlayerMovement : MonoBehaviour
         MagnetVisual();
         LaneSwapper();
         speedIncrease += Time.deltaTime/2000;
+
+        //------------------------------//
+
         if (PlayerStatus.Instance.isInvulnerability)
         {
             StartCoroutine(InvulnerabilityTimer(InvulnerabilityShieldTime));
+        }
+        else if (PlayerStatus.Instance.isMagnetic)
+        {
+            StartCoroutine(MagnetTime(MagnetTimer));
         }
     }
 
@@ -119,5 +133,11 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(timer);
         PlayerStatus.Instance.isInvulnerability = false;
         ScoreManager.Instance.InvulnerabilityMultiplier = 2;
+    }
+
+    IEnumerator MagnetTime(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        PlayerStatus.Instance.isMagnetic = false;
     }
 }
