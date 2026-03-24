@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float InvulnerabilityShieldTime;
     public bool isAttracted;
-    public bool isInvulnerability;
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
@@ -18,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        isInvulnerability = false;
+        PlayerStatus.Instance.isInvulnerability = false;
         speedIncrease = 1;
     }
     void Update()
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         InvulnerabilityVisual();
         LaneSwapper();
         speedIncrease += Time.deltaTime/2000;
-        if (isInvulnerability)
+        if (PlayerStatus.Instance.isInvulnerability)
         {
             StartCoroutine(InvulnerabilityTimer(InvulnerabilityShieldTime));
         }
@@ -84,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     void InvulnerabilityVisual()
     {
-        if (isInvulnerability)
+        if (PlayerStatus.Instance.isInvulnerability)
         {
             InvulnerabilityShield.SetActive(true);
         }
@@ -97,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator InvulnerabilityTimer(float timer)
     {
         yield return new WaitForSeconds(timer);
-        isInvulnerability = false;
+        PlayerStatus.Instance.isInvulnerability = false;
         ScoreManager.Instance.InvulnerabilityMultiplier = 2;
     }
 }
