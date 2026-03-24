@@ -8,7 +8,7 @@ public class FeatherScript : MonoBehaviour
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] private float feverGain = 5f;
-
+    Rigidbody2D rigidbody2d;
     private Vector2 playerTarget;
     // Start is called before the first frame update
     void Start()
@@ -45,13 +45,11 @@ public class FeatherScript : MonoBehaviour
             coinSpawning._coinAmount--;
             Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Magnet"))
+        else if (collision.gameObject.CompareTag("Magnet"))
         {
-            
+            float speed = 5f;
+            //Vector2 direction = (player.transform.position - transform.position).normalized;
+            //rigidbody2d.velocity = direction * speed;
         }
     }
 }

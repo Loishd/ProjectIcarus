@@ -6,6 +6,10 @@ public class Attraction : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
 
+    private void Awake()
+    {
+
+    }
     void Update()
     {
         if (player.transform.position.y > transform.position.y + 10)
@@ -21,8 +25,8 @@ public class Attraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Invulnerability");
-            player.isAttracted = true;
+            Debug.Log("Magnet");
+            PlayerStatus.Instance.isMagnetic = true;
             Destroy(gameObject);
         }
     }

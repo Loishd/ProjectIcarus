@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float InvulnerabilityShieldTime;
-    public bool isAttracted;
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
@@ -14,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedIncrease = 1;
     [SerializeField] GameObject InvulnerabilityShield;
     [SerializeField] GameObject deathScreen;
+    [SerializeField] GameObject MagnetCollider;
 
     private void Start()
     {
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E)) Death();
         InvulnerabilityVisual();
+        MagnetVisual();
         LaneSwapper();
         speedIncrease += Time.deltaTime/2000;
         if (PlayerStatus.Instance.isInvulnerability)
@@ -90,6 +91,18 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             InvulnerabilityShield.SetActive(false);
+        }
+    }
+
+    void MagnetVisual()
+    {
+        if (PlayerStatus.Instance.isMagnetic)
+        {
+            MagnetCollider.SetActive(true);
+        }
+        else
+        {
+            MagnetCollider.SetActive(false);
         }
     }
 

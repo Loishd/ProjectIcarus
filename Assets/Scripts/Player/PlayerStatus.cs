@@ -6,6 +6,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public bool isDeath = false;
     public bool isInvulnerability;
+    public bool isMagnetic;
 
     public static PlayerStatus Instance { get; private set; }
 
