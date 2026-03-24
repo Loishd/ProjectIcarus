@@ -343,6 +343,7 @@ MonoBehaviour:
   isDeath: 0
   isInvulnerability: 0
   isMagnetic: 0
+  isFever: 0
 --- !u!1 &19015469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,6 +2823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1004647294572951152, guid: 6d0b46e01d21d6c4cb6ddd99c8fbd0e2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 12504709}
     - target: {fileID: 5961603856146578598, guid: 6d0b46e01d21d6c4cb6ddd99c8fbd0e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2865,6 +2870,10 @@ PrefabInstance:
     - target: {fileID: 7023729728705452327, guid: 6d0b46e01d21d6c4cb6ddd99c8fbd0e2, type: 3}
       propertyPath: m_Name
       value: Magnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023729728705452327, guid: 6d0b46e01d21d6c4cb6ddd99c8fbd0e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3884,8 +3893,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278252287
+  m_fontColor: {r: 1, g: 0.9479667, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
