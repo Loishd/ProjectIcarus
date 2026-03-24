@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_Text ScoreText;
     [SerializeField] TMP_Text MultiplierText;
 
+    public float InvulnerabilityMultiplier;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
@@ -34,6 +35,7 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
+        InvulnerabilityMultiplier = 1;
         _currentCoins = 0;
         _highestScore = PlayerPrefs.GetFloat("HighestScore");
         HighestScoreText.text = ((int)_highestScore).ToString();
@@ -42,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount);
+        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount * InvulnerabilityMultiplier);
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
         float multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         MultiplierText.text = "x" + multiplier.ToString("F2");

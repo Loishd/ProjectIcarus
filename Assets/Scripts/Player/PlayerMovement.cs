@@ -5,22 +5,31 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float InvulnerabilityShieldTime;
+    public bool isInvulnerability;
     public float moveSpeed = 5f;
     public int currentLane = 1;
     public float laneDistance = 5f;
     public float changeSpeed = 5f;
     public float speedIncrease = 1;
+    [SerializeField] GameObject InvulnerabilityShield;
     [SerializeField] GameObject deathScreen;
 
     private void Start()
     {
+        isInvulnerability = false;
         speedIncrease = 1;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) Death();
+        InvulnerabilityVisual();
         LaneSwapper();
         speedIncrease += Time.deltaTime/2000;
+        if (isInvulnerability)
+        {
+            StartCoroutine(InvulnerabilityTimer(InvulnerabilityShieldTime));
+        }
     }
 
     void FixedUpdate()
@@ -70,5 +79,24 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerPrefs.SetFloat("HighestScore", ScoreManager.Instance._currentScore);
         }
+    }
+
+    void InvulnerabilityVisual()
+    {
+        if (isInvulnerability)
+        {
+            InvulnerabilityShield.SetActive(true);
+        }
+        else
+        {
+            InvulnerabilityShield.SetActive(false);
+        }
+    }
+
+    IEnumerator InvulnerabilityTimer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        isInvulnerability = false;
+        ScoreManager.Instance.InvulnerabilityMultiplier = 2;
     }
 }

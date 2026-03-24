@@ -26,7 +26,16 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.Death();
+            Destroy(gameObject);
+            if (player.isInvulnerability)
+            {
+                player.isInvulnerability = false;
+                return;
+            }
+            else
+            {
+                player.Death();
+            }
         }
     }
 
