@@ -15,7 +15,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
     [SerializeField] float _highestScore;
-    [SerializeField] public float _currentScore;
+    public float _currentScore;
+    public float multiplier = 1f;
     [SerializeField] HeightSystem heightSystem;
     [SerializeField] float increaseAmount;
 
@@ -46,7 +47,7 @@ public class ScoreManager : MonoBehaviour
     {
         _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount * InvulnerabilityMultiplier);
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
-        float multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
+        multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         MultiplierText.text = "x" + multiplier.ToString("F2");
         ScoreText.text = ((int)_currentScore).ToString();
         CoinText.text = "Coins: " + _currentCoins.ToString();
