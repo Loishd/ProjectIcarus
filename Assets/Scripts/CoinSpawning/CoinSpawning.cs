@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinSpawning : MonoBehaviour
 {
-    
+    [SerializeField] FeverSystem feverSystem;
     [SerializeField] PlayerMovement player;
 
     [Header("Coin Pattern")]
@@ -43,7 +43,7 @@ public class CoinSpawning : MonoBehaviour
             int PatternNum = Random.Range(0, PatternList.Count);
             GameObject spawnedPattern1 = Instantiate(PatternList[PatternNum].gameObject, new Vector3(0, HighestInpattern.y, 0), Quaternion.identity, spawnedFeatherParent);
             Pattern1 _pattern1 = spawnedPattern1.GetComponent<Pattern1>();
-            _pattern1.SetPatternData(player, this);
+            _pattern1.SetPatternData(player, this,feverSystem);
             _pattern1.GetHighestPos();
             HighestInpattern = _pattern1.GetHighestPos();
             currentPattern++;

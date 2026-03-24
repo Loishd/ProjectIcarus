@@ -29,10 +29,11 @@ public class FeatherScript : MonoBehaviour
         }
     }
 
-    public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawnerRef)
+    public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawnerRef, FeverSystem feverSystemRef)
     {
         player = playerRef;
         coinSpawning = coinSpawnerRef;
+        feverSystem = feverSystemRef;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

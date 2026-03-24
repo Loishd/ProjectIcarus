@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pattern1 : MonoBehaviour
 {
+    [SerializeField] FeverSystem feverSystem;
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] PlayerMovement player;
     [SerializeField] List<FeatherScript> featherList = new List<FeatherScript>();
@@ -16,7 +17,7 @@ public class Pattern1 : MonoBehaviour
     {
         for (int i = 0; i < featherList.Count; i++)
         {
-            featherList[i].SetData(player, coinSpawning);
+            featherList[i].SetData(player, coinSpawning, feverSystem);
         }
     }
 
@@ -38,10 +39,11 @@ public class Pattern1 : MonoBehaviour
         }
     }
 
-    public void SetPatternData(PlayerMovement playerRef, CoinSpawning coinSpawningRef)
+    public void SetPatternData(PlayerMovement playerRef, CoinSpawning coinSpawningRef,  FeverSystem feverSystemRef)
     {
         player = playerRef;
         coinSpawning = coinSpawningRef;
+        feverSystem = feverSystemRef;
     }
 
     public Vector3 GetHighestPos()
