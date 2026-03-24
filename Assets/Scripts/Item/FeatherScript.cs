@@ -8,8 +8,11 @@ public class FeatherScript : MonoBehaviour
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] private float feverGain = 5f;
+    [SerializeField] bool isTargettingPlayer;
+    [SerializeField] float targetSpeed;
     Rigidbody2D rigidbody2d;
     private Vector2 playerTarget;
+    Vector3 velocity = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,8 @@ public class FeatherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MagnetMethod();
+        playerTarget = player.transform.position;
         if (player.transform.position.y > transform.position.y +10)
         {
             coinSpawning._coinAmount--;
@@ -47,9 +52,15 @@ public class FeatherScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Magnet"))
         {
-            float speed = 5f;
-            //Vector2 direction = (player.transform.position - transform.position).normalized;
-            //rigidbody2d.velocity = direction * speed;
+           isTargettingPlayer = true;
+        }
+    }
+
+    public void MagnetMethod()
+    {
+        if (isTargettingPlayer)
+        {
+            transform.position = Vector3.Lerp(transform.position, playerTarget, targetSpeed * Time.deltaTime);
         }
     }
 }
