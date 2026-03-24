@@ -57,9 +57,6 @@ public class HeightSystem : MonoBehaviour
 
     void HeightVisual()
     {
-        //If dangerZone = 90, so it is 80-89.
-        float HeatZoneMax = 90;
-        float HeatZoneMin = 10f;
 
         //------------------------------ Heat Zone :fire: -------------------------------------
         if (currentHeight >= dangerHeatZone)
@@ -68,12 +65,6 @@ public class HeightSystem : MonoBehaviour
 
             Destroy(gameObject);
             Debug.Log("You Death By Heat.");
-        }
-        else if (currentHeight >= HeatZoneMin && currentHeight <= HeatZoneMax)
-        {
-            //Fever Increase Here
-            if (playerStatus.feverScore > 100) return;
-            playerStatus.feverScore += Time.deltaTime;
         }
 
         //--------------------------- Freeze Zone :ice: b------------------------------------

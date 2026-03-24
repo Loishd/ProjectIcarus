@@ -6,6 +6,8 @@ public class FeatherScript : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
     [SerializeField] CoinSpawning coinSpawning;
+    [SerializeField] FeverSystem feverSystem;
+    [SerializeField] private float feverGain = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +37,8 @@ public class FeatherScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Luy");
             ScoreManager.Instance.AddScore(1);
+            feverSystem.IncreaseFever(feverGain);
             coinSpawning._coinAmount--;
             Destroy(gameObject);
         }
