@@ -7,6 +7,7 @@ public class Bird : MonoBehaviour
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] PlayerMovement player;
     [SerializeField] FeverSystem feverSystem;
+    [SerializeField] private int nearMissIncreaseScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,12 @@ public class Bird : MonoBehaviour
                 player.Death();
             }
         }
+
+        if (collision.gameObject.CompareTag("Wing"))
+        {
+            ScoreManager.Instance._currentScore += nearMissIncreaseScore;
+        }
+
     }
 
     public void SetData(PlayerMovement playerRef,CoinSpawning coinSpawningRef)
