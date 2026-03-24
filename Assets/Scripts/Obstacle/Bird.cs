@@ -6,6 +6,7 @@ public class Bird : MonoBehaviour
 {
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] PlayerMovement player;
+    [SerializeField] FeverSystem feverSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,10 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
+
+            if (PlayerStatus.Instance.isFever)
+                return;
+
             if (PlayerStatus.Instance.isInvulnerability)
             {
                 PlayerStatus.Instance.isInvulnerability = false;

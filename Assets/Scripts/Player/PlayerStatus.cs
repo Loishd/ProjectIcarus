@@ -7,6 +7,7 @@ public class PlayerStatus : MonoBehaviour
     public bool isDeath = false;
     public bool isInvulnerability;
     public bool isMagnetic;
+    public bool isFever;
 
     public static PlayerStatus Instance { get; private set; }
 
@@ -20,5 +21,8 @@ public class PlayerStatus : MonoBehaviour
         {
             //Destroy(gameObject); // sometimes causes issues
         }
+
+        isFever = false;
+        isInvulnerability = false;
     }
 }

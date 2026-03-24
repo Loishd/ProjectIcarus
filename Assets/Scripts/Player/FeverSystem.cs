@@ -17,7 +17,7 @@ public class FeverSystem : MonoBehaviour
 
     void Update()
     {
-        if (feverMeter >= feverMeterMax)
+        if (feverMeter >= feverMeterMax && !PlayerStatus.Instance.isFever)
             StartCoroutine(ActiveFever());
         
     }
@@ -32,11 +32,12 @@ public class FeverSystem : MonoBehaviour
 
     private IEnumerator ActiveFever()
     {
-        PlayerStatus.Instance.isInvulnerability = true;
+        PlayerStatus.Instance.isFever = true;
         ScoreManager.Instance.multiplier += feverMultiplier;
         yield return new WaitForSeconds(feverDuration);
         feverMeter = feverMeterMin;
-        PlayerStatus.Instance.isInvulnerability = false;
+        PlayerStatus.Instance.isFever = false;
         ScoreManager.Instance.multiplier -= feverMultiplier;
+        
     }
 }
