@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float InvulnerabilityShieldTime;
+    public bool isAttracted;
     public bool isInvulnerability;
     public float moveSpeed = 5f;
     public int currentLane = 1;

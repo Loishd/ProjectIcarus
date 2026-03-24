@@ -8,6 +8,8 @@ public class FeatherScript : MonoBehaviour
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] private float feverGain = 5f;
+
+    private Vector2 playerTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,14 @@ public class FeatherScript : MonoBehaviour
             feverSystem.IncreaseFever(feverGain);
             coinSpawning._coinAmount--;
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Magnet"))
+        {
+            
         }
     }
 }
