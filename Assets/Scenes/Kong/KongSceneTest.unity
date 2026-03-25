@@ -2203,7 +2203,7 @@ MonoBehaviour:
   spawnedFeatherParent: {fileID: 713633527}
   CoinGap: 4
   _coinAmount: 0
-  PatternMax: 3
+  PatternMax: 5
   currentPattern: 0
 --- !u!1 &959615863
 GameObject:

@@ -45,7 +45,7 @@ public class MapSpawner : MonoBehaviour
 
         _currentPattern++;
 
-        if (_currentPattern == 5 && !hasSpawnedSkip)
+        if (_currentPattern == 10 && !hasSpawnedSkip)
         {
             SpawnSkipScene();
             isWaitingForKanchak = true; // 🔒 LOCK
@@ -88,7 +88,6 @@ public class MapSpawner : MonoBehaviour
                 Debug.Log("Instantiated");
                 GameObject newMap = Instantiate(mapList[mapNum], new Vector3(0, player.position.y + 400, 0), Quaternion.identity, _mapParent).GetComponent<SpriteRenderer>().gameObject;
                 Map = newMap.GetComponentInChildren<SpriteRenderer>();
-                Map.transform.position = Vector3.zero;
                 MapCount++;
             }
         }

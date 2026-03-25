@@ -34,7 +34,7 @@ public class CoinSpawning : MonoBehaviour
 
     void Update()
     {
-        if ((currentPattern < PatternMax) && mapSpawner.CurrentPattern != 5)
+        if ((currentPattern < PatternMax) && mapSpawner.CurrentPattern != 10)
         {
             AutoSpawn();
         }
