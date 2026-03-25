@@ -12,6 +12,7 @@ public class MapSpawner : MonoBehaviour
 
     int mapNum;
     int mapNumNew;
+    SpriteRenderer Map;
 
     [SerializeField] private float _currentPattern;
     public float CurrentPattern => _currentPattern;
@@ -27,7 +28,7 @@ public class MapSpawner : MonoBehaviour
     {
         mapNum = Random.Range(0, mapList.Count);
 
-        Instantiate(
+        Map = Instantiate(
             mapList[mapNum],
             firstSpawnPos.position,
             Quaternion.identity,
@@ -59,18 +60,16 @@ public class MapSpawner : MonoBehaviour
         // wait until player passes kanchak
         if (isWaitingForKanchak && player.position.y > HighestOfSkip)
         {
+            Destroy(Map);
             mapNumNew = Random.Range(0, mapList.Count);
-
             if (mapNumNew != mapNum)
             {
-                Instantiate(
+                Map = Instantiate(
                     mapList[mapNumNew],
                     new Vector3(0, player.position.y + 400, 0),
                     Quaternion.identity,
                     _mapParent
                 );
-
-                mapNum = mapNumNew;
             }
 
             // 🔥 RESET EVERYTHING CLEAN

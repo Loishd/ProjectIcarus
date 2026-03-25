@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject MagnetCollider;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject cloudBlocker;
+
+    [SerializeField] bool isOnSkipping;
+
+    public bool IsOnSkipping => isOnSkipping;
 
 
     private void Start()
@@ -132,6 +137,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(CloudTime(CloudTimer));
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Skipper"))
+        {
+            Destroy(collision.gameObject, 3);
         }
     }
 
