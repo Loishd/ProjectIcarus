@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    RewardManager rewardManager;
+
     public bool isDeath = false;
     public bool isInvulnerability;
     public bool isMagnetic;
     public bool isFever;
+
+    public int nearMissCount;
+    public int touchWindCount;
 
     public static PlayerStatus Instance { get; private set; }
 
@@ -31,5 +36,13 @@ public class PlayerStatus : MonoBehaviour
         float overallCoin = PlayerPrefs.GetFloat("CoinAmount");
 
         PlayerPrefs.SetFloat("CoinAmount", amount + overallCoin);
+
+        if ((PlayerPrefs.GetInt("HoarderNextToPlutus") != 1) && overallCoin >= 9999)
+        {
+            PlayerPrefs.SetInt("HoarderNextToPlutus", 1);
+            Debug.Log("Hoarder Next To Plutus Completed!");
+        }
     }
+
+
 }

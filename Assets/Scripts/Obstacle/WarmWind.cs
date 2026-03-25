@@ -28,6 +28,13 @@ public class WarmWind1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             heightSys.IncreaseHeight(increaseAmount);
+            PlayerStatus.Instance.touchWindCount += 1;
+
+            if ((PlayerPrefs.GetInt("AggressiveTyphoon") != 1) && PlayerStatus.Instance.touchWindCount >= 15)
+            {
+                PlayerPrefs.SetInt("AggressiveTyphoon", 1);
+                Debug.Log("Aggressive Typhoon Completed!");
+            }
         }
     }
     void Move()

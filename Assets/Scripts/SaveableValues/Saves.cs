@@ -17,6 +17,14 @@ public class Saves : MonoBehaviour
             PlayerPrefs.SetInt("BoughtAttraction", 0);
             PlayerPrefs.SetInt("BoughtHeatShield", 0);
 
+            //Quests
+            PlayerPrefs.SetInt("HoarderNextToPlutus", 0);
+            PlayerPrefs.SetInt("IcarusArrogance", 0);
+            PlayerPrefs.SetInt("VolatileFlight", 0);
+            PlayerPrefs.SetInt("ZeusCantCatchMe", 0);
+            PlayerPrefs.SetInt("SeekingForPoseidon", 0);
+            PlayerPrefs.SetInt("AggressiveTyphoon", 0);
+
             //Misc.
             PlayerPrefs.SetInt("HasLaunchedBefore", 1);
             PlayerPrefs.Save();

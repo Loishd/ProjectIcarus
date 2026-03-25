@@ -88,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
         SetHighestScore();
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
+
+        PlayerStatus.Instance.nearMissCount = 0;
     }
 
     void SetHighestScore()

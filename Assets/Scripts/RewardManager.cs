@@ -5,24 +5,52 @@ using UnityEngine;
 public class RewardManager : MonoBehaviour
 {
     [SerializeField] float TotalCoins;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    public void HoarderNextToPlutus()
     {
-        TotalCoins += PlayerPrefs.GetFloat("CoinAmount");
-        HoarderNextToPlutus();
-    }
-
-    void HoarderNextToPlutus()
-    {
-        if (TotalCoins >= 9999)
+        if (PlayerPrefs.GetInt("HoarderNextToPlutus") == 1) //Total
         {
-            Debug.Log("Hoarder next to Plutus Completed!");
+            Debug.Log("HoarderNextToPlutus Completed");
+        }
+    }
+
+    public void IcarusArrogance()
+    {
+        if (PlayerPrefs.GetInt("IcarusArrogance") == 1) //Single Run
+        {
+            Debug.Log("IcarusArrogance Completed");
+        }
+    }
+
+    public void VolatileFlight()
+    {
+        if (PlayerPrefs.GetInt("VolatileFlight") == 1) //Straight
+        {
+            Debug.Log("VolatileFlight Completed");
+        }
+    }
+
+    public void ZeusCantCatchMe()
+    {
+        if (PlayerPrefs.GetInt("ZeusCantCatchMe") == 1) //Total
+        {
+            Debug.Log("ZeusCantCatchMe Completed");
+        }
+    }
+
+    public void SeekingForPoseidon()    
+    {
+        if (PlayerPrefs.GetInt("SeekingForPoseidon") == 1) //Straight
+        {
+            Debug.Log("SeekingForPoseidon Completed");
+        }
+    }
+
+    public void AggressiveTyphoon()
+    {
+        if (PlayerPrefs.GetInt("AggressiveTyphoon") >= 45) //Single Run
+        {
+            Debug.Log("AggressiveTyphoon Completed");
         }
     }
 }
