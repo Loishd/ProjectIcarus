@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Buff Time")]
     public float InvulnerabilityShieldTime;
     public float MagnetTimer;
+    public float CloudTimer;
 
     [Header("Movement Variable")]
     public float moveSpeed = 5f;
@@ -19,8 +20,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Buff Collider")]
     [SerializeField] GameObject InvulnerabilityShield;
     [SerializeField] GameObject MagnetCollider;
-
     [SerializeField] GameObject deathScreen;
+    [SerializeField] GameObject cloudBlocker;
+
 
     private void Start()
     {
@@ -96,8 +98,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
-
     void InvulnerabilityVisual()
     {
         if (PlayerStatus.Instance.isInvulnerability)
@@ -122,6 +122,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Cloud"))
+        {
+            Destroy(collision.gameObject);
+            {
+                StartCoroutine(CloudTime(CloudTimer));
+            }
+        }
+    }
+
     IEnumerator InvulnerabilityTimer(float timer)
     {
         yield return new WaitForSeconds(timer);
@@ -133,5 +144,12 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         PlayerStatus.Instance.isMagnetic = false;
+    }
+
+    IEnumerator CloudTime(float timer)
+    {
+        cloudBlocker.SetActive(true);
+        yield return new WaitForSeconds(timer);
+        cloudBlocker.SetActive(false);
     }
 }

@@ -16,6 +16,8 @@ public class CoinSpawning : MonoBehaviour
     [SerializeField] int PatternMax;
     [SerializeField] int currentPattern;
 
+    [Header("ChangePattern")]
+    [SerializeField] float PAtternCount;
     public int CurrentPattern => currentPattern;
 
     Vector3 HighestInpattern;

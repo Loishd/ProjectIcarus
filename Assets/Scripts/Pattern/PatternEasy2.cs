@@ -20,7 +20,7 @@ public class PatternEasy2 : Pattern1
             f.SetData(player, coinSpawning, feverSystem);
         }
 
-        // 🔥 THIS IS THE NEW PART
+        // Cloud
         Cloud[] clouds = GetComponentsInChildren<Cloud>();
 
         foreach (var c in clouds)

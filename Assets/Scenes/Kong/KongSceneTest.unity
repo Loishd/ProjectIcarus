@@ -2198,6 +2198,7 @@ MonoBehaviour:
   PatternList:
   - {fileID: 2161921552046019172, guid: f8f87c11e4dbf99448ccca864f01de39, type: 3}
   - {fileID: -6450735926986797145, guid: a7ec1b1f5c296874999e19fbf87bc904, type: 3}
+  - {fileID: -5221357816578719829, guid: bd55328f78b8cc546aa1f8c7e817c85c, type: 3}
   spawnedFeatherParent: {fileID: 713633527}
   CoinGap: 4
   _coinAmount: 0

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,18 +16,19 @@ public class Cloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null || coinSpawning == null) return;
+
         if (player.transform.position.y > transform.position.y + 10)
         {
+            float Timer = 0;
+            Timer += Time.deltaTime;
+            if (Timer >= 20)
+            {
+                Timer = 0;
+            }
             coinSpawning._coinAmount--;
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //Cloud do what
+            return; // 🔥 IMPORTANT
         }
     }
 
