@@ -84,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
     public void Death()
     {
         SetHighestScore();
-        AddCoinToPlayer();
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -97,12 +96,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void AddCoinToPlayer()
-    {
-        float overallCoin = PlayerPrefs.GetFloat("CoinAmount");
-
-        PlayerPrefs.SetFloat("CoinAmount", ScoreManager.Instance.CurrentCoins + overallCoin);
-    }
+    
 
     void InvulnerabilityVisual()
     {

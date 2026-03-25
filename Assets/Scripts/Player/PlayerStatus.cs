@@ -25,4 +25,11 @@ public class PlayerStatus : MonoBehaviour
         isFever = false;
         isInvulnerability = false;
     }
+
+    public void AddCoinToPlayer(float amount)
+    {
+        float overallCoin = PlayerPrefs.GetFloat("CoinAmount");
+
+        PlayerPrefs.SetFloat("CoinAmount", amount + overallCoin);
+    }
 }

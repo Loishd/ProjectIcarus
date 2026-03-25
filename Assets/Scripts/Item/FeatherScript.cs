@@ -50,6 +50,7 @@ public class FeatherScript : MonoBehaviour
         {
             ScoreManager.Instance.AddScore(1);
             feverSystem.IncreaseFever(feverGain);
+            PlayerStatus.Instance.AddCoinToPlayer(1);
             coinSpawning._coinAmount--;
             Destroy(gameObject);
         }
