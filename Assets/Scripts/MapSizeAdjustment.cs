@@ -5,15 +5,15 @@ using UnityEngine;
 public class MapSizeAdjustment : MonoBehaviour
 {
     [SerializeField] HeightSystem heightSystem;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float smoothSpeed;
 
-    // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, heightSystem.CurrentHeight); 
+        float currentZ = transform.position.z;
+        float targetZ = heightSystem.CurrentHeight;
+
+        float newZ = Mathf.Lerp(currentZ, targetZ, Time.deltaTime * smoothSpeed);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
 }
