@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FeatherScript : MonoBehaviour
 {
-    [SerializeField] PlayerMovement player;
-    [SerializeField] CoinSpawning coinSpawning;
-    [SerializeField] FeverSystem feverSystem;
+    [SerializeField] public PlayerMovement player;
+    [SerializeField] public CoinSpawning coinSpawning;
+    [SerializeField] public FeverSystem feverSystem;
     [SerializeField] private float feverGain = 5f;
     [SerializeField] bool isTargettingPlayer;
     [SerializeField] float targetSpeed;
@@ -25,9 +25,12 @@ public class FeatherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
         MagnetMethod();
         playerTarget = player.transform.position;
-        if (player.transform.position.y > transform.position.y +10)
+
+        if (player.transform.position.y > transform.position.y + 10)
         {
             coinSpawning._coinAmount--;
             Destroy(gameObject);

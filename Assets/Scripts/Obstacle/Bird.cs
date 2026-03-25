@@ -17,6 +17,8 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null) return;
+
         if (player.transform.position.y > transform.position.y + 10)
         {
             coinSpawning._coinAmount--;
@@ -51,9 +53,10 @@ public class Bird : MonoBehaviour
 
     }
 
-    public void SetData(PlayerMovement playerRef,CoinSpawning coinSpawningRef)
+    public void SetData(PlayerMovement playerRef,CoinSpawning coinSpawningRef,FeverSystem feverSystemRef)
     {
         player = playerRef;
         coinSpawning = coinSpawningRef;
+        feverSystem = feverSystemRef;
     }
 }

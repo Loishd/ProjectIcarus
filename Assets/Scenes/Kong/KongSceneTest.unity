@@ -1009,7 +1009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &465866849
 Transform:
   m_ObjectHideFlags: 0
@@ -2196,12 +2196,11 @@ MonoBehaviour:
   feverSystem: {fileID: 379775639}
   player: {fileID: 12504709}
   PatternList:
-  - {fileID: 1008509290081575650, guid: 98cbe38bd8efd794c8012e3ea73bcd92, type: 3}
-  obstacle1: {fileID: 9147973505444674321, guid: 54399e5421af59e4ba50f90ef0f110c6, type: 3}
+  - {fileID: 2161921552046019172, guid: f8f87c11e4dbf99448ccca864f01de39, type: 3}
+  - {fileID: -6450735926986797145, guid: a7ec1b1f5c296874999e19fbf87bc904, type: 3}
   spawnedFeatherParent: {fileID: 713633527}
   CoinGap: 4
   _coinAmount: 0
-  _coinMax: 30
   PatternMax: 2
   currentPattern: 0
 --- !u!1 &959615863

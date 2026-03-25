@@ -1,53 +1,64 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pattern1 : MonoBehaviour
 {
-    [SerializeField] FeverSystem feverSystem;
-    [SerializeField] CoinSpawning coinSpawning;
-    [SerializeField] PlayerMovement player;
+    protected FeverSystem feverSystem;
+    protected CoinSpawning coinSpawning;
+    protected PlayerMovement player;
+
     [SerializeField] List<FeatherScript> featherList = new List<FeatherScript>();
-    [SerializeField] Vector3 highestPos;
-    public Vector3 HighestPos => highestPos;
+    [SerializeField] List<Bird> birdList = new List<Bird>();
+    [SerializeField] Transform HighestOne;
+
+    Vector3 highestPos;
 
     public List<FeatherScript> FeatherList => featherList;
-    // Start is called before the first frame update
-    void Start()
+
+    protected virtual void Start()
     {
-        for (int i = 0; i < featherList.Count; i++)
+        if (HighestOne != null)
+            highestPos = HighestOne.position;
+    }
+
+
+    public virtual void SetPatternData(PlayerMovement player, CoinSpawning coinSpawning, FeverSystem feverSystem)
+    {
+        this.player = player;
+        this.coinSpawning = coinSpawning;
+        this.feverSystem = feverSystem;
+
+        // ⭐ IMPORTANT: assign to all children
+        FeatherScript[] feathers = GetComponentsInChildren<FeatherScript>();
+        Bird[] birds = GetComponentsInChildren<Bird>();
+
+        foreach (var f in feathers)
         {
-            featherList[i].SetData(player, coinSpawning, feverSystem);
+            f.SetData(player, coinSpawning, feverSystem);
+        }
+
+        foreach (var b in birds)
+        {
+            b.SetData(player, coinSpawning, feverSystem);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual Vector3 GetHighestPos()
     {
-        if (featherList[featherList.Count - 1] == null)
+        return HighestOne.position;
+    }
+
+    protected virtual void Update()
+    {
+        if (player == null) return;
+
+        float highestY = GetHighestPos().y;
+
+        if (player.transform.position.y > highestY + 2f)
         {
-            Destroy(gameObject);
             coinSpawning.DecreasePattern();
+            Destroy(gameObject);
         }
-
-        for (int i = 0; i < featherList.Count; i++)
-        {
-            if (featherList[i] == null)
-            {
-                featherList.RemoveAt(i);
-            }
-        }
-    }
-
-    public void SetPatternData(PlayerMovement playerRef, CoinSpawning coinSpawningRef,  FeverSystem feverSystemRef)
-    {
-        player = playerRef;
-        coinSpawning = coinSpawningRef;
-        feverSystem = feverSystemRef;
-    }
-
-    public Vector3 GetHighestPos()
-    {
-        return featherList[featherList.Count - 1].transform.position;
     }
 }

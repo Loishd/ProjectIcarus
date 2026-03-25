@@ -6,6 +6,7 @@ public class Cloud : MonoBehaviour
 {
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] PlayerMovement player;
+    [SerializeField] FeverSystem feverSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +31,10 @@ public class Cloud : MonoBehaviour
         }
     }
 
-    public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawningRef)
+    public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawningRef, FeverSystem feverSystemRef)
     {
         player = playerRef;
         coinSpawning = coinSpawningRef;
+        feverSystem = feverSystemRef;   
     }
 }

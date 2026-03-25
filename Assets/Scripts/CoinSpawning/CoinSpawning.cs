@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,47 +8,57 @@ public class CoinSpawning : MonoBehaviour
     [SerializeField] PlayerMovement player;
 
     [Header("Coin Pattern")]
-    [SerializeField] List <Pattern1> PatternList = new List<Pattern1>();
-
-    [Header("Obstacle Pattern")]
-    [SerializeField] Obstacle1 obstacle1;
+    [SerializeField] List<Pattern1> PatternList = new List<Pattern1>();
 
     [SerializeField] Transform spawnedFeatherParent;
     [SerializeField] float CoinGap;
     [SerializeField] public int _coinAmount;
-    [SerializeField] int _coinMax;
     [SerializeField] int PatternMax;
     [SerializeField] int currentPattern;
+
     public int CurrentPattern => currentPattern;
 
     Vector3 HighestInpattern;
-    float LatestY;
-    // Start is called before the first frame update
+
     void Start()
     {
         HighestInpattern = player.transform.position;
+
+        // spawn initial patterns
+        for (int i = 0; i < PatternMax; i++)
+        {
+            AutoSpawn();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        AutoSpawn();
+        if (currentPattern < PatternMax)
+        {
+            AutoSpawn();
+        }
     }
 
     public void AutoSpawn()
     {
+        int patternNum = Random.Range(0, PatternList.Count);
 
-        if (currentPattern < PatternMax)
-        {
-            int PatternNum = Random.Range(0, PatternList.Count);
-            GameObject spawnedPattern1 = Instantiate(PatternList[PatternNum].gameObject, new Vector3(0, HighestInpattern.y, 0), Quaternion.identity, spawnedFeatherParent);
-            Pattern1 _pattern1 = spawnedPattern1.GetComponent<Pattern1>();
-            _pattern1.SetPatternData(player, this,feverSystem);
-            _pattern1.GetHighestPos();
-            HighestInpattern = _pattern1.GetHighestPos();
-            currentPattern++;
-            _coinAmount += _pattern1.FeatherList.Count;
-        }
+        GameObject spawnedPattern = Instantiate(
+            PatternList[patternNum].gameObject,
+            new Vector3(0, HighestInpattern.y, 0),
+            Quaternion.identity,
+            spawnedFeatherParent
+        );
+
+        Pattern1 pattern = spawnedPattern.GetComponent<Pattern1>();
+
+        pattern.SetPatternData(player, this, feverSystem);
+
+        HighestInpattern = pattern.GetHighestPos() + new Vector3(0, -5, 0);
+        HighestInpattern.y += CoinGap; // ⭐ prevent overlap
+
+        currentPattern++;
+        _coinAmount += pattern.FeatherList.Count;
     }
 
     public void DecreasePattern()
