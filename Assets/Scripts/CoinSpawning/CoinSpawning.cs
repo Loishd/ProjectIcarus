@@ -6,25 +6,24 @@ public class CoinSpawning : MonoBehaviour
 {
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] PlayerMovement player;
+    [SerializeField] MapSpawner mapSpawner;
 
     [Header("Coin Pattern")]
     [SerializeField] List<Pattern1> PatternList = new List<Pattern1>();
-
     [SerializeField] Transform spawnedFeatherParent;
     [SerializeField] float CoinGap;
     [SerializeField] public int _coinAmount;
     [SerializeField] int PatternMax;
     [SerializeField] int currentPattern;
-
-    [Header("ChangePattern")]
-    [SerializeField] float PAtternCount;
     public int CurrentPattern => currentPattern;
 
-    Vector3 HighestInpattern;
+    Vector3 _highestInpattern;
+
+    public float HighestInPattern => _highestInpattern.y;
 
     void Start()
     {
-        HighestInpattern = player.transform.position;
+        _highestInpattern = player.transform.position;
 
         // spawn initial patterns
         for (int i = 0; i < PatternMax; i++)
@@ -35,7 +34,7 @@ public class CoinSpawning : MonoBehaviour
 
     void Update()
     {
-        if (currentPattern < PatternMax)
+        if ((currentPattern < PatternMax) && mapSpawner.CurrentPattern != 5)
         {
             AutoSpawn();
         }
@@ -47,7 +46,7 @@ public class CoinSpawning : MonoBehaviour
 
         GameObject spawnedPattern = Instantiate(
             PatternList[patternNum].gameObject,
-            new Vector3(0, HighestInpattern.y, 0),
+            new Vector3(0, _highestInpattern.y, 0),
             Quaternion.identity,
             spawnedFeatherParent
         );
@@ -56,9 +55,9 @@ public class CoinSpawning : MonoBehaviour
 
         pattern.SetPatternData(player, this, feverSystem);
 
-        HighestInpattern = pattern.GetHighestPos() + new Vector3(0, -5, 0);
-        HighestInpattern.y += CoinGap; // ⭐ prevent overlap
-
+        _highestInpattern = pattern.GetHighestPos() + new Vector3(0, -5, 0);
+        _highestInpattern.y += CoinGap; // ⭐ prevent overlap
+        mapSpawner.AddPattern();
         currentPattern++;
         _coinAmount += pattern.FeatherList.Count;
     }
