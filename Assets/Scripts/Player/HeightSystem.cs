@@ -33,14 +33,8 @@ public class HeightSystem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if (currentHeight >= maxHeight)
-            {
-                currentHeight = maxHeight;
-            }
-            else
-            {
-                currentHeight += increaseSpeed * Time.deltaTime;
-            }
+            currentHeight += increaseSpeed * Time.deltaTime;
+            
         }
         else
         {
@@ -77,7 +71,7 @@ public class HeightSystem : MonoBehaviour
         }
 
         //--------------------------- Slowly Turn Red ----------------------------------------
-        if (currentHeight >= 100f)
+        if (currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield)
         {
             float t = Mathf.InverseLerp(30f, maxHeight, currentHeight);
 

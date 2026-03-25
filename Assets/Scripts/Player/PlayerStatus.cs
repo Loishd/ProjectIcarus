@@ -7,8 +7,11 @@ public class PlayerStatus : MonoBehaviour
     RewardManager rewardManager;
 
     public bool isDeath = false;
+
     public bool isInvulnerability;
     public bool isMagnetic;
+    public bool isHeatShield;
+
     public bool isFever;
 
     public int nearMissCount;

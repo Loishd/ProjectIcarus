@@ -1,3 +1,4 @@
+using System.Threading;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -22,6 +23,10 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Sound")]
     [SerializeField] AudioSource audioSource;
+
+    [Header("Quests")]
+    [SerializeField] float volatileFlightReachTime = 360f;
+    [SerializeField] float seekingForPoseidonReachTime = 480f;
 
 
     public int CurrentCoins => _currentCoins;
@@ -69,6 +74,7 @@ public class ScoreManager : MonoBehaviour
             _currentCoins += 1000;
         }
 
+        CheckHeightQuest();
     }
 
     public void AddScore(int coins)
@@ -96,6 +102,44 @@ public class ScoreManager : MonoBehaviour
         {
             _highestScore = _currentScore;
             HighestScoreText.text = ((int)_highestScore).ToString();
+        }
+    }
+
+    void CheckHeightQuest()
+    {
+        float questMultiplier = 1 + (heightSystem.CurrentHeight - 50f) / 10f;
+
+        if (questMultiplier >= 4)
+        {
+            //Volatile Flight
+            float timer = 0f;
+            timer += Time.deltaTime;
+
+            if (questMultiplier < 4)
+                timer = 0f;
+
+            if (timer >= volatileFlightReachTime && (PlayerPrefs.GetInt("VolatileFlight") != 1))
+            {
+                PlayerPrefs.SetInt("VolatileFlight", 1);
+                Debug.Log("Volatile Flight Completed!");
+            }
+ 
+        }
+
+        else if (questMultiplier <= -4)
+        {
+            float timer = 0f;
+            timer += Time.deltaTime;
+
+            if (questMultiplier > -4)
+                timer = 0f;
+
+            if (timer >= seekingForPoseidonReachTime && (PlayerPrefs.GetInt("SeekingForPoseidon") != 1))
+            {
+                PlayerPrefs.SetInt("SeekingForPoseidon", 1);
+                Debug.Log("Seeking for Poseidon Completed!");
+            }
+
         }
     }
 }
