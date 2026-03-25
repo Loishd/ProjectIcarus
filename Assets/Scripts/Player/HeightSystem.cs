@@ -112,4 +112,14 @@ public class HeightSystem : MonoBehaviour
 
         background.color = Color.Lerp(start, end, currentHeight / maxHeight);
     }
+
+    public void DecreaseHeight(float decreaseAmount)
+    {
+        currentHeight -= decreaseAmount;
+    }
+
+    public void IncreaseHeight(float increaseAmount)
+    {
+        currentHeight += increaseAmount;
+    }
 }
