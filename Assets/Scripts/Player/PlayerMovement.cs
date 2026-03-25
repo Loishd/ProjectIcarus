@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject cloudBlocker;
 
     [SerializeField] bool isOnSkipping;
+    [SerializeField] MapSpawner mapSpawner;
 
     public bool IsOnSkipping => isOnSkipping;
 
@@ -138,13 +139,18 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(CloudTime(CloudTimer));
             }
         }
+        else if (collision.gameObject.CompareTag("Skipper"))
+        {
+            mapSpawner.DestroyMap();
+            mapSpawner.SpawnMap();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Skipper"))
         {
-            Destroy(collision.gameObject, 3);
+            Destroy(collision.gameObject, 1);
         }
     }
 

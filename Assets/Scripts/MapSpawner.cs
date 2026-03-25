@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapSpawner : MonoBehaviour
@@ -10,6 +11,7 @@ public class MapSpawner : MonoBehaviour
     [SerializeField] Transform firstSpawnPos;
     [SerializeField] SpriteRenderer kanChak;
 
+    int MapCount;
     int mapNum;
     int mapNumNew;
     SpriteRenderer Map;
@@ -17,7 +19,7 @@ public class MapSpawner : MonoBehaviour
     [SerializeField] private float _currentPattern;
     public float CurrentPattern => _currentPattern;
 
-    [SerializeField] List<SpriteRenderer> mapList = new List<SpriteRenderer>();
+    [SerializeField] List<GameObject> mapList = new List<GameObject>();
 
     float HighestOfSkip;
 
@@ -28,12 +30,7 @@ public class MapSpawner : MonoBehaviour
     {
         mapNum = Random.Range(0, mapList.Count);
 
-        Map = Instantiate(
-            mapList[mapNum],
-            firstSpawnPos.position,
-            Quaternion.identity,
-            _mapParent
-        );
+        Map = Instantiate(mapList[mapNum],firstSpawnPos.position,Quaternion.identity,_mapParent).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -60,18 +57,7 @@ public class MapSpawner : MonoBehaviour
         // wait until player passes kanchak
         if (isWaitingForKanchak && player.position.y > HighestOfSkip)
         {
-            Destroy(Map);
-            mapNumNew = Random.Range(0, mapList.Count);
-            if (mapNumNew != mapNum)
-            {
-                Map = Instantiate(
-                    mapList[mapNumNew],
-                    new Vector3(0, player.position.y + 400, 0),
-                    Quaternion.identity,
-                    _mapParent
-                );
-            }
-
+            SpawnMap();
             // 🔥 RESET EVERYTHING CLEAN
             _currentPattern = 0;
             isWaitingForKanchak = false;
@@ -90,5 +76,26 @@ public class MapSpawner : MonoBehaviour
         );
 
         HighestOfSkip = changeScene.transform.position.y + 20;
+    }
+
+    public void SpawnMap()
+    {
+        if (MapCount == 0)
+        {
+            mapNumNew = Random.Range(0, mapList.Count);
+            if (mapNumNew != mapNum)
+            {
+                Debug.Log("Instantiated");
+                GameObject newMap = Instantiate(mapList[mapNum], new Vector3(0, player.position.y + 400, 0), Quaternion.identity, _mapParent).GetComponent<SpriteRenderer>().gameObject;
+                Map = newMap.GetComponentInChildren<SpriteRenderer>();
+                Map.transform.position = Vector3.zero;
+                MapCount++;
+            }
+        }
+    }
+    public int DestroyMap()
+    {
+        Destroy( Map.gameObject , 2);
+        return MapCount = 0;
     }
 }
