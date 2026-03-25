@@ -8,9 +8,16 @@ public class Saves : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("HasLaunchedBefore"))
         {
+            //Stats
             PlayerPrefs.SetFloat("HighestScore", 0);
             PlayerPrefs.SetFloat("CoinAmount", 0);
 
+            //Shop
+            PlayerPrefs.SetInt("BoughtInvulnerability", 0);
+            PlayerPrefs.SetInt("BoughtAttraction", 0);
+            PlayerPrefs.SetInt("BoughtHeatShield", 0);
+
+            //Misc.
             PlayerPrefs.SetInt("HasLaunchedBefore", 1);
             PlayerPrefs.Save();
         }

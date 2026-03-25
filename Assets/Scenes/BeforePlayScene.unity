@@ -179,15 +179,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127039273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.2870016}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1511966956}
+  m_Father: {fileID: 390200360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -110, y: 104}
+  m_AnchoredPosition: {x: -66, y: 69}
   m_SizeDelta: {x: 112.424, y: 110.7297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127039275
@@ -360,7 +360,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 1.2870016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 127039274}
   m_Father: {fileID: 1511966956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -434,7 +435,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: KongSceneTest
+          m_StringArgument: ShopScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &390200363
@@ -967,7 +968,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 390200360}
-  - {fileID: 127039274}
   - {fileID: 1297775990}
   - {fileID: 432160659}
   m_Father: {fileID: 0}
