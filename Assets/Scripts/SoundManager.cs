@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     [Header("SFX List")]
     public AudioClip jumpSfx;
     public AudioClip coinSfx;
+    public AudioClip dashSfx;
 
     [Header("Music List")]
     [SerializeField] private List<AudioClip> musicList = new List<AudioClip>();

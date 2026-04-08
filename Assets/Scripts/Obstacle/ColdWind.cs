@@ -20,7 +20,7 @@ public class ColdWind : MonoBehaviour
 
     void Update()
     {
-        Move();
+        //Move();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

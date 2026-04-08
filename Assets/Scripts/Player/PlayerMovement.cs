@@ -79,11 +79,13 @@ public class PlayerMovement : MonoBehaviour
         //Check Lane
         if (Input.GetKeyDown(KeyCode.A))
         {
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
             if (currentLane == 0) return;
             currentLane--;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
             if (currentLane == 2) return;
             currentLane++;
         }

@@ -10,8 +10,6 @@ public class PatternEasy2 : Pattern1
     {
         base.SetPatternData(player, coinSpawning, feverSystem);
 
-        Debug.Log("PatternEasy2 INIT");
-
         // get feathers (same as before)
         FeatherScript[] feathers = GetComponentsInChildren<FeatherScript>();
 
