@@ -12,6 +12,8 @@ public class StarterBuff : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("BoughtInvulnerability") == 0 && PlayerPrefs.GetInt("BoughtAttraction") == 0 && PlayerPrefs.GetInt("BoughtHeatShield") == 0) return;
+
         menu.SetActive(true);
         timerIsRunning = true;
     }
@@ -63,7 +65,7 @@ public class StarterBuff : MonoBehaviour
         if (itemIndex == 2 && PlayerPrefs.GetInt("BoughtHeatShield") == 1)
         {
             Debug.Log("BoughtHeatShield!");
-            //PlayerStatus.Instance.isHeatShield Here...
+            PlayerStatus.Instance.isHeatShield = true;
             PlayerPrefs.SetInt("BoughtHeatShield", 0);
             menu.SetActive(false);
         }

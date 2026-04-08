@@ -52,23 +52,23 @@ public class HeightSystem : MonoBehaviour
     void HeightVisual()
     {
 
-        //------------------------------ Heat Zone :fire: -------------------------------------
-        if (currentHeight >= dangerHeatZone)
-        {
-            if (playerStatus.isDeath) return;
+        ////------------------------------ Heat Zone :fire: -------------------------------------
+        //if (currentHeight >= dangerHeatZone)
+        //{
+        //    if (playerStatus.isDeath) return;
 
-            Destroy(gameObject);
-            Debug.Log("You Death By Heat.");
-        }
+        //    Destroy(gameObject);
+        //    Debug.Log("You Death By Heat.");
+        //}
 
-        //--------------------------- Freeze Zone :ice: b------------------------------------
-        if (currentHeight <= dangerFreezeZone)
-        {
-            if (playerStatus.isDeath) return;
+        ////--------------------------- Freeze Zone :ice: b------------------------------------
+        //if (currentHeight <= dangerFreezeZone)
+        //{
+        //    if (playerStatus.isDeath) return;
 
-            Destroy(gameObject);
-            Debug.Log("You Death By Freeze/Falling.");
-        }
+        //    Destroy(gameObject);
+        //    Debug.Log("You Death By Freeze/Falling.");
+        //}
 
         //--------------------------- Slowly Turn Red ----------------------------------------
         if (currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield)

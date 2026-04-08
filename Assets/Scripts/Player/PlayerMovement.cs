@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Buff Time")]
     public float InvulnerabilityShieldTime;
     public float MagnetTimer;
+    public float HeatShieldTime;
     public float CloudTimer;
 
     [Header("Movement Variable")]
@@ -21,9 +22,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Buff Collider")]
     [SerializeField] GameObject InvulnerabilityShield;
     [SerializeField] GameObject MagnetCollider;
+    [SerializeField] GameObject HeatShieldCollider;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject cloudBlocker;
-
+   
     [SerializeField] bool isOnSkipping;
     [SerializeField] MapSpawner mapSpawner;
 
@@ -40,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) Death();
         InvulnerabilityVisual();
         MagnetVisual();
+        HeatShieldVisual();
         LaneSwapper();
         speedIncrease += Time.deltaTime/2000;
 
@@ -52,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
         else if (PlayerStatus.Instance.isMagnetic)
         {
             StartCoroutine(MagnetTime(MagnetTimer));
+        }
+        else if (PlayerStatus.Instance.isHeatShield)
+        {
+            StartCoroutine(HeatShieldTimer(HeatShieldTime));
         }
     }
 
@@ -130,6 +137,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void HeatShieldVisual()
+    {
+        if (PlayerStatus.Instance.isHeatShield)
+            HeatShieldCollider.SetActive(true);
+        else
+            HeatShieldCollider.SetActive(false);
+            
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Cloud"))
@@ -165,6 +181,12 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         PlayerStatus.Instance.isMagnetic = false;
+    }
+
+    IEnumerator HeatShieldTimer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        PlayerStatus.Instance.isHeatShield = false;
     }
 
     IEnumerator CloudTime(float timer)
