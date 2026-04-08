@@ -53,6 +53,7 @@ public class FeatherScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.coinSfx);
             ScoreManager.Instance.AddScore(1);
             feverSystem.IncreaseFever(feverGain);
             PlayerStatus.Instance.AddCoinToPlayer(1);

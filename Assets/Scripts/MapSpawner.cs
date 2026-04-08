@@ -1,100 +1,103 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class MapSpawner : MonoBehaviour
 {
     [SerializeField] CoinSpawning coinSpawner;
     [SerializeField] Transform player;
     [SerializeField] Transform _mapParent;
-    [SerializeField] Transform firstSpawnPos;
+    [SerializeField] SpriteRenderer actualMap;
     [SerializeField] SpriteRenderer kanChak;
-
-    int MapCount;
     int mapNum;
     int mapNumNew;
-    SpriteRenderer Map;
 
     [SerializeField] private float _currentPattern;
     public float CurrentPattern => _currentPattern;
 
-    [SerializeField] List<GameObject> mapList = new List<GameObject>();
+    [SerializeField] List<Sprite> mapList = new List<Sprite>();
 
     float HighestOfSkip;
-
     bool hasSpawnedSkip = false;
-    bool isWaitingForKanchak = false; // 🔥 LOCK SYSTEM
+    bool isWaitingForKanchak = false;
+    [SerializeField] bool isSpawnEmpty;
+    public Action changedScene;
+
+    public bool IsSpawnEmpty => isSpawnEmpty;
 
     void Start()
     {
-        mapNum = Random.Range(0, mapList.Count);
-
-        Map = Instantiate(mapList[mapNum],firstSpawnPos.position,Quaternion.identity,_mapParent).GetComponent<SpriteRenderer>();
+        Time.timeScale = 1.0f;
+        mapNum = UnityEngine.Random.Range(0, mapList.Count);
+        actualMap = transform.Find("map").GetComponent<SpriteRenderer>();
+        actualMap.sprite = mapList[mapNum];
     }
 
     void Update()
     {
         CheckBackgroundChange();
     }
-
-    // 🔥 CALLED WHEN PATTERN SPAWNS
     public void AddPattern()
     {
-        if (isWaitingForKanchak) return; // ❌ STOP COUNTING DURING TRANSITION
+        if (isWaitingForKanchak) return; 
 
         _currentPattern++;
 
         if (_currentPattern == 10 && !hasSpawnedSkip)
         {
             SpawnSkipScene();
-            isWaitingForKanchak = true; // 🔒 LOCK
+            isWaitingForKanchak = true;
         }
     }
 
     public void CheckBackgroundChange()
     {
-        // wait until player passes kanchak
         if (isWaitingForKanchak && player.position.y > HighestOfSkip)
         {
-            SpawnMap();
-            // 🔥 RESET EVERYTHING CLEAN
+            SpawnSkipScene();
             _currentPattern = 0;
             isWaitingForKanchak = false;
             hasSpawnedSkip = false;
+            isSpawnEmpty = true;
         }
     }
 
     void SpawnSkipScene()
     {
         hasSpawnedSkip = true;
-
-        SpriteRenderer changeScene = Instantiate(
-            kanChak,
-            new Vector3(0f, coinSpawner.HighestInPattern + 20f, 0f),
-            Quaternion.identity
-        );
-
+        SpriteRenderer changeScene = Instantiate(kanChak,new Vector3(0f, coinSpawner.HighestInPattern + 20f, 0f),Quaternion.identity);
         HighestOfSkip = changeScene.transform.position.y + 20;
     }
 
-    public void SpawnMap()
+    public void ChangeMapPosition()
     {
-        if (MapCount == 0)
+        mapNumNew = UnityEngine.Random.Range(0, mapList.Count);
+        while (mapNum == mapNumNew)
         {
-            mapNumNew = Random.Range(0, mapList.Count);
-            if (mapNumNew != mapNum)
-            {
-                Debug.Log("Instantiated");
-                GameObject newMap = Instantiate(mapList[mapNum], new Vector3(0, player.position.y + 400, 0), Quaternion.identity, _mapParent).GetComponent<SpriteRenderer>().gameObject;
-                Map = newMap.GetComponentInChildren<SpriteRenderer>();
-                MapCount++;
-            }
+            mapNumNew = UnityEngine.Random.Range(0, mapList.Count);
         }
+        StartCoroutine(TimerChangeMap(2));
+        isSpawnEmpty = true;
     }
-    public int DestroyMap()
+
+    public void DestroySkipScene()
     {
-        Destroy( Map.gameObject , 2);
-        return MapCount = 0;
+
+    }
+
+    public IEnumerator TimerChangeMap(int secondWaited)
+    {
+        yield return new WaitForSeconds(secondWaited);
+        actualMap.transform.position = new Vector3(actualMap.transform.position.x, player.transform.position.y + 300f, actualMap.transform.position.z);
+        actualMap.sprite = mapList[mapNumNew];
+        Debug.Log("Changed Background");
+    }
+
+    public void IsNotSpawnEmpty()
+    {
+        isSpawnEmpty = false;
     }
 }

@@ -226,6 +226,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1226036427571558682}
     m_Modifications:
+    - target: {fileID: 187203415523399894, guid: 4c21ffe9063b46c4b9af90b216a0a626, type: 3}
+      propertyPath: m_Radius
+      value: 0.66
+      objectReference: {fileID: 0}
     - target: {fileID: 1350880768958225753, guid: 4c21ffe9063b46c4b9af90b216a0a626, type: 3}
       propertyPath: m_Name
       value: 3 Cloud M

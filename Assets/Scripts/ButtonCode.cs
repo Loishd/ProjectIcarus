@@ -34,6 +34,7 @@ public class ButtonCode : MonoBehaviour
     public void LoadingScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1.0f;
     }
     public void Quit()
     {

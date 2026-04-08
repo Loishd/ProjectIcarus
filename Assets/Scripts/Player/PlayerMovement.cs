@@ -157,8 +157,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Skipper"))
         {
-            mapSpawner.DestroyMap();
-            mapSpawner.SpawnMap();
+            mapSpawner.ChangeMapPosition();
         }
     }
 
@@ -166,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Skipper"))
         {
-            Destroy(collision.gameObject, 1);
+            Destroy(collision.gameObject, 2);
         }
     }
 
