@@ -6,6 +6,19 @@ public class RewardManager : MonoBehaviour
 {
     [SerializeField] float TotalCoins;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U)) 
+        {
+            HoarderNextToPlutus();
+            IcarusArrogance();
+            VolatileFlight();
+            ZeusCantCatchMe();
+            SeekingForPoseidon();
+            AggressiveTyphoon();
+        }    
+    }
+
     public void HoarderNextToPlutus()
     {
         if (PlayerPrefs.GetInt("HoarderNextToPlutus") == 1) //Total
