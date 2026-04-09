@@ -148,3 +148,4 @@ MonoBehaviour:
   heightSys: {fileID: 0}
   moveSpeed: 2
   increaseAmount: 25
+  nearMissIncreaseScore: 100

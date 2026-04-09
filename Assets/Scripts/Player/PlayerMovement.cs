@@ -104,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
 
+        PlayerStatus.Instance.isDeath = true;
+
         PlayerStatus.Instance.nearMissCount = 0;
     }
 

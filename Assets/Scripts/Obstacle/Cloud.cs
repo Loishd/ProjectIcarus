@@ -30,6 +30,8 @@ public class Cloud : MonoBehaviour
             Destroy(gameObject);
             return; // 🔥 IMPORTANT
         }
+
+
     }
 
     public void SetData(PlayerMovement playerRef, CoinSpawning coinSpawningRef, FeverSystem feverSystemRef)

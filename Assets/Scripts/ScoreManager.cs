@@ -84,6 +84,7 @@ public class ScoreManager : MonoBehaviour
 
     public void OpenAndCloseMenu()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         if (!PauseMenu.activeSelf)
         {
             PauseMenu.SetActive(true);

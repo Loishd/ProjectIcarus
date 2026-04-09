@@ -10,6 +10,7 @@ public class ColdWind : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float decreaseAmount;
+    [SerializeField] private float nearMissIncreaseScore;
 
 
 
@@ -34,6 +35,18 @@ public class ColdWind : MonoBehaviour
             {
                 PlayerPrefs.SetInt("AggressiveTyphoon", 1);
                 Debug.Log("Aggressive Typhoon Completed!");
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Wing"))
+        {
+            ScoreManager.Instance._currentScore += nearMissIncreaseScore;
+            PlayerStatus.Instance.nearMissCount += 1;
+
+            if ((PlayerPrefs.GetInt("IcarusArrogance") != 1) && PlayerStatus.Instance.nearMissCount >= 15)
+            {
+                PlayerPrefs.SetInt("IcarusArrogance", 1);
+                Debug.Log("Icarus Arrogance Completed!");
             }
         }
     }
