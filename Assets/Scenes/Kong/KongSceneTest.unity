@@ -245,6 +245,7 @@ MonoBehaviour:
   cloudBlocker: {fileID: 1782162100}
   isOnSkipping: 0
   mapSpawner: {fileID: 723235876}
+  starterBuff: {fileID: 869243846}
 --- !u!61 &12504710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2558,6 +2559,9 @@ MonoBehaviour:
   timerIsRunning: 0
   timeText: {fileID: 991888426}
   menu: {fileID: 1902759385}
+  invulnerabilityAmount: 0
+  attractionAmount: 0
+  heatShieldAmount: 0
 --- !u!4 &869243847
 Transform:
   m_ObjectHideFlags: 0

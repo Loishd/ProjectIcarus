@@ -11,6 +11,12 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] TMP_Text invulnerabilityPriceText;
     [SerializeField] TMP_Text attractionPriceText;
     [SerializeField] TMP_Text heatShieldPriceText;
+    [SerializeField] TMP_Text invulnerabilityAmountText;
+    [SerializeField] TMP_Text attractionAmountText;
+    [SerializeField] TMP_Text heatShieldAmountText;
+    int invulreabilityAmount;
+    int attractionAmount;
+    int heatShieldAmount;
 
     [Header("Buff Price (D)")]
     [SerializeField] int invulnerabilityPrice;
@@ -25,6 +31,14 @@ public class ShopSystem : MonoBehaviour
         invulnerabilityPriceText.text = invulnerabilityPrice.ToString();
         attractionPriceText.text = attractionPrice.ToString();
         heatShieldPriceText.text = heatShieldPrice.ToString();
+
+        invulreabilityAmount = PlayerPrefs.GetInt("BoughtInvulnerability");
+        attractionAmount = PlayerPrefs.GetInt("BoughtAttraction");
+        heatShieldAmount = PlayerPrefs.GetInt("BoughtHeatShield");
+
+        invulnerabilityAmountText.text = "x" + invulreabilityAmount.ToString();
+        attractionAmountText.text = "x" + attractionAmount.ToString();
+        heatShieldAmountText.text = "x" + heatShieldAmount.ToString();
     }
 
     void UpdateCoinText()
@@ -48,10 +62,6 @@ public class ShopSystem : MonoBehaviour
 
         if (overallCoin >= price)
         {
-            if (itemIndex == 0 && PlayerPrefs.GetInt("BoughtInvulnerability") == 1) return;
-            if (itemIndex == 1 && PlayerPrefs.GetInt("BoughtAttraction") == 1) return;
-            if (itemIndex == 2 && PlayerPrefs.GetInt("BoughtHeatShield") == 1) return;
-
             Debug.Log("Sold!");
             overallCoin -= price;
             GiveItem(itemIndex);
@@ -70,17 +80,23 @@ public class ShopSystem : MonoBehaviour
         if (itemIndex == 0)
         {
             Debug.Log("Give Invulnerability!");
-            PlayerPrefs.SetInt("BoughtInvulnerability", 1);
+            PlayerPrefs.SetInt("BoughtInvulnerability", invulreabilityAmount++);
+            invulnerabilityAmountText.text = "x" + invulreabilityAmount.ToString();
+            
         }
         else if (itemIndex == 1)
         {
             Debug.Log("Give Attraction!");
-            PlayerPrefs.SetInt("BoughtAttraction", 1);
+            PlayerPrefs.SetInt("BoughtAttraction", attractionAmount++);
+            attractionAmountText.text = "x" + attractionAmount.ToString();
+            
         }
         else if (itemIndex == 2)
         {
             Debug.Log("Give HeatShield!");
-            PlayerPrefs.SetInt("BoughtHeatShield", 1);
+            PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount++);
+            heatShieldAmountText.text = "x" + heatShieldAmount.ToString();
+
         }
     }
 
@@ -88,4 +104,5 @@ public class ShopSystem : MonoBehaviour
     {
         PlayerPrefs.SetFloat("CoinAmount", overallCoin);
     }
+
 }

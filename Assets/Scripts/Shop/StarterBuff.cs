@@ -9,6 +9,9 @@ public class StarterBuff : MonoBehaviour
     public bool timerIsRunning = false;
     public TMP_Text timeText;
     public GameObject menu;
+    public int invulnerabilityAmount;
+    public int attractionAmount;
+    public int heatShieldAmount;
 
     private void Start()
     {
@@ -16,6 +19,10 @@ public class StarterBuff : MonoBehaviour
 
         menu.SetActive(true);
         timerIsRunning = true;
+
+        invulnerabilityAmount = PlayerPrefs.GetInt("BoughtInvulnerability");
+        attractionAmount = PlayerPrefs.GetInt("BoughtAttraction");
+        heatShieldAmount = PlayerPrefs.GetInt("BoughtHeatShield");
     }
 
     void Update()
@@ -46,27 +53,26 @@ public class StarterBuff : MonoBehaviour
 
     public void GetBuff(int itemIndex)
     {
-        if (itemIndex == 0 && PlayerPrefs.GetInt("BoughtInvulnerability") == 1)
+        if (PlayerStatus.Instance.isDeath) return;
+
+        if (itemIndex == 0 && PlayerPrefs.GetInt("BoughtInvulnerability") >= 1 && !PlayerStatus.Instance.isInvulnerability)
         {
-            Debug.Log("Give Invulnerability!");
             PlayerStatus.Instance.isInvulnerability = true;
-            PlayerPrefs.SetInt("BoughtInvulnerability", 0);
+            PlayerPrefs.SetInt("BoughtInvulnerability", invulnerabilityAmount - 1);
             menu.SetActive(false);
         }
             
-        if (itemIndex == 1 && PlayerPrefs.GetInt("BoughtAttraction") == 1)
+        if (itemIndex == 1 && PlayerPrefs.GetInt("BoughtAttraction") >= 1 && !PlayerStatus.Instance.isMagnetic)
         {
-            Debug.Log("BoughtAttraction!");
             PlayerStatus.Instance.isMagnetic = true;
-            PlayerPrefs.SetInt("BoughtAttraction", 0);
+            PlayerPrefs.SetInt("BoughtAttraction", attractionAmount - 1);
             menu.SetActive(false);
         }
             
-        if (itemIndex == 2 && PlayerPrefs.GetInt("BoughtHeatShield") == 1)
+        if (itemIndex == 2 && PlayerPrefs.GetInt("BoughtHeatShield") >= 1 && !PlayerStatus.Instance.isHeatShield)
         {
-            Debug.Log("BoughtHeatShield!");
             PlayerStatus.Instance.isHeatShield = true;
-            PlayerPrefs.SetInt("BoughtHeatShield", 0);
+            PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount - 1);
             menu.SetActive(false);
         }
     }

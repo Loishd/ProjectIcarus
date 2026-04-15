@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
    
     [SerializeField] bool isOnSkipping;
     [SerializeField] MapSpawner mapSpawner;
+    [SerializeField] StarterBuff starterBuff;
 
     public bool IsOnSkipping => isOnSkipping;
 
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerStatus.Instance.isDeath = true;
 
         PlayerStatus.Instance.nearMissCount = 0;
+        starterBuff.menu.SetActive(false);
     }
 
     void SetHighestScore()
