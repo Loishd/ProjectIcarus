@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) Death();
         InvulnerabilityVisual();
         MagnetVisual();
         HeatShieldVisual();

@@ -35,6 +35,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_InputField nameInput;
     [SerializeField] private string playerName;
     [SerializeField] TMP_Text enterNameWarning;
+
+    [Header("UI")]
+    [SerializeField] GameObject Wings;
+
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
@@ -168,5 +172,6 @@ public class ScoreManager : MonoBehaviour
         playerName = nameInput.text;
         Debug.Log(playerName);
         SoundManager.Instance.PlayCurrentMusic();
+        Wings.SetActive(true);
     }
 }
