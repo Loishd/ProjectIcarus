@@ -31,9 +31,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] float seekingForPoseidonReachTime = 480f;
 
     [Header("NameReceive")]
-    [SerializeField] GameObject nameInputPanel;
+    public GameObject nameInputPanel;
     [SerializeField] TMP_InputField nameInput;
     [SerializeField] private string playerName;
+    [SerializeField] TMP_Text enterNameWarning;
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
@@ -157,9 +158,15 @@ public class ScoreManager : MonoBehaviour
 
     public void ReceivedName()
     {
+        if (nameInput.text == "")
+        {
+            enterNameWarning.gameObject.SetActive(true);
+            return;
+        }
         Time.timeScale = 1.0f;
         nameInputPanel.gameObject.SetActive(false);
         playerName = nameInput.text;
         Debug.Log(playerName);
+        SoundManager.Instance.PlayCurrentMusic();
     }
 }

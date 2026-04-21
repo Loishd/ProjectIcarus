@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     void LaneSwapper()
     {
+        if (Time.timeScale == 0f) return;
         //Check Lane
         if (Input.GetKeyDown(KeyCode.A))
         {

@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        PlayCurrentMusic();
+
     }
 
     void Update()
@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void PlayCurrentMusic()
+    public void PlayCurrentMusic()
     {
         if (musicList.Count == 0) return;
 
