@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [SerializeField] TMP_Text gadgetText;
     RewardManager rewardManager;
 
     public bool isDeath = false;
@@ -33,6 +35,11 @@ public class PlayerStatus : MonoBehaviour
 
         isFever = false;
         isInvulnerability = false;
+    }
+
+    public void Update()
+    {
+        gadgetText.text = "Gadget: " + gadgetIndex;
     }
 
     public void AddCoinToPlayer(float amount)

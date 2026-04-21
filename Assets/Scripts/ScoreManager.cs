@@ -39,6 +39,11 @@ public class ScoreManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] GameObject Wings;
 
+    [Header("Gadget")]
+    [SerializeField] float gadgetMultiplier1;
+    [SerializeField] float gadgetMultiplier2;
+    [SerializeField] float gadgetMultiplier3;
+
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
@@ -69,9 +74,9 @@ public class ScoreManager : MonoBehaviour
         {
             Wings.SetActive(false);
         }
-        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight - 50) / 10)) * increaseAmount * InvulnerabilityMultiplier);
+        GadgetMultiplierUpdate();
+        _currentScore += (float)(Time.deltaTime * multiplier) * increaseAmount * InvulnerabilityMultiplier;
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
-        multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         MultiplierText.text = "x" + multiplier.ToString("F2");
         ScoreText.text = playerName + ": " + ((int)_currentScore).ToString();
         CoinText.text = "Coins: " + _currentCoins.ToString();
@@ -177,5 +182,25 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(playerName);
         SoundManager.Instance.PlayCurrentMusic();
         Wings.SetActive(true);
+    }
+
+    public void GadgetMultiplierUpdate()
+    {
+        if (PlayerStatus.Instance.gadgetIndex == 1)
+        {
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier1;
+        }
+        else if (PlayerStatus.Instance.gadgetIndex == 2)
+        {
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier2;
+        }
+        else if (PlayerStatus.Instance.gadgetIndex == 3)
+        {
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier3;
+        }
+        else
+        {
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
+        }
     }
 }
