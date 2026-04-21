@@ -79,10 +79,6 @@ public class PlayerMovement : MonoBehaviour
         if (Time.timeScale == 0f) return;
         if (PlayerStatus.Instance.gadgetIndex == 3)
         {
-
-        }
-        else
-        {
             if (Input.GetKeyDown(KeyCode.A))
             {
                 SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
@@ -95,6 +91,31 @@ public class PlayerMovement : MonoBehaviour
                 SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 if (currentLane == 0) return;
                 currentLane--;
+            }
+
+            Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+
+            if (currentLane == 0) targetPosition += Vector3.left * laneDistance;
+            else if (currentLane == 2) targetPosition += Vector3.right * laneDistance;
+
+            transform.position = Vector3.Lerp(transform.position, targetPosition, changeSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
+                if (currentLane == 0) return;
+                currentLane--;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
+                if (currentLane == 2) return;
+                currentLane++;
             }
 
             Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
