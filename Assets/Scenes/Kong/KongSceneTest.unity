@@ -726,7 +726,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 3.25708, w: 0}
+  m_margin: {x: -1111.5062, y: 0, z: 3.25708, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1401,6 +1401,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalCoins: 0
+  questNameText: {fileID: 0}
+  questUI: {fileID: 0}
+  popUpDuration: 2
+  popUpSpeed: 2
+  distance: 20
+  targetpos: {fileID: 0}
 --- !u!1 &511763963
 GameObject:
   m_ObjectHideFlags: 0
