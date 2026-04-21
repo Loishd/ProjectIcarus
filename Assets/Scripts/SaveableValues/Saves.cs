@@ -17,6 +17,14 @@ public class Saves : MonoBehaviour
             PlayerPrefs.SetInt("BoughtAttraction", 0);
             PlayerPrefs.SetInt("BoughtHeatShield", 0);
 
+            PlayerPrefs.SetInt("CanEquipFlapModule", 0);
+            PlayerPrefs.SetInt("CanEquipDiveModule", 0);
+            PlayerPrefs.SetInt("CanEquipPlaneModule", 0);
+
+            PlayerPrefs.SetInt("EquippedFlapModule", 0);
+            PlayerPrefs.SetInt("EquippedDiveModule", 0);
+            PlayerPrefs.SetInt("EquippedPlaneModule", 0);
+
             //Quests
             PlayerPrefs.SetInt("HoarderNextToPlutus", 0);
             PlayerPrefs.SetInt("IcarusArrogance", 0);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour
 {
@@ -18,10 +19,17 @@ public class ShopSystem : MonoBehaviour
     int attractionAmount;
     int heatShieldAmount;
 
+    [SerializeField] Button equipbutton1;
+    [SerializeField] Button equipbutton2;
+    [SerializeField] Button equipbutton3;
+
     [Header("Buff Price (D)")]
     [SerializeField] int invulnerabilityPrice;
     [SerializeField] int attractionPrice;
     [SerializeField] int heatShieldPrice;
+    [SerializeField] int flapModulePrice;
+    [SerializeField] int diveModulePrice;
+    [SerializeField] int planeModulePrice;
 
     void Start()
     {
@@ -39,6 +47,8 @@ public class ShopSystem : MonoBehaviour
         invulnerabilityAmountText.text = "x" + invulreabilityAmount.ToString();
         attractionAmountText.text = "x" + attractionAmount.ToString();
         heatShieldAmountText.text = "x" + heatShieldAmount.ToString();
+
+        RevealEquipButton();
     }
 
     void UpdateCoinText()
@@ -100,9 +110,168 @@ public class ShopSystem : MonoBehaviour
         }
     }
 
+    public void BuyGadget(int gadgetIndex)
+    {
+        int price = 999999;
+        gadgetIndex -= 1;
+
+        if (gadgetIndex == 0)
+        {
+            price = flapModulePrice;
+
+            if (PlayerPrefs.GetInt("CanEquipFlapModule") == 1) return;
+        }
+            
+        else if (gadgetIndex == 1)
+        {
+            price = diveModulePrice;
+
+            if (PlayerPrefs.GetInt("CanEquipDiveModule") == 1) return;
+        }
+
+        else if (gadgetIndex == 2)
+        {
+            price = planeModulePrice;
+
+            if (PlayerPrefs.GetInt("CanEquipPlaneModule") == 1) return;
+        }
+
+        if (overallCoin >= price)
+        {
+            Debug.Log("Sold!");
+            overallCoin -= price;
+            MarkGadgetToEquipable(gadgetIndex);
+            UpdateCoinText();
+            UpdateCoin();
+        }
+        else
+        {
+            Debug.Log("Not Enough Money...");
+            throw new System.Exception();
+        }
+    }
+
+    public void MarkGadgetToEquipable(int gadgetIndex)
+    {
+        if (gadgetIndex == 0)
+        {
+            Debug.Log("Give Flap module!");
+            PlayerPrefs.SetInt("CanEquipFlapModule", 1);
+            
+        }
+        else if (gadgetIndex == 1)
+        {
+            Debug.Log("Give Dive module!");
+            PlayerPrefs.SetInt("CanEquipDiveModule", 1);
+            
+        }
+        else if (gadgetIndex == 2)
+        {
+            Debug.Log("Give Plane mode!");
+            PlayerPrefs.SetInt("CanEquipPlaneModule", 1);
+            
+        }
+        RevealEquipButton();
+
+    }
+
+    public void RevealEquipButton()
+    {
+        if (PlayerPrefs.GetInt("CanEquipFlapModule") == 1)
+        {
+            equipbutton1.gameObject.SetActive(true);
+
+            if (PlayerPrefs.GetInt("EquippedFlapModule") == 1)
+            {
+                Image image = equipbutton1.GetComponent<Image>();
+                image.color = Color.red;
+            }
+        }
+
+        if (PlayerPrefs.GetInt("CanEquipDiveModule") == 1)
+        {
+            equipbutton2.gameObject.SetActive(true);
+
+            if (PlayerPrefs.GetInt("EquippedDiveModule") == 1)
+            {
+                Image image = equipbutton2.GetComponent<Image>();
+                image.color = Color.red;
+            }
+
+        }
+
+        if (PlayerPrefs.GetInt("CanEquipPlaneModule") == 1)
+        {
+            equipbutton3.gameObject.SetActive(true);
+
+            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 1)
+            {
+                Image image = equipbutton3.GetComponent<Image>();
+                image.color = Color.red;
+            }
+        }
+    }
+
+    public void EquipGadget(int gadgetIndex)
+    {
+        if (gadgetIndex == 0 && PlayerPrefs.GetInt("CanEquipFlapModule") == 1)
+        {
+            if (PlayerPrefs.GetInt("EquippedFlapModule") == 0)
+            {
+                PlayerPrefs.SetInt("EquippedFlapModule", 1);
+
+                Image image = equipbutton1.GetComponent<Image>();
+                image.color = Color.red;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("EquippedFlapModule", 0);
+
+                Image image = equipbutton1.GetComponent<Image>();
+                image.color = Color.green;
+            }
+        }
+
+        if (gadgetIndex == 1 && PlayerPrefs.GetInt("CanEquipDiveModule") == 1)
+        {
+            if (PlayerPrefs.GetInt("EquippedDiveModule") == 0)
+            {
+                PlayerPrefs.SetInt("EquippedDiveModule", 1);
+
+                Image image = equipbutton2.GetComponent<Image>();
+                image.color = Color.red;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("EquippedDiveModule", 0);
+
+                Image image = equipbutton2.GetComponent<Image>();
+                image.color = Color.green;
+            }
+        }
+
+        if (gadgetIndex == 2 && PlayerPrefs.GetInt("CanEquipPlaneModule") == 1)
+        {
+            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 0)
+            {
+                PlayerPrefs.SetInt("EquippedPlaneModule", 1);
+
+                Image image = equipbutton3.GetComponent<Image>();
+                image.color = Color.red;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("EquippedPlaneModule", 0);
+
+                Image image = equipbutton3.GetComponent<Image>();
+                image.color = Color.green;
+            }
+        }
+    }
+
     void UpdateCoin()
     {
-        PlayerPrefs.SetFloat("CoinAmount", overallCoin);
+    PlayerPrefs.SetFloat("CoinAmount", overallCoin);
     }
 
 }
