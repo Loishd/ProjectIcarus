@@ -65,6 +65,10 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStatus.Instance.isDeath)
+        {
+            Wings.SetActive(false);
+        }
         _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight - 50) / 10)) * increaseAmount * InvulnerabilityMultiplier);
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
         multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
