@@ -1,69 +1,105 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RewardManager : MonoBehaviour
 {
     [SerializeField] float TotalCoins;
 
+    [SerializeField] private TMP_Text questNameText;
+    [SerializeField] private GameObject questUI;
+    [SerializeField] private float popUpDuration = 2f;
+    [SerializeField] private float popUpSpeed = 2f;
+    [SerializeField] private float distance = 20f;
+    [SerializeField] GameObject targetpos;
+
+    public static RewardManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null) 
+            Instance = this;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U)) 
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            HoarderNextToPlutus();
-            IcarusArrogance();
-            VolatileFlight();
-            ZeusCantCatchMe();
-            SeekingForPoseidon();
-            AggressiveTyphoon();
-        }    
+            PlayerPrefs.SetInt("IcarusArrogance", 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log(PlayerPrefs.GetInt("IcarusArrogance"));
+            StartCoroutine(PopUpQuest("Test Quest"));
+        }
     }
 
-    public void HoarderNextToPlutus()
+    public IEnumerator PopUpQuest(string name)
+    {
+        questNameText.text = name;
+        Vector3 defaultPos = targetpos.transform.position;
+        Vector3 leftPos = defaultPos + Vector3.left * 500f;
+
+        yield return StartCoroutine(MoveObject(defaultPos, leftPos, 0.25f));
+
+        yield return new WaitForSeconds(popUpDuration);
+
+        yield return StartCoroutine(MoveObject(leftPos, defaultPos, 0.25f));
+    }
+
+    IEnumerator MoveObject(Vector3 start, Vector3 end, float duration)
+    {
+        float time = 0;
+
+        while (time < duration)
+        {
+            questUI.transform.position = Vector3.Lerp(start, end, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        questUI.transform.position = end;
+    }
+
+    public bool HoarderNextToPlutus()
     {
         if (PlayerPrefs.GetInt("HoarderNextToPlutus") == 1) //Total
-        {
-            Debug.Log("HoarderNextToPlutus Completed");
-        }
+            return true;
+        else
+            return false;
     }
 
-    public void IcarusArrogance()
+    public bool IcarusArrogance()
     {
         if (PlayerPrefs.GetInt("IcarusArrogance") == 1) //Single Run
-        {
-            Debug.Log("IcarusArrogance Completed");
-        }
+            return true;
+        else
+            return false;
     }
 
-    public void VolatileFlight()
+    public bool VolatileFlight()
     {
         if (PlayerPrefs.GetInt("VolatileFlight") == 1) //Straight
-        {
-            Debug.Log("VolatileFlight Completed");
-        }
+            return true;
+        else
+            return false;
     }
 
-    public void ZeusCantCatchMe()
-    {
-        if (PlayerPrefs.GetInt("ZeusCantCatchMe") == 1) //Total
-        {
-            Debug.Log("ZeusCantCatchMe Completed");
-        }
-    }
-
-    public void SeekingForPoseidon()    
+    public bool SeekingForPoseidon()    
     {
         if (PlayerPrefs.GetInt("SeekingForPoseidon") == 1) //Straight
-        {
-            Debug.Log("SeekingForPoseidon Completed");
-        }
+            return true;
+        else
+            return false;
     }
 
-    public void AggressiveTyphoon()
+    public bool AggressiveTyphoon()
     {
         if (PlayerPrefs.GetInt("AggressiveTyphoon") >= 45) //Single Run
-        {
-            Debug.Log("AggressiveTyphoon Completed");
-        }
+            return true;
+        else
+            return false;
     }
 }

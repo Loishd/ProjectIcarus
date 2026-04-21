@@ -61,7 +61,7 @@ public class Bird : MonoBehaviour
             if ((PlayerPrefs.GetInt("IcarusArrogance") != 1) && PlayerStatus.Instance.nearMissCount >= 15)
             {
                 PlayerPrefs.SetInt("IcarusArrogance", 1);
-                Debug.Log("Icarus Arrogance Completed!");
+                StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
             }
         }
 

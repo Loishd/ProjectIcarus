@@ -43,7 +43,7 @@ public class PlayerStatus : MonoBehaviour
         if ((PlayerPrefs.GetInt("HoarderNextToPlutus") != 1) && overallCoin >= 9999)
         {
             PlayerPrefs.SetInt("HoarderNextToPlutus", 1);
-            Debug.Log("Hoarder Next To Plutus Completed!");
+            StartCoroutine(RewardManager.Instance.PopUpQuest("Hoarder Next To Plutus"));
         }
     }
 

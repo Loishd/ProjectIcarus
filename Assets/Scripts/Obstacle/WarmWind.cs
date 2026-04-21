@@ -33,7 +33,7 @@ public class WarmWind1 : MonoBehaviour
             if ((PlayerPrefs.GetInt("AggressiveTyphoon") != 1) && PlayerStatus.Instance.touchWindCount >= 15)
             {
                 PlayerPrefs.SetInt("AggressiveTyphoon", 1);
-                Debug.Log("Aggressive Typhoon Completed!");
+                StartCoroutine(RewardManager.Instance.PopUpQuest("Aggressive Typhoon"));
             }
         }
 
@@ -45,7 +45,7 @@ public class WarmWind1 : MonoBehaviour
             if ((PlayerPrefs.GetInt("IcarusArrogance") != 1) && PlayerStatus.Instance.nearMissCount >= 15)
             {
                 PlayerPrefs.SetInt("IcarusArrogance", 1);
-                Debug.Log("Icarus Arrogance Completed!");
+                StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
             }
         }
     }
