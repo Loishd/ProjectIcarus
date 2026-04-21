@@ -16,6 +16,7 @@ public class PlayerStatus : MonoBehaviour
 
     public int nearMissCount;
     public int touchWindCount;
+    public int gadgetIndex;
 
     public static PlayerStatus Instance { get; private set; }
 

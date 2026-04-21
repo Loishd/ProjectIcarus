@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject HeatShieldCollider;
     [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject cloudBlocker;
-   
+
     [SerializeField] bool isOnSkipping;
     [SerializeField] MapSpawner mapSpawner;
     [SerializeField] StarterBuff starterBuff;
@@ -77,26 +77,33 @@ public class PlayerMovement : MonoBehaviour
     void LaneSwapper()
     {
         if (Time.timeScale == 0f) return;
-        //Check Lane
-        if (Input.GetKeyDown(KeyCode.A))
+        if (PlayerStatus.Instance.gadgetIndex == 3)
         {
-            SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
-            if (currentLane == 0) return;
-            currentLane--;
+
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        else
         {
-            SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
-            if (currentLane == 2) return;
-            currentLane++;
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
+                if (currentLane == 2) return;
+                currentLane++;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
+                if (currentLane == 0) return;
+                currentLane--;
+            }
+
+            Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+
+            if (currentLane == 0) targetPosition += Vector3.left * laneDistance;
+            else if (currentLane == 2) targetPosition += Vector3.right * laneDistance;
+
+            transform.position = Vector3.Lerp(transform.position, targetPosition, changeSpeed * Time.deltaTime);
         }
-
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-
-        if (currentLane == 0) targetPosition += Vector3.left * laneDistance;
-        else if (currentLane == 2) targetPosition += Vector3.right * laneDistance;
-
-        transform.position = Vector3.Lerp(transform.position, targetPosition, changeSpeed * Time.deltaTime);
     }
 
     public void Death()
