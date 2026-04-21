@@ -38,15 +38,16 @@ public class RewardManager : MonoBehaviour
 
     public IEnumerator PopUpQuest(string name)
     {
+
         questNameText.text = name;
         Vector3 defaultPos = targetpos.transform.position;
         Vector3 leftPos = defaultPos + Vector3.left * 500f;
 
-        yield return StartCoroutine(MoveObject(defaultPos, leftPos, 0.25f));
+        StartCoroutine(MoveObject(defaultPos, leftPos, 0.25f));
 
         yield return new WaitForSeconds(popUpDuration);
 
-        yield return StartCoroutine(MoveObject(leftPos, defaultPos, 0.25f));
+        StartCoroutine(MoveObject(leftPos, defaultPos, 0.25f));
     }
 
     IEnumerator MoveObject(Vector3 start, Vector3 end, float duration)
