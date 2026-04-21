@@ -38,7 +38,6 @@ public class RewardManager : MonoBehaviour
 
     public IEnumerator PopUpQuest(string name)
     {
-
         questNameText.text = name;
         Vector3 defaultPos = targetpos.transform.position;
         Vector3 leftPos = defaultPos + Vector3.left * 500f;

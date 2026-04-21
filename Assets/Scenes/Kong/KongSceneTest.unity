@@ -1537,7 +1537,7 @@ MonoBehaviour:
   TotalCoins: 0
   questNameText: {fileID: 115835459}
   questUI: {fileID: 1455846856}
-  popUpDuration: 2
+  popUpDuration: 3.5
   popUpSpeed: 2
   distance: 20
   targetpos: {fileID: 1820922075}
