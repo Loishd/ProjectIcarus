@@ -21,7 +21,10 @@ public class ColdWind : MonoBehaviour
 
     void Update()
     {
-        //Move();
+        if (player.transform.position.y > transform.position.y)
+        {
+            Destroy(gameObject, 10);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

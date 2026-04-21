@@ -18,17 +18,9 @@ public class Cloud : MonoBehaviour
     {
         if (player == null || coinSpawning == null) return;
 
-        if (player.transform.position.y > transform.position.y + 10)
+        if (player.transform.position.y > transform.position.y)
         {
-            float Timer = 0;
-            Timer += Time.deltaTime;
-            if (Timer >= 20)
-            {
-                Timer = 0;
-            }
-            coinSpawning._coinAmount--;
-            Destroy(gameObject);
-            return; // 🔥 IMPORTANT
+            Destroy(gameObject,10);
         }
 
 
