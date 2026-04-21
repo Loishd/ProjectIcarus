@@ -2,6 +2,8 @@ using System.Threading;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -28,7 +30,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] float volatileFlightReachTime = 360f;
     [SerializeField] float seekingForPoseidonReachTime = 480f;
 
-
+    [Header("NameReceive")]
+    [SerializeField] GameObject nameInputPanel;
+    [SerializeField] TMP_InputField nameInput;
+    [SerializeField] private string playerName;
     public int CurrentCoins => _currentCoins;
     // Start is called before the first frame update
     public static ScoreManager Instance;
@@ -45,6 +50,7 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
+        ShowReceiverPanel();
         InvulnerabilityMultiplier = 1;
         _currentCoins = 0;
         _highestScore = PlayerPrefs.GetFloat("HighestScore");
@@ -54,11 +60,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight-50)/ 10)) * increaseAmount * InvulnerabilityMultiplier);
+        _currentScore += (float)(Time.deltaTime * (1 + math.abs((heightSystem.CurrentHeight - 50) / 10)) * increaseAmount * InvulnerabilityMultiplier);
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
         multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         MultiplierText.text = "x" + multiplier.ToString("F2");
-        ScoreText.text = ((int)_currentScore).ToString();
+        ScoreText.text = playerName + ": " + ((int)_currentScore).ToString();
         CoinText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
 
@@ -142,5 +148,18 @@ public class ScoreManager : MonoBehaviour
             }
 
         }
+    }
+    public void ShowReceiverPanel()
+    {
+        Time.timeScale = 0f;
+        nameInputPanel.gameObject.SetActive(true);
+    }
+
+    public void ReceivedName()
+    {
+        Time.timeScale = 1.0f;
+        nameInputPanel.gameObject.SetActive(false);
+        playerName = nameInput.text;
+        Debug.Log(playerName);
     }
 }
