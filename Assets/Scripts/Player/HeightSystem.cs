@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HeightSystem : MonoBehaviour
@@ -10,6 +11,7 @@ public class HeightSystem : MonoBehaviour
     public float CurrentHeight => currentHeight;
     [SerializeField] private float increaseSpeed = 3f;
     [SerializeField] private float decreaseSpeed = 1f;
+    [SerializeField] private float gadgetIncreaseAmount;
     private float dangerHeatZone = 100f;
     private float dangerFreezeZone = 0f;
     private float maxHeight = 100f;
@@ -24,29 +26,70 @@ public class HeightSystem : MonoBehaviour
 
     void Update()
     {
+        Gadget2();
         HeightManager();
         BackgroundColor();
         HeightVisual();
     }
-    
+
     void HeightManager()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (PlayerStatus.Instance.gadgetIndex == 3)
         {
-            currentHeight += increaseSpeed * Time.deltaTime;
-            
-        }
-        else
-        {
-            if (currentHeight <= minHeight)
+            if (Input.GetKey(KeyCode.Space))
             {
-                currentHeight = minHeight;
+                if (currentHeight <= minHeight)
+                {
+                    currentHeight = minHeight;
+                }
+                else
+                {
+                    currentHeight -= decreaseSpeed * Time.deltaTime;
+                }
             }
             else
             {
-                currentHeight -= decreaseSpeed * Time.deltaTime;
+                currentHeight += increaseSpeed * Time.deltaTime;
             }
         }
+        else if (PlayerStatus.Instance.gadgetIndex == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                IncreaseHeight(gadgetIncreaseAmount);
+            }
+            else
+            {
+                if (currentHeight <= minHeight)
+                {
+                    currentHeight = minHeight;
+                }
+                else
+                {
+                    currentHeight -= decreaseSpeed * Time.deltaTime;
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                currentHeight += increaseSpeed * Time.deltaTime;
+
+            }
+            else
+            {
+                if (currentHeight <= minHeight)
+                {
+                    currentHeight = minHeight;
+                }
+                else
+                {
+                    currentHeight -= decreaseSpeed * Time.deltaTime;
+                }
+            }
+        }
+
     }
 
     void HeightVisual()
@@ -115,5 +158,24 @@ public class HeightSystem : MonoBehaviour
     public void IncreaseHeight(float increaseAmount)
     {
         currentHeight += increaseAmount;
+    }
+
+    public void Gadget2()
+    {
+        if (PlayerStatus.Instance.gadgetIndex == 2)
+        {
+            if ((Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.DownArrow)))
+            {
+                decreaseSpeed += Time.deltaTime * 2 ;
+            }
+            else
+            {
+                if (decreaseSpeed < 6)
+                {
+                    decreaseSpeed = 6;
+                }
+                decreaseSpeed -= Time.deltaTime * 0.5f;
+            }
+        }
     }
 }

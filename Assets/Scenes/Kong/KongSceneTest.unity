@@ -335,6 +335,7 @@ MonoBehaviour:
   currentHeight: 50
   increaseSpeed: 3
   decreaseSpeed: 1
+  gadgetIncreaseAmount: 0
   sprite: {fileID: 12504707}
   playerStatus: {fileID: 12504713}
 --- !u!114 &12504713
@@ -356,6 +357,7 @@ MonoBehaviour:
   isFever: 0
   nearMissCount: 0
   touchWindCount: 0
+  gadgetIndex: 2
 --- !u!1 &19015469
 GameObject:
   m_ObjectHideFlags: 0
@@ -4408,6 +4410,7 @@ MonoBehaviour:
   currentHeight: 50
   increaseSpeed: 9
   decreaseSpeed: 6
+  gadgetIncreaseAmount: 15
   sprite: {fileID: 12504707}
   playerStatus: {fileID: 12504713}
 --- !u!4 &1205335991

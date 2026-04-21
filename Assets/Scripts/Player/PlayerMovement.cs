@@ -132,10 +132,9 @@ public class PlayerMovement : MonoBehaviour
         SetHighestScore();
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
-
         PlayerStatus.Instance.isDeath = true;
-
         PlayerStatus.Instance.nearMissCount = 0;
+        PlayerStatus.Instance.gadgetIndex = 0;
         starterBuff.menu.SetActive(false);
     }
 
