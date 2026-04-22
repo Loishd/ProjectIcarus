@@ -23,6 +23,8 @@ public class StarterBuff : MonoBehaviour
         invulnerabilityAmount = PlayerPrefs.GetInt("BoughtInvulnerability");
         attractionAmount = PlayerPrefs.GetInt("BoughtAttraction");
         heatShieldAmount = PlayerPrefs.GetInt("BoughtHeatShield");
+
+        StarterGadget();
     }
 
     void Update()
@@ -74,6 +76,24 @@ public class StarterBuff : MonoBehaviour
             PlayerStatus.Instance.isHeatShield = true;
             PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount - 1);
             menu.SetActive(false);
+        }
+    }
+
+    void StarterGadget()
+    {
+        if (PlayerPrefs.GetInt("EquippedFlapModule") == 1)
+        {
+            PlayerStatus.Instance.gadgetIndex = 1;
+        }
+        
+        if (PlayerPrefs.GetInt("EquippedDiveModule") == 1)
+        {
+            PlayerStatus.Instance.gadgetIndex = 2;
+        }
+
+        if (PlayerPrefs.GetInt("EquippedPlaneModule") == 1)
+        {
+            PlayerStatus.Instance.gadgetIndex = 3;
         }
     }
 }

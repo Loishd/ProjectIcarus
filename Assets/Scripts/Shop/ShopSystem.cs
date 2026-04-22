@@ -23,6 +23,10 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] Button equipbutton2;
     [SerializeField] Button equipbutton3;
 
+    public bool equipGadget1;
+    public bool equipGadget2;
+    public bool equipGadget3;
+
     [Header("Buff Price (D)")]
     [SerializeField] int invulnerabilityPrice;
     [SerializeField] int attractionPrice;
@@ -185,6 +189,7 @@ public class ShopSystem : MonoBehaviour
             {
                 Image image = equipbutton1.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget1 = true;
             }
         }
 
@@ -196,6 +201,7 @@ public class ShopSystem : MonoBehaviour
             {
                 Image image = equipbutton2.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget2 = true;
             }
 
         }
@@ -208,20 +214,23 @@ public class ShopSystem : MonoBehaviour
             {
                 Image image = equipbutton3.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget3 = true;
             }
         }
     }
 
     public void EquipGadget(int gadgetIndex)
     {
+        
         if (gadgetIndex == 0 && PlayerPrefs.GetInt("CanEquipFlapModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedFlapModule") == 0)
+            if (PlayerPrefs.GetInt("EquippedFlapModule") == 0 && !equipGadget2 && !equipGadget3)
             {
                 PlayerPrefs.SetInt("EquippedFlapModule", 1);
 
                 Image image = equipbutton1.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget1 = true;
             }
             else
             {
@@ -229,17 +238,19 @@ public class ShopSystem : MonoBehaviour
 
                 Image image = equipbutton1.GetComponent<Image>();
                 image.color = Color.green;
+                equipGadget1 = false;
             }
         }
 
         if (gadgetIndex == 1 && PlayerPrefs.GetInt("CanEquipDiveModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedDiveModule") == 0)
+            if (PlayerPrefs.GetInt("EquippedDiveModule") == 0 && !equipGadget1 && !equipGadget3)
             {
                 PlayerPrefs.SetInt("EquippedDiveModule", 1);
 
                 Image image = equipbutton2.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget2 = true;
             }
             else
             {
@@ -247,17 +258,19 @@ public class ShopSystem : MonoBehaviour
 
                 Image image = equipbutton2.GetComponent<Image>();
                 image.color = Color.green;
+                equipGadget2 = false;
             }
         }
 
         if (gadgetIndex == 2 && PlayerPrefs.GetInt("CanEquipPlaneModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 0)
+            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 0 && !equipGadget1 && !equipGadget2)
             {
                 PlayerPrefs.SetInt("EquippedPlaneModule", 1);
 
                 Image image = equipbutton3.GetComponent<Image>();
                 image.color = Color.red;
+                equipGadget3 = true;
             }
             else
             {
@@ -265,13 +278,14 @@ public class ShopSystem : MonoBehaviour
 
                 Image image = equipbutton3.GetComponent<Image>();
                 image.color = Color.green;
+                equipGadget3 = false;
             }
         }
     }
 
     void UpdateCoin()
     {
-    PlayerPrefs.SetFloat("CoinAmount", overallCoin);
+        PlayerPrefs.SetFloat("CoinAmount", overallCoin);
     }
 
 }
