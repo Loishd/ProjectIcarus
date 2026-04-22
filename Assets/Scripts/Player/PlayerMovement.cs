@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] StarterBuff starterBuff;
     [SerializeField] HeightSystem heightSystem;
 
+    [Header("Debug Mode")]
+    public bool godMode = false;
+
     public bool IsOnSkipping => isOnSkipping;
 
 
@@ -130,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Death()
     {
+        if (godMode) return;
+
         SetHighestScore();
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
