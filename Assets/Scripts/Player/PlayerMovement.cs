@@ -33,9 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Debug Mode")]
     public bool godMode = false;
+    Animator animator;
+    Rigidbody2D rb2d;
 
+    float timer;
     public bool IsOnSkipping => isOnSkipping;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -44,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        SetPlayerHotColdNormalStatus();
+        if (PlayerStatus.Instance.isDeath) return;
         InvulnerabilityVisual();
         MagnetVisual();
         HeatShieldVisual();
@@ -85,15 +95,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 if (currentLane == 2) return;
+                animator.SetTrigger("MoveRight");
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 currentLane++;
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 if (currentLane == 0) return;
+                animator.SetTrigger("MoveLeft");
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 currentLane--;
             }
 
@@ -108,17 +120,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-
-                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 if (currentLane == 0) return;
+                animator.SetTrigger("MoveLeft");
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 currentLane--;
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-
-                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 if (currentLane == 2) return;
+                animator.SetTrigger("MoveRight");
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.dashSfx);
                 currentLane++;
             }
 
@@ -239,5 +251,24 @@ public class PlayerMovement : MonoBehaviour
         cloudBlocker.SetActive(true);
         yield return new WaitForSeconds(timer);
         cloudBlocker.SetActive(false);
+    }
+
+    IEnumerator DeathTimer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        Death();
+    }
+
+    public void SetDeathAnimation()
+    {
+        PlayerStatus.Instance.isDeath = true;
+        moveSpeed = 0;
+        animator.SetTrigger("DeadAnimation");
+        StartCoroutine(DeathTimer(2));
+    }
+
+    public void SetPlayerHotColdNormalStatus()
+    {
+        animator.SetFloat("Height", heightSystem.CurrentHeight);
     }
 }

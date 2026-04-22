@@ -8,10 +8,12 @@ public class Bird : MonoBehaviour
     [SerializeField] PlayerMovement player;
     [SerializeField] FeverSystem feverSystem;
     [SerializeField] private int nearMissIncreaseScore;
+
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            spriteRenderer.enabled = false;
 
             if (PlayerStatus.Instance.isFever)
                 return;
@@ -41,7 +43,8 @@ public class Bird : MonoBehaviour
             }
             else
             {
-                player.Death();
+                if (player.godMode) return;
+                player.SetDeathAnimation();
             }
         }
 
