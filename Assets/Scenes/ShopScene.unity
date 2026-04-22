@@ -572,6 +572,9 @@ MonoBehaviour:
   invulnerabilityPriceText: {fileID: 1930094701}
   attractionPriceText: {fileID: 1854970122}
   heatShieldPriceText: {fileID: 303928900}
+  flapModPriceText: {fileID: 764905225}
+  diveModPriceText: {fileID: 388148702}
+  planeModPriceText: {fileID: 1099017616}
   invulnerabilityAmountText: {fileID: 339353001}
   attractionAmountText: {fileID: 1665166926}
   heatShieldAmountText: {fileID: 980210795}
@@ -960,7 +963,6 @@ RectTransform:
   - {fileID: 1930094700}
   - {fileID: 1854970121}
   - {fileID: 303928899}
-  - {fileID: 764905224}
   - {fileID: 339353000}
   - {fileID: 1665166925}
   - {fileID: 980210794}
@@ -970,6 +972,7 @@ RectTransform:
   - {fileID: 794399614}
   - {fileID: 1668853570}
   - {fileID: 76162066}
+  - {fileID: 764905224}
   - {fileID: 388148701}
   - {fileID: 1099017615}
   - {fileID: 1487402576}
@@ -1531,7 +1534,7 @@ GameObject:
   - component: {fileID: 388148703}
   - component: {fileID: 388148702}
   m_Layer: 5
-  m_Name: PriceBuff3 (2)
+  m_Name: Gadget2Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2332,7 +2335,7 @@ GameObject:
   - component: {fileID: 764905226}
   - component: {fileID: 764905225}
   m_Layer: 5
-  m_Name: PriceBuff3 (1)
+  m_Name: Gadget1Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2862,7 +2865,7 @@ GameObject:
   - component: {fileID: 1099017617}
   - component: {fileID: 1099017616}
   m_Layer: 5
-  m_Name: PriceBuff3 (3)
+  m_Name: Gadget3Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
