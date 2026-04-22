@@ -39,7 +39,15 @@ public class PlayerStatus : MonoBehaviour
 
     public void Update()
     {
-        gadgetText.text = "Gadget: " + gadgetIndex;
+        if (gadgetIndex == 0)
+        {
+            gadgetText.text = "Gadget: Null";
+            gadgetText.text = "Gadget: " + gadgetIndex;
+        }
+        else
+        {
+            gadgetText.text = "Gadget: " + gadgetIndex;
+        }
     }
 
     public void AddCoinToPlayer(float amount)
