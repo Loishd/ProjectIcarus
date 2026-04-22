@@ -23,7 +23,7 @@ public class ColdWind : MonoBehaviour
     {
         if (player.transform.position.y > transform.position.y)
         {
-            Destroy(gameObject, 10);
+            Destroy(gameObject, 20);
         }
     }
 

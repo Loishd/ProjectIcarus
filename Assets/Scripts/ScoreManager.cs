@@ -17,7 +17,6 @@ public class ScoreManager : MonoBehaviour
 
     public float InvulnerabilityMultiplier;
     [SerializeField] GameObject PauseMenu;
-    [SerializeField] List<GameObject> PauseCountDown = new List<GameObject>();
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
     [SerializeField] float _highestScore;
@@ -123,7 +122,8 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            Continue();
+            PauseMenu.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 
@@ -224,26 +224,5 @@ public class ScoreManager : MonoBehaviour
         {
             multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         }
-    }
-    public void Continue()
-    {
-        PauseMenu.SetActive(false);
-        isCountingDown = true;
-        StartCoroutine(CountingDown());
-    }
-
-    public IEnumerator CountingDown()
-    {
-        PauseCountDown[0].SetActive(true);
-        yield return new WaitForSeconds(1);
-        PauseCountDown[0].SetActive(false);
-        PauseCountDown[1].SetActive(true);
-        yield return new WaitForSeconds(1);
-        PauseCountDown[1].SetActive(false);
-        PauseCountDown[2].SetActive(true);
-        yield return new WaitForSeconds(1);
-        PauseCountDown[2].SetActive(false);
-        Time.timeScale = 1;
-        isCountingDown = false;
     }
 }

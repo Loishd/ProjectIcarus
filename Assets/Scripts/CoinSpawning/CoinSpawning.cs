@@ -65,7 +65,7 @@ public class CoinSpawning : MonoBehaviour
     public void SpawnEmpty()
     {
         int patternNum = Random.Range(0, PatternList.Count);
-        GameObject spawnedPattern = Instantiate(PatternList[patternNum].gameObject, new Vector3(0, _highestInpattern.y + 50, 0), Quaternion.identity, spawnedFeatherParent);
+        GameObject spawnedPattern = Instantiate(PatternList[patternNum].gameObject, new Vector3(0, _highestInpattern.y + 70, 0), Quaternion.identity, spawnedFeatherParent);
         Pattern1 pattern = spawnedPattern.GetComponent<Pattern1>();
         pattern.SetPatternData(player, this, feverSystem);
         _highestInpattern = pattern.GetHighestPos() + new Vector3(0, -5, 0);

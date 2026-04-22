@@ -60,7 +60,7 @@ public class Pattern1 : MonoBehaviour
         if (player.transform.position.y > highestY + 2f)
         {
             coinSpawning.DecreasePattern();
-            Destroy(gameObject);
+            Destroy(gameObject, 10);
         }
     }
 

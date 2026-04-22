@@ -215,6 +215,7 @@ Transform:
   - {fileID: 1363406762}
   - {fileID: 959615864}
   - {fileID: 986544834}
+  - {fileID: 1205335991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &12504709
@@ -247,6 +248,7 @@ MonoBehaviour:
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
   heightSystem: {fileID: 1205335990}
+  godMode: 1
 --- !u!61 &12504710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -334,6 +336,7 @@ MonoBehaviour:
   player: {fileID: 12504709}
   background: {fileID: 340524264}
   currentHeight: 50
+  feverColor: {r: 0, g: 0, b: 0, a: 0}
   increaseSpeed: 3
   decreaseSpeed: 1
   gadgetIncreaseAmount: 0
@@ -354,11 +357,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerReference: {fileID: 12504709}
   gadgetText: {fileID: 1229926602}
+  nearMissVisual: {fileID: 0}
   isDeath: 0
   isInvulnerability: 0
   isMagnetic: 0
   isHeatShield: 0
   isFever: 0
+  nearMissShowtime: 1
   nearMissCount: 0
   touchWindCount: 0
   gadgetIndex: 0
@@ -2801,6 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515deccfec16fc24e8cdf680560136b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PatternLimit: 10
   coinSpawner: {fileID: 954562732}
   player: {fileID: 12504708}
   _mapParent: {fileID: 723235875}
@@ -3104,7 +3110,6 @@ MonoBehaviour:
   MultiplierText: {fileID: 818521935}
   InvulnerabilityMultiplier: 0
   PauseMenu: {fileID: 1791024628}
-  PauseCountDown: []
   coinSpawning: {fileID: 954562732}
   _currentCoins: 0
   _highestScore: 0
@@ -3119,6 +3124,8 @@ MonoBehaviour:
   nameInput: {fileID: 451424455}
   playerName: 
   enterNameWarning: {fileID: 580000797}
+  _mvpName: SomChai
+  _mvpHighestScore: 0
   Wings: {fileID: 1383487509}
   gadgetMultiplier1: 1
   gadgetMultiplier2: 1
@@ -4901,6 +4908,7 @@ MonoBehaviour:
   player: {fileID: 12504709}
   background: {fileID: 340524264}
   currentHeight: 50
+  feverColor: {r: 1, g: 0.8144701, b: 0, a: 1}
   increaseSpeed: 9
   decreaseSpeed: 6
   gadgetIncreaseAmount: 15
@@ -4915,12 +4923,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205335989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 12504708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229926600
 GameObject:
@@ -7109,8 +7117,8 @@ Transform:
   m_GameObject: {fileID: 1817385707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 431.2, z: 0}
-  m_LocalScale: {x: 60, y: 60, z: 1}
+  m_LocalPosition: {x: 0, y: 747, z: 0}
+  m_LocalScale: {x: 60, y: 80, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723235875}
@@ -7156,15 +7164,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ae5eb9d1130444d4ea515280bec75893, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.1545973, y: 9.230769}
+  m_Size: {x: 5.000611, y: 7.5000005}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1820922075
@@ -7502,50 +7510,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1935781624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1935781626}
-  - component: {fileID: 1935781625}
-  m_Layer: 0
-  m_Name: Timer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1935781625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935781624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df31246822dc22b44b8499b84e4bbe79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1935781626
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935781624}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949486300
 GameObject:
   m_ObjectHideFlags: 0
@@ -8624,7 +8588,6 @@ SceneRoots:
   - {fileID: 248038887}
   - {fileID: 1380985018}
   - {fileID: 1185685421}
-  - {fileID: 1205335991}
   - {fileID: 12504708}
   - {fileID: 713633527}
   - {fileID: 954562731}
@@ -8635,4 +8598,3 @@ SceneRoots:
   - {fileID: 465866849}
   - {fileID: 869243847}
   - {fileID: 767879593}
-  - {fileID: 1935781626}

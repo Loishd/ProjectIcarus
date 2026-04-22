@@ -7,6 +7,7 @@ using System;
 
 public class MapSpawner : MonoBehaviour
 {
+    [SerializeField] int PatternLimit;
     [SerializeField] CoinSpawning coinSpawner;
     [SerializeField] Transform player;
     [SerializeField] Transform _mapParent;
@@ -46,7 +47,7 @@ public class MapSpawner : MonoBehaviour
 
         _currentPattern++;
 
-        if (_currentPattern == 10 && !hasSpawnedSkip)
+        if (_currentPattern == PatternLimit && !hasSpawnedSkip)
         {
             SpawnSkipScene();
             isWaitingForKanchak = true;
@@ -68,7 +69,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnSkipScene()
     {
         hasSpawnedSkip = true;
-        SpriteRenderer changeScene = Instantiate(kanChak,new Vector3(0f, coinSpawner.HighestInPattern + 20f, 0f),Quaternion.identity);
+        SpriteRenderer changeScene = Instantiate(kanChak,new Vector3(0f, coinSpawner.HighestInPattern + 50f, 0f),Quaternion.identity);
         HighestOfSkip = changeScene.transform.position.y + 20;
     }
 
@@ -91,7 +92,7 @@ public class MapSpawner : MonoBehaviour
     public IEnumerator TimerChangeMap(int secondWaited)
     {
         yield return new WaitForSeconds(secondWaited);
-        actualMap.transform.position = new Vector3(actualMap.transform.position.x, player.transform.position.y + 300f, actualMap.transform.position.z);
+        actualMap.transform.position = new Vector3(actualMap.transform.position.x, player.transform.position.y + 250f, actualMap.transform.position.z);
         actualMap.sprite = mapList[mapNumNew];
         Debug.Log("Changed Background");
     }
