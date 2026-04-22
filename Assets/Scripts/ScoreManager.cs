@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using Unity.Mathematics;
@@ -15,6 +17,7 @@ public class ScoreManager : MonoBehaviour
 
     public float InvulnerabilityMultiplier;
     [SerializeField] GameObject PauseMenu;
+    [SerializeField] List<GameObject> PauseCountDown = new List<GameObject>();
     [SerializeField] CoinSpawning coinSpawning;
     [SerializeField] int _currentCoins;
     [SerializeField] float _highestScore;
@@ -44,7 +47,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] float gadgetMultiplier2;
     [SerializeField] float gadgetMultiplier3;
 
+    int i = 0;
+    float timer = 0f;
     public int CurrentCoins => _currentCoins;
+    bool isCountingDown;
     // Start is called before the first frame update
     public static ScoreManager Instance;
     private void Awake()
@@ -70,6 +76,7 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isCountingDown) return;
         if (PlayerStatus.Instance.isDeath)
         {
             Wings.SetActive(false);
@@ -112,8 +119,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1;
+            Continue();
         }
     }
 
@@ -202,5 +208,26 @@ public class ScoreManager : MonoBehaviour
         {
             multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
         }
+    }
+    public void Continue()
+    {
+        PauseMenu.SetActive(false);
+        isCountingDown = true;
+        StartCoroutine(CountingDown());
+    }
+
+    public IEnumerator CountingDown()
+    {
+        PauseCountDown[0].SetActive(true);
+        yield return new WaitForSeconds(1);
+        PauseCountDown[0].SetActive(false);
+        PauseCountDown[1].SetActive(true);
+        yield return new WaitForSeconds(1);
+        PauseCountDown[1].SetActive(false);
+        PauseCountDown[2].SetActive(true);
+        yield return new WaitForSeconds(1);
+        PauseCountDown[2].SetActive(false);
+        Time.timeScale = 1;
+        isCountingDown = false;
     }
 }

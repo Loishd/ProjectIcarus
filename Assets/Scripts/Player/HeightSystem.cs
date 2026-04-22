@@ -12,6 +12,7 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private float increaseSpeed = 3f;
     [SerializeField] private float decreaseSpeed = 1f;
     [SerializeField] private float gadgetIncreaseAmount;
+    [SerializeField] float fallSpeed;
     private float dangerHeatZone = 100f;
     private float dangerFreezeZone = 0f;
     private float maxHeight = 100f;
@@ -166,7 +167,7 @@ public class HeightSystem : MonoBehaviour
         {
             if ((Input.GetKey(KeyCode.S)) || (Input.GetKey(KeyCode.DownArrow)))
             {
-                decreaseSpeed += Time.deltaTime * 2 ;
+                decreaseSpeed += Time.deltaTime * fallSpeed ;
             }
             else
             {
