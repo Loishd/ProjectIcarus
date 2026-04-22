@@ -12,6 +12,9 @@ public class Saves : MonoBehaviour
             PlayerPrefs.SetFloat("HighestScore", 0);
             PlayerPrefs.SetFloat("CoinAmount", 0);
 
+            //Player with Highest Score
+            PlayerPrefs.SetString("MVPName", "SomChai");
+
             //Shop
             PlayerPrefs.SetInt("BoughtInvulnerability", 0);
             PlayerPrefs.SetInt("BoughtAttraction", 0);

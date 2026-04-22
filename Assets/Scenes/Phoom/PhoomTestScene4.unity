@@ -209,6 +209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1775379368}
   - {fileID: 1935454306}
   - {fileID: 837526106}
   - {fileID: 2105897122}
@@ -354,11 +355,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerReference: {fileID: 12504709}
   gadgetText: {fileID: 1229926602}
+  nearMissVisual: {fileID: 1775379366}
   isDeath: 0
   isInvulnerability: 0
   isMagnetic: 0
   isHeatShield: 0
   isFever: 0
+  nearMissShowtime: 1
   nearMissCount: 0
   touchWindCount: 0
   gadgetIndex: 0
@@ -2911,6 +2914,8 @@ MonoBehaviour:
   nameInput: {fileID: 451424455}
   playerName: 
   enterNameWarning: {fileID: 580000797}
+  _mvpName: 
+  _mvpHighestScore: 0
   Wings: {fileID: 1383487509}
   gadgetMultiplier1: 1
   gadgetMultiplier2: 1
@@ -3089,7 +3094,7 @@ Transform:
   m_GameObject: {fileID: 837526105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.852, y: 0.25, z: 0}
+  m_LocalPosition: {x: -2.13, y: 0.25, z: 0}
   m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6658,12 +6663,12 @@ GameObject:
   - component: {fileID: 1775379368}
   - component: {fileID: 1775379367}
   m_Layer: 0
-  m_Name: Exclamation-Mark-Emojis
+  m_Name: nearMissUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1775379367
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6724,12 +6729,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775379366}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.4, y: 1.41, z: 0}
   m_LocalScale: {x: 0.1428325, y: 0.10567799, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 12504708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1782162100
 GameObject:
@@ -8162,7 +8167,7 @@ Transform:
   m_GameObject: {fileID: 2105897121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.852, y: 0.25, z: 0}
+  m_LocalPosition: {x: 1.73, y: 0.25, z: 0}
   m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8465,4 +8470,3 @@ SceneRoots:
   - {fileID: 465866849}
   - {fileID: 869243847}
   - {fileID: 767879593}
-  - {fileID: 1775379368}
