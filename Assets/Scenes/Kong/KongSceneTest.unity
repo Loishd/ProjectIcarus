@@ -246,6 +246,7 @@ MonoBehaviour:
   isOnSkipping: 0
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
+  heightSystem: {fileID: 1205335990}
 --- !u!61 &12504710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -350,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7dfa985873988f4b83d64615d5b7496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerReference: {fileID: 12504709}
   gadgetText: {fileID: 1229926602}
   isDeath: 0
   isInvulnerability: 0
@@ -4467,8 +4469,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 293.51562, y: -80.350006}
-  m_SizeDelta: {x: 526.3461, y: 106.3}
+  m_AnchoredPosition: {x: 379.1123, y: -80.350006}
+  m_SizeDelta: {x: 697.5395, y: 106.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229926602
 MonoBehaviour:
@@ -6394,7 +6396,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 431.2, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalScale: {x: 60, y: 60, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723235875}
@@ -6440,7 +6442,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 88cbb7d4debf9844c94fda760876156b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6448,7 +6450,7 @@ SpriteRenderer:
   m_Size: {x: 250.00002, y: 1000.00006}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1820922075
