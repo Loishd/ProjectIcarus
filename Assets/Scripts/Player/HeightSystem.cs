@@ -178,4 +178,9 @@ public class HeightSystem : MonoBehaviour
             }
         }
     }
+
+    public void FreezeHeight(float Height)
+    {
+        currentHeight = Height;
+    }
 }

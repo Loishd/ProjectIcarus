@@ -15,12 +15,4 @@ public class SkiPSceneScript : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

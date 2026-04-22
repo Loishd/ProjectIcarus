@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isOnSkipping;
     [SerializeField] MapSpawner mapSpawner;
     [SerializeField] StarterBuff starterBuff;
+    [SerializeField] HeightSystem heightSystem;
 
     public bool IsOnSkipping => isOnSkipping;
 
@@ -191,6 +192,13 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("Skipper"))
         {
             mapSpawner.ChangeMapPosition();
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Skipper"))
+        {
+            heightSystem.FreezeHeight(50);
         }
     }
 
