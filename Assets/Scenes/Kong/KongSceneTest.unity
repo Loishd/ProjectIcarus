@@ -2809,6 +2809,7 @@ MonoBehaviour:
   _currentPattern: 0
   mapList:
   - {fileID: 21300000, guid: 74924354d003e3a46b8590f5ba1afd70, type: 3}
+  - {fileID: 21300000, guid: ae5eb9d1130444d4ea515280bec75893, type: 3}
   isSpawnEmpty: 0
 --- !u!212 &723235877
 SpriteRenderer:
@@ -5732,8 +5733,8 @@ RectTransform:
   - {fileID: 818521934}
   - {fileID: 1229926601}
   - {fileID: 1902759386}
-  - {fileID: 1664563144}
   - {fileID: 1383487510}
+  - {fileID: 1664563144}
   - {fileID: 1531408617}
   - {fileID: 1820922076}
   - {fileID: 1455846857}
@@ -7155,7 +7156,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 74924354d003e3a46b8590f5ba1afd70, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7163,7 +7164,7 @@ SpriteRenderer:
   m_Size: {x: 6.1545973, y: 9.230769}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1820922075
@@ -8484,14 +8485,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 107566831, guid: d0eab951576c3dd4090c13301fc37883, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
