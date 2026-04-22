@@ -63,5 +63,17 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void TriggerNearMiss(float increaseScore)
+    {
+        ScoreManager.Instance._currentScore += increaseScore;
+        nearMissCount += 1;
+
+        if ((PlayerPrefs.GetInt("IcarusArrogance") != 1) && nearMissCount >= 15)
+        {
+            PlayerPrefs.SetInt("IcarusArrogance", 1);
+            StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
+        }
+    }
+
 
 }

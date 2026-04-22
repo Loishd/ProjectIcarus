@@ -42,14 +42,7 @@ public class WarmWind1 : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Wing"))
         {
-            ScoreManager.Instance._currentScore += nearMissIncreaseScore;
-            PlayerStatus.Instance.nearMissCount += 1;
-
-            if ((PlayerPrefs.GetInt("IcarusArrogance") != 1) && PlayerStatus.Instance.nearMissCount >= 15)
-            {
-                PlayerPrefs.SetInt("IcarusArrogance", 1);
-                StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
-            }
+            PlayerStatus.Instance.TriggerNearMiss(nearMissIncreaseScore);
         }
     }
     void Move()
