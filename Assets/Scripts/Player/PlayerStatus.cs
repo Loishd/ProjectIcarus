@@ -7,7 +7,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public PlayerMovement _playerReference;
     [SerializeField] TMP_Text gadgetText;
-    RewardManager rewardManager;
+    [SerializeField] GameObject nearMissVisual;
 
     public bool isDeath = false;
 
@@ -17,7 +17,9 @@ public class PlayerStatus : MonoBehaviour
 
     public bool isFever;
 
+    public float nearMissShowtime = 1f;
     public int nearMissCount;
+
     public int touchWindCount;
     public int gadgetIndex;
 
@@ -63,7 +65,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public void TriggerNearMiss(float increaseScore)
+    public IEnumerator TriggerNearMiss(float increaseScore)
     {
         ScoreManager.Instance._currentScore += increaseScore;
         nearMissCount += 1;
@@ -73,6 +75,11 @@ public class PlayerStatus : MonoBehaviour
             PlayerPrefs.SetInt("IcarusArrogance", 1);
             StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
         }
+        nearMissVisual.SetActive(true);
+        yield return new WaitForSeconds(nearMissShowtime);
+        nearMissVisual.SetActive(false);
+
+        
     }
 
 

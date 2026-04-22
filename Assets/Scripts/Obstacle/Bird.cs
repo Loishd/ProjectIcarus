@@ -47,7 +47,7 @@ public class Bird : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Wing"))
         {
-            PlayerStatus.Instance.TriggerNearMiss(nearMissIncreaseScore);
+            StartCoroutine(PlayerStatus.Instance.TriggerNearMiss(nearMissIncreaseScore));
         }
 
     }
