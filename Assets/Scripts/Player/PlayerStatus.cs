@@ -42,7 +42,6 @@ public class PlayerStatus : MonoBehaviour
         if (gadgetIndex == 0)
         {
             gadgetText.text = "Gadget: Null";
-            gadgetText.text = "Gadget: " + gadgetIndex;
         }
         else
         {
