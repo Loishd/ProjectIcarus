@@ -12,6 +12,10 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] TMP_Text invulnerabilityPriceText;
     [SerializeField] TMP_Text attractionPriceText;
     [SerializeField] TMP_Text heatShieldPriceText;
+    [SerializeField] TMP_Text flapModPriceText;
+    [SerializeField] TMP_Text diveModPriceText;
+    [SerializeField] TMP_Text planeModPriceText;
+
     [SerializeField] TMP_Text invulnerabilityAmountText;
     [SerializeField] TMP_Text attractionAmountText;
     [SerializeField] TMP_Text heatShieldAmountText;
@@ -43,6 +47,9 @@ public class ShopSystem : MonoBehaviour
         invulnerabilityPriceText.text = invulnerabilityPrice.ToString();
         attractionPriceText.text = attractionPrice.ToString();
         heatShieldPriceText.text = heatShieldPrice.ToString();
+        flapModPriceText.text = flapModulePrice.ToString();
+        diveModPriceText.text = diveModulePrice.ToString();
+        planeModPriceText.text = planeModulePrice.ToString();
 
         invulreabilityAmount = PlayerPrefs.GetInt("BoughtInvulnerability");
         attractionAmount = PlayerPrefs.GetInt("BoughtAttraction");
