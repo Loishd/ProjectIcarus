@@ -185,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9871c03703e68b64c90c39499c011559, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6268c4eaa2219f43a7178fe3a983c06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -285,7 +285,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3233333, y: 1.9516667}
+    oldSize: {x: 4.166667, y: 4.166667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerReference: {fileID: 12504709}
   gadgetText: {fileID: 1229926602}
-  nearMissVisual: {fileID: 0}
+  nearMissVisual: {fileID: 7304896302239470540, guid: ed96bcef1e6c57e4186c5502356b8051, type: 3}
   isDeath: 0
   isInvulnerability: 0
   isMagnetic: 0
@@ -1655,9 +1655,9 @@ RectTransform:
   - {fileID: 1511406405}
   m_Father: {fileID: 1383487510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: -58}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &451424453
@@ -3949,7 +3949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 612, y: -324.5}
+  m_AnchoredPosition: {x: 612, y: -434}
   m_SizeDelta: {x: 596, y: 331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970875068
@@ -8508,7 +8508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -612, y: -324.5}
+  m_AnchoredPosition: {x: -612, y: -434}
   m_SizeDelta: {x: 596, y: 331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113585620
