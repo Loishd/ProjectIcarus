@@ -53,6 +53,7 @@ public class CoinSpawning : MonoBehaviour
             GameObject spawnedPattern = Instantiate(PatternList[patternNum].gameObject, new Vector3(0, _highestInpattern.y, 0), Quaternion.identity, spawnedFeatherParent);
             Pattern1 pattern = spawnedPattern.GetComponent<Pattern1>();
             pattern.SetPatternData(player, this, feverSystem);
+            pattern.SpawnItem();
             _highestInpattern = pattern.GetHighestPos() + new Vector3(0, -5, 0);
             _highestInpattern.y += CoinGap; // ⭐ prevent overlap
             mapSpawner.AddPattern();

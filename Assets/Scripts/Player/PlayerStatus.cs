@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public PlayerMovement _playerReference;
     [SerializeField] TMP_Text gadgetText;
     RewardManager rewardManager;
 

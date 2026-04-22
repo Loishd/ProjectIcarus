@@ -8,6 +8,8 @@ public class Pattern1 : MonoBehaviour
     protected CoinSpawning coinSpawning;
     protected PlayerMovement player;
 
+    [SerializeField] List<Transform> itemSpawnPos = new List<Transform>();
+    [SerializeField] List<GameObject> itemList = new List<GameObject>();
     [SerializeField] List<FeatherScript> featherList = new List<FeatherScript>();
     [SerializeField] List<Bird> birdList = new List<Bird>();
     [SerializeField] Transform HighestOne;
@@ -59,6 +61,21 @@ public class Pattern1 : MonoBehaviour
         {
             coinSpawning.DecreasePattern();
             Destroy(gameObject);
+        }
+    }
+
+    public virtual void SpawnItem()
+    {
+        int result = Random.Range(0, 3);
+        int itemPos = Random.Range(0, itemSpawnPos.Count);
+        int itemNum = Random.Range(0, itemList.Count);
+        if ((result == 0))
+        {
+            GameObject spawnedItem = Instantiate(itemList[itemNum], itemSpawnPos[itemPos].transform.position, Quaternion.identity, this.transform);
+        }
+        else 
+        {
+            return;
         }
     }
 }

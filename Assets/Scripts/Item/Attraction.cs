@@ -6,9 +6,9 @@ public class Attraction : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
 
-    private void Awake()
+    private void Start()
     {
-
+        player = PlayerStatus.Instance._playerReference;
     }
     void Update()
     {
@@ -25,6 +25,7 @@ public class Attraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            StopCoroutine("MagnetTime");
             Debug.Log("Magnet");
             PlayerStatus.Instance.isMagnetic = true;
             Destroy(gameObject);

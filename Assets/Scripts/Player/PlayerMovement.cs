@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
         ScoreManager.Instance.InvulnerabilityMultiplier = 2;
     }
 
-    IEnumerator MagnetTime(float timer)
+    public IEnumerator MagnetTime(float timer)
     {
         yield return new WaitForSeconds(timer);
         PlayerStatus.Instance.isMagnetic = false;
