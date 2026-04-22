@@ -9,6 +9,7 @@ public class FeverSystem : MonoBehaviour
     [SerializeField] private float feverMultiplier = 2f;
     private float feverMeterMax = 100f;
     private float feverMeterMin = 0f;
+    public List<GameObject> feverBarList = new List<GameObject>();
 
     void Start()
     {
@@ -28,6 +29,24 @@ public class FeverSystem : MonoBehaviour
             feverMeter = feverMeterMax;
 
         feverMeter += feverGain;
+
+        if (feverMeter >= 16)
+            feverBarList[0].SetActive(true);
+
+        if (feverMeter >= 33)
+            feverBarList[1].SetActive(true);
+
+        if (feverMeter >= 50)
+            feverBarList[2].SetActive(true);
+
+        if (feverMeter >= 66)
+            feverBarList[3].SetActive(true);
+
+        if (feverMeter >= 83)
+            feverBarList[4].SetActive(true);
+
+        if (feverMeter >= 100)
+            feverBarList[5].SetActive(true);
     }
 
     private IEnumerator ActiveFever()
@@ -39,5 +58,7 @@ public class FeverSystem : MonoBehaviour
         PlayerStatus.Instance.isFever = false;
         ScoreManager.Instance.multiplier -= feverMultiplier;
         
+        foreach (var fever in feverBarList)
+            fever.SetActive(false);
     }
 }

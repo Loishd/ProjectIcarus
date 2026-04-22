@@ -148,7 +148,7 @@ public class ScoreManager : MonoBehaviour
             if (timer >= volatileFlightReachTime && (PlayerPrefs.GetInt("VolatileFlight") != 1))
             {
                 PlayerPrefs.SetInt("VolatileFlight", 1);
-                Debug.Log("Volatile Flight Completed!");
+                StartCoroutine(RewardManager.Instance.PopUpQuest("Volatile Flight"));
             }
  
         }
@@ -164,7 +164,7 @@ public class ScoreManager : MonoBehaviour
             if (timer >= seekingForPoseidonReachTime && (PlayerPrefs.GetInt("SeekingForPoseidon") != 1))
             {
                 PlayerPrefs.SetInt("SeekingForPoseidon", 1);
-                Debug.Log("Seeking for Poseidon Completed!");
+                StartCoroutine(RewardManager.Instance.PopUpQuest("Seeking for Poseidon"));
             }
 
         }
