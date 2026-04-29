@@ -249,7 +249,7 @@ MonoBehaviour:
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
   heightSystem: {fileID: 1205335990}
-  godMode: 0
+  godMode: 1
 --- !u!61 &12504710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -359,6 +359,8 @@ MonoBehaviour:
   _playerReference: {fileID: 12504709}
   gadgetText: {fileID: 1229926602}
   nearMissVisual: {fileID: 7304896302239470540, guid: ed96bcef1e6c57e4186c5502356b8051, type: 3}
+  MoveSpeedRef: 7
+  speedIncrease: 0
   isDeath: 0
   isInvulnerability: 0
   isMagnetic: 0
@@ -367,7 +369,7 @@ MonoBehaviour:
   nearMissShowtime: 1
   nearMissCount: 0
   touchWindCount: 0
-  gadgetIndex: 2
+  gadgetIndex: 0
 --- !u!95 &12504714
 Animator:
   serializedVersion: 5
@@ -1344,7 +1346,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -9
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.24705882}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.05490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2833,12 +2835,12 @@ MonoBehaviour:
   player: {fileID: 12504708}
   _mapParent: {fileID: 723235875}
   actualMap: {fileID: 1817385709}
-  kanChak: {fileID: 4747577174840178990, guid: 57a44f854b2955446bd7e65d2f297843, type: 3}
   _currentPattern: 0
   mapList:
   - {fileID: 21300000, guid: 74924354d003e3a46b8590f5ba1afd70, type: 3}
   - {fileID: 21300000, guid: ae5eb9d1130444d4ea515280bec75893, type: 3}
   isSpawnEmpty: 0
+  startPosY: 0
 --- !u!212 &723235877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3152,6 +3154,7 @@ MonoBehaviour:
   gadgetMultiplier1: 1
   gadgetMultiplier2: 1
   gadgetMultiplier3: 1
+  isPause: 0
 --- !u!1 &825539425
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,6 +3807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc3c6d114665ef44a85658445b24115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneSkipper: {fileID: 6515801217432119586, guid: 57a44f854b2955446bd7e65d2f297843, type: 3}
   feverSystem: {fileID: 379775639}
   player: {fileID: 12504709}
   mapSpawner: {fileID: 723235876}
@@ -3813,10 +3817,12 @@ MonoBehaviour:
   - {fileID: -5221357816578719829, guid: bd55328f78b8cc546aa1f8c7e817c85c, type: 3}
   - {fileID: -3164155452092476481, guid: 7192e17b5d7cb464eb572a87d9e5a859, type: 3}
   spawnedFeatherParent: {fileID: 713633527}
-  CoinGap: 4
-  _coinAmount: 0
-  PatternMax: 2
+  PatternMax: 10
   currentPattern: 0
+  patternGap: 0
+  hasSpawnedSceneSkipper: 0
+  sceneSkipperOffsetY: 2
+  skipScenePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &959615863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6701,7 +6707,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.276
+  m_Volume: 0.073
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7356,7 +7362,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 3.25708, w: 0}
+  m_margin: {x: -621.7168, y: 0, z: 3.25708, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

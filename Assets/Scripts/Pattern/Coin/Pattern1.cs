@@ -24,6 +24,19 @@ public class Pattern1 : MonoBehaviour
             highestPos = HighestOne.position;
     }
 
+    private void FixedUpdate()
+    {
+        if (ScoreManager.Instance.isPause) return;
+        AutoMove();
+    }
+
+    public void AutoMove()
+    {
+        Vector3 movement = new Vector3(0f, -1f, 0f).normalized;
+
+        transform.Translate(movement * PlayerStatus.Instance.MoveSpeedRef * Time.deltaTime * PlayerStatus.Instance.speedIncrease);
+    }
+
 
     public virtual void SetPatternData(PlayerMovement player, CoinSpawning coinSpawning, FeverSystem feverSystem)
     {
@@ -59,8 +72,8 @@ public class Pattern1 : MonoBehaviour
 
         if (player.transform.position.y > highestY + 2f)
         {
-            coinSpawning.DecreasePattern();
             Destroy(gameObject, 10);
+            //coinSpawning.DecreasePattern();
         }
     }
 

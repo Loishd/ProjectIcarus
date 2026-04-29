@@ -36,7 +36,6 @@ public class FeatherScript : MonoBehaviour
             {
                 Timer = 0;
             }
-            coinSpawning._coinAmount--;
             Destroy(gameObject);
             return; // 🔥 IMPORTANT
         }
@@ -57,7 +56,6 @@ public class FeatherScript : MonoBehaviour
             ScoreManager.Instance.AddScore(1);
             feverSystem.IncreaseFever(feverGain);
             PlayerStatus.Instance.AddCoinToPlayer(1);
-            coinSpawning._coinAmount--;
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Magnet"))

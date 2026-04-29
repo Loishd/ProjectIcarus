@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -37,7 +37,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb2d;
 
     float timer;
-    public bool IsOnSkipping => isOnSkipping;
+    bool hasEnteredSkipper = false;
+    bool hasExitedSkipper = false;
+
 
     private void Awake()
     {
@@ -58,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         MagnetVisual();
         HeatShieldVisual();
         LaneSwapper();
-        speedIncrease += Time.deltaTime/2000;
 
         //------------------------------//
 
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        AutoWalk();
+        //AutoWalk();
     }
 
     void AutoWalk()
@@ -199,31 +200,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Cloud"))
+        if (collision.CompareTag("Skipper") && !hasEnteredSkipper)
+        {
+            hasEnteredSkipper = true;
+            hasExitedSkipper = false;
+
+            Debug.Log("ENTER ONCE: " + collision.name);
+
+            mapSpawner.ChangeMapPosition();
+            return;
+        }
+
+        if (collision.CompareTag("Cloud"))
         {
             Destroy(collision.gameObject);
-            {
-                StartCoroutine(CloudTime(CloudTimer));
-            }
-        }
-        else if (collision.gameObject.CompareTag("Skipper"))
-        {
-            mapSpawner.ChangeMapPosition();
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Skipper"))
-        {
-            heightSystem.FreezeHeight(50);
+            StartCoroutine(CloudTime(CloudTimer));
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Skipper"))
+        if (collision.CompareTag("Skipper") && !hasExitedSkipper)
         {
-            Destroy(collision.gameObject, 2);
+            hasExitedSkipper = true;
+            hasEnteredSkipper = false;
+
+            Debug.Log("EXIT ONCE: " + collision.name);
+
+            mapSpawner.ResetPattern();
         }
     }
 

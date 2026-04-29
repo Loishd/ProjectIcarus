@@ -52,6 +52,7 @@ public class ScoreManager : MonoBehaviour
 
     int i = 0;
     float timer = 0f;
+    public bool isPause;
     public int CurrentCoins => _currentCoins;
     bool isCountingDown;
     // Start is called before the first frame update
@@ -117,13 +118,13 @@ public class ScoreManager : MonoBehaviour
         if (PlayerStatus.Instance.isDeath) return;
         if (!PauseMenu.activeSelf)
         {
+            isPause = true;
             PauseMenu.SetActive(true);
-            Time.timeScale = 0;
         }
         else
         {
+            isPause = false;
             PauseMenu.SetActive(false);
-            Time.timeScale = 1;
         }
     }
 

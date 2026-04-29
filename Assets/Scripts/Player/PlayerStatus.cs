@@ -8,6 +8,8 @@ public class PlayerStatus : MonoBehaviour
     public PlayerMovement _playerReference;
     [SerializeField] TMP_Text gadgetText;
     [SerializeField] GameObject nearMissVisual;
+    public float MoveSpeedRef;
+    public float speedIncrease;
 
     public bool isDeath = false;
 
@@ -40,8 +42,14 @@ public class PlayerStatus : MonoBehaviour
         isInvulnerability = false;
     }
 
+    private void Start()
+    {
+        speedIncrease = 1;
+    }
+
     public void Update()
     {
+        speedIncrease += Time.deltaTime / 2000;
         if (gadgetIndex == 0)
         {
             gadgetText.text = "Gadget: Null";

@@ -12,7 +12,6 @@ public class MapSpawner : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] Transform _mapParent;
     [SerializeField] SpriteRenderer actualMap;
-    [SerializeField] SpriteRenderer kanChak;
     int mapNum;
     int mapNumNew;
 
@@ -20,17 +19,16 @@ public class MapSpawner : MonoBehaviour
     public float CurrentPattern => _currentPattern;
 
     [SerializeField] List<Sprite> mapList = new List<Sprite>();
-
-    float HighestOfSkip;
-    bool hasSpawnedSkip = false;
-    bool isWaitingForKanchak = false;
     [SerializeField] bool isSpawnEmpty;
-    public Action changedScene;
+    bool isChangingScene;
 
     public bool IsSpawnEmpty => isSpawnEmpty;
+    [SerializeField] float startPosY;
 
+    private float timer = 0;
     void Start()
     {
+        startPosY = gameObject.transform.position.y;
         Time.timeScale = 1.0f;
         mapNum = UnityEngine.Random.Range(0, mapList.Count);
         actualMap = transform.Find("map").GetComponent<SpriteRenderer>();
@@ -39,66 +37,43 @@ public class MapSpawner : MonoBehaviour
 
     void Update()
     {
-        CheckBackgroundChange();
+        if (isChangingScene)
+        {
+            TimerChangeMap(2);
+        }
     }
     public void AddPattern()
     {
-        if (isWaitingForKanchak) return; 
-
         _currentPattern++;
-
-        if (_currentPattern == PatternLimit && !hasSpawnedSkip)
-        {
-            SpawnSkipScene();
-            isWaitingForKanchak = true;
-        }
-    }
-
-    public void CheckBackgroundChange()
-    {
-        if (isWaitingForKanchak && player.position.y > HighestOfSkip)
-        {
-            SpawnSkipScene();
-            _currentPattern = 0;
-            isWaitingForKanchak = false;
-            hasSpawnedSkip = false;
-            isSpawnEmpty = true;
-        }
-    }
-
-    void SpawnSkipScene()
-    {
-        hasSpawnedSkip = true;
-        SpriteRenderer changeScene = Instantiate(kanChak,new Vector3(0f, coinSpawner.HighestInPattern + 50f, 0f),Quaternion.identity);
-        HighestOfSkip = changeScene.transform.position.y + 20;
     }
 
     public void ChangeMapPosition()
     {
+        Debug.Log("Called");
         mapNumNew = UnityEngine.Random.Range(0, mapList.Count);
         while (mapNum == mapNumNew)
         {
             mapNumNew = UnityEngine.Random.Range(0, mapList.Count);
         }
-        StartCoroutine(TimerChangeMap(2));
-        isSpawnEmpty = true;
+        isChangingScene = true;
     }
 
-    public void DestroySkipScene()
+    public void TimerChangeMap(int secondWaited)
     {
-
+        timer += Time.deltaTime;
+        if (timer >= secondWaited)
+        {
+            Debug.Log("Map Reposition");
+            gameObject.transform.position = new Vector3(actualMap.transform.position.x, startPosY, actualMap.transform.position.z);
+            actualMap.sprite = mapList[mapNumNew];
+            isChangingScene = false;
+        }
     }
 
-    public IEnumerator TimerChangeMap(int secondWaited)
+    public void ResetPattern()
     {
-        yield return new WaitForSeconds(secondWaited);
-        actualMap.transform.position = new Vector3(actualMap.transform.position.x, player.transform.position.y + 250f, actualMap.transform.position.z);
-        actualMap.sprite = mapList[mapNumNew];
-        Debug.Log("Changed Background");
-    }
-
-    public void IsNotSpawnEmpty()
-    {
-        isSpawnEmpty = false;
+        coinSpawner.ResetAfterSkip();
+        coinSpawner.SetPatternAmount(0);
+        _currentPattern = 0;
     }
 }

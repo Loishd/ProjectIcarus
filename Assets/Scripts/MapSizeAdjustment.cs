@@ -16,4 +16,16 @@ public class MapSizeAdjustment : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
+
+    private void FixedUpdate()
+    {
+        AutoWalk();
+    }
+
+    void AutoWalk()
+    {
+        Vector3 movement = new Vector3(0f, -1f, 0f).normalized;
+
+        transform.Translate(movement * PlayerStatus.Instance.MoveSpeedRef * Time.deltaTime * PlayerStatus.Instance.speedIncrease);
+    }
 }

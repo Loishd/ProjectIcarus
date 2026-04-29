@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4747577174840178990}
   - component: {fileID: 6676270828699536556}
   - component: {fileID: -5098203903509714482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skip Scene
   m_TagString: Skipper
   m_Icon: {fileID: 0}

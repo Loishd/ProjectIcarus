@@ -16,11 +16,15 @@ public class SkiPSceneScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if (collision.CompareTag("Player"))
-        {
-            Destroy(gameObject, 30);
-        }
+        AutoWalk();
+    }
+
+    void AutoWalk()
+    {
+        Vector3 movement = new Vector3(0f, -1f, 0f).normalized;
+
+        transform.Translate(movement * PlayerStatus.Instance.MoveSpeedRef * Time.deltaTime * PlayerStatus.Instance.speedIncrease);
     }
 }
