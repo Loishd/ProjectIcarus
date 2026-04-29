@@ -8,6 +8,7 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] SpriteRenderer background;
     [SerializeField] private float currentHeight = 50f;
     [SerializeField] Color feverColor;
+    [SerializeField] Color deathColor;
     public float CurrentHeight => currentHeight;
     [SerializeField] private float increaseSpeed = 3f;
     [SerializeField] private float decreaseSpeed = 1f;
@@ -111,6 +112,10 @@ public class HeightSystem : MonoBehaviour
         if (PlayerStatus.Instance.isFever)
         {
             sprite.color = feverColor;
+        }
+        else if (PlayerStatus.Instance.isDeath)
+        {
+            sprite.color = deathColor;
         }
         else
         {

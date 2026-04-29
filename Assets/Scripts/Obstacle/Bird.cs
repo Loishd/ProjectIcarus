@@ -39,6 +39,7 @@ public class Bird : MonoBehaviour
             if (PlayerStatus.Instance.isInvulnerability)
             {
                 PlayerStatus.Instance.isInvulnerability = false;
+                player.ResetInvulnerabilityTime();
                 return;
             }
             else

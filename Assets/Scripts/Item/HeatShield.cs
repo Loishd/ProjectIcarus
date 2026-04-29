@@ -26,8 +26,15 @@ public class HeatShield : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (PlayerStatus.Instance.isHeatShield)
+            {
+                player.ExtendItemHeatShield();
+            }
+            else
+            {
+                PlayerStatus.Instance.isHeatShield = true;
+            }
             Debug.Log("HeatShield");
-            PlayerStatus.Instance.isHeatShield = true;
             Destroy(gameObject);
         }
     }

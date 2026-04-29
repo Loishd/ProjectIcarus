@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Buff Time")]
-    public float InvulnerabilityShieldTime;
-    public float MagnetTimer;
-    public float HeatShieldTime;
-    public float CloudTimer;
 
     [Header("Movement Variable")]
     public float moveSpeed = 5f;
@@ -35,8 +30,18 @@ public class PlayerMovement : MonoBehaviour
     public bool godMode = false;
     Animator animator;
     Rigidbody2D rb2d;
+    SpriteRenderer rb2dSprite;
 
-    float timer;
+    [Header("ItemTimer")]
+    [SerializeField] float attractionTimer;
+    [SerializeField] float heatShieldTimer;
+    [SerializeField] float invulnerabilityTimer;
+    [SerializeField] float cloudTime;
+
+    public float InvulnerabilityTimer => invulnerabilityTimer;
+
+    
+
     bool hasEnteredSkipper = false;
     bool hasExitedSkipper = false;
 
@@ -54,9 +59,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (ScoreManager.Instance.isPause) return;
-        if (PlayerStatus.Instance.isDeath) return;
+        if ((ScoreManager.Instance.isPause) || (PlayerStatus.Instance.isDeath)) return;
         SetPlayerHotColdNormalStatus();
+        //----VISUAL----// 
+        CloudVisual();
         InvulnerabilityVisual();
         MagnetVisual();
         HeatShieldVisual();
@@ -66,15 +72,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (PlayerStatus.Instance.isInvulnerability)
         {
-            StartCoroutine(InvulnerabilityTimer(InvulnerabilityShieldTime));
+            InvulnerabilityTime(PlayerStatus.Instance.InvulnerabilityDuration);
         }
-        else if (PlayerStatus.Instance.isMagnetic)
+
+        if (PlayerStatus.Instance.isMagnetic)
         {
-            StartCoroutine(MagnetTime(MagnetTimer));
+            MagnetTime(PlayerStatus.Instance.MagnetDuration);
         }
-        else if (PlayerStatus.Instance.isHeatShield)
+
+        if (PlayerStatus.Instance.isHeatShield)
         {
-            StartCoroutine(HeatShieldTimer(HeatShieldTime));
+            HeatShieldTimer(PlayerStatus.Instance.HeatShieldDuration);
+        }
+
+        if (PlayerStatus.Instance.isCloud)
+        {
+            CloudTime(PlayerStatus.Instance.CloudDuration);
         }
     }
 
@@ -199,6 +212,14 @@ public class PlayerMovement : MonoBehaviour
             
     }
 
+    void CloudVisual()
+    {
+        if (PlayerStatus.Instance.isCloud)
+           cloudBlocker.SetActive(true);
+        else
+            cloudBlocker.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Skipper") && !hasEnteredSkipper)
@@ -214,8 +235,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("Cloud"))
         {
+            if (PlayerStatus.Instance.isCloud)
+            {
+                ExtendCloud();
+            }
+            else
+            {
+                PlayerStatus.Instance.isCloud = true;
+            }
             Destroy(collision.gameObject);
-            StartCoroutine(CloudTime(CloudTimer));
         }
     }
 
@@ -232,30 +260,44 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator InvulnerabilityTimer(float timer)
+    public void InvulnerabilityTime(float duration)
     {
-        yield return new WaitForSeconds(timer);
-        PlayerStatus.Instance.isInvulnerability = false;
-        ScoreManager.Instance.InvulnerabilityMultiplier = 2;
+        invulnerabilityTimer += Time.deltaTime;
+        if (invulnerabilityTimer >= duration)
+        {
+            invulnerabilityTimer = 0;
+            PlayerStatus.Instance.isInvulnerability = false;
+        }
     }
 
-    public IEnumerator MagnetTime(float timer)
+    public void MagnetTime(float duration)
     {
-        yield return new WaitForSeconds(timer);
-        PlayerStatus.Instance.isMagnetic = false;
+        attractionTimer += Time.deltaTime;
+        if (attractionTimer >= duration)
+        {
+            attractionTimer = 0;
+            PlayerStatus.Instance.isMagnetic = false;
+        }
     }
 
-    IEnumerator HeatShieldTimer(float timer)
+    public void HeatShieldTimer(float duration)
     {
-        yield return new WaitForSeconds(timer);
-        PlayerStatus.Instance.isHeatShield = false;
+        heatShieldTimer += Time.deltaTime;
+        if (heatShieldTimer >= duration)
+        {
+            heatShieldTimer = 0;
+            PlayerStatus.Instance.isHeatShield = false;
+        }
     }
 
-    IEnumerator CloudTime(float timer)
+    public void CloudTime(float duration)
     {
-        cloudBlocker.SetActive(true);
-        yield return new WaitForSeconds(timer);
-        cloudBlocker.SetActive(false);
+        cloudTime += Time.deltaTime;
+        if (cloudTime >= duration)
+        {
+            cloudTime = 0;
+            PlayerStatus.Instance.isCloud = false;
+        }
     }
 
     IEnumerator DeathTimer(float timer)
@@ -275,5 +317,30 @@ public class PlayerMovement : MonoBehaviour
     public void SetPlayerHotColdNormalStatus()
     {
         animator.SetFloat("Height", heightSystem.CurrentHeight);
+    }
+
+    public void ResetInvulnerabilityTime()
+    {
+        invulnerabilityTimer = 0;
+    }
+
+    public void ExtendItemInvulnerability()
+    {
+        invulnerabilityTimer -= PlayerStatus.Instance.InvulnerabilityDuration;
+    }
+
+    public void ExtendItemAttraction()
+    {
+        attractionTimer -= PlayerStatus.Instance.MagnetDuration;
+    }
+
+    public void ExtendItemHeatShield()
+    {
+        heatShieldTimer -= PlayerStatus.Instance.HeatShieldDuration;
+    }
+
+    public void ExtendCloud()
+    {
+        cloudTime -= PlayerStatus.Instance.CloudDuration;
     }
 }

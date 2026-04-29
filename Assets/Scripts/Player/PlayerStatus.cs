@@ -5,6 +5,19 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [Header("ItemDuration")]
+    [SerializeField] float _magnetDuration;
+    [SerializeField] float _heatShieldDuration;
+    [SerializeField] float _invulnerabilityDuration;
+    [SerializeField] float _cloudDuration;
+
+    public float MagnetDuration => _magnetDuration;
+    public float HeatShieldDuration => _heatShieldDuration;
+    public float InvulnerabilityDuration => _invulnerabilityDuration;
+
+    public float CloudDuration => _cloudDuration;
+
+    [Header("-------------")]
     public PlayerMovement _playerReference;
     [SerializeField] TMP_Text gadgetText;
     [SerializeField] GameObject nearMissVisual;
@@ -16,6 +29,7 @@ public class PlayerStatus : MonoBehaviour
     public bool isInvulnerability;
     public bool isMagnetic;
     public bool isHeatShield;
+    public bool isCloud;
 
     public bool isFever;
 
@@ -24,6 +38,8 @@ public class PlayerStatus : MonoBehaviour
 
     public int touchWindCount;
     public int gadgetIndex;
+
+    SpriteRenderer spriteRenderer;
 
     public static PlayerStatus Instance { get; private set; }
 
@@ -44,6 +60,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         speedIncrease = 1;
     }
 
@@ -91,6 +108,4 @@ public class PlayerStatus : MonoBehaviour
 
         
     }
-
-
 }

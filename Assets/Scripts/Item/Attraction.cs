@@ -25,9 +25,16 @@ public class Attraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StopCoroutine("MagnetTime");
+            if (PlayerStatus.Instance.isMagnetic)
+            {
+                player.ExtendItemAttraction();
+            }
+            else
+            {
+
+                PlayerStatus.Instance.isMagnetic = true;
+            }
             Debug.Log("Magnet");
-            PlayerStatus.Instance.isMagnetic = true;
             Destroy(gameObject);
         }
     }
