@@ -249,7 +249,7 @@ MonoBehaviour:
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
   heightSystem: {fileID: 1205335990}
-  godMode: 1
+  godMode: 0
 --- !u!61 &12504710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   nearMissShowtime: 1
   nearMissCount: 0
   touchWindCount: 0
-  gadgetIndex: 0
+  gadgetIndex: 2
 --- !u!95 &12504714
 Animator:
   serializedVersion: 5
@@ -4934,7 +4934,7 @@ MonoBehaviour:
   increaseSpeed: 9
   decreaseSpeed: 6
   gadgetIncreaseAmount: 15
-  fallSpeed: 0
+  fallSpeed: 100
   sprite: {fileID: 12504707}
   playerStatus: {fileID: 12504713}
 --- !u!4 &1205335991
