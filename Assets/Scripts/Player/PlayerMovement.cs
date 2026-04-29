@@ -245,6 +245,11 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+
+        //if (collision.CompareTag("Bird"))
+        //{
+        //    animator.SetTrigger()
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)

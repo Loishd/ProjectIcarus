@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2979619156152185515}
   - component: {fileID: 6715994876511173641}
   - component: {fileID: 4262994831184362962}
+  - component: {fileID: 653941297248327640}
   m_Layer: 0
   m_Name: Warm Wind
   m_TagString: Untagged
@@ -29,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.36, y: 93.1, z: 0}
-  m_LocalScale: {x: 2.4710135, y: 4.133941, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.11, y: 3.61}
   m_EdgeRadius: 0
 --- !u!114 &4262994831184362962
 MonoBehaviour:
@@ -149,3 +150,24 @@ MonoBehaviour:
   moveSpeed: 2
   increaseAmount: 25
   nearMissIncreaseScore: 100
+--- !u!95 &653941297248327640
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7878269886763993831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c01d12bfb94cc5a499277ef61835a998, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
