@@ -18,6 +18,7 @@ public class FeverSystem : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         if (feverMeter >= feverMeterMax && !PlayerStatus.Instance.isFever)
             StartCoroutine(ActiveFever());
         

@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextTrack();

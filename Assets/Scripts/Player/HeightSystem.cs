@@ -27,6 +27,7 @@ public class HeightSystem : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         Gadget2();
         HeightManager();
         BackgroundColor();

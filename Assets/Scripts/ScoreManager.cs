@@ -50,7 +50,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] float gadgetMultiplier2;
     [SerializeField] float gadgetMultiplier3;
 
-    int i = 0;
+    [Header("CountDown")]
+    [SerializeField] TMP_Text countDownText;
+    [SerializeField] GameObject countDownPanel;
+
+    int i = 3;
     float timer = 0f;
     public bool isPause;
     public int CurrentCoins => _currentCoins;
@@ -80,12 +84,29 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isCountingDown)
+        {
+            CountDown();
+            if (Input.anyKey) return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenAndCloseMenu();
+        }
+
+        if (isPause) return;
         if (isCountingDown) return;
+
         if (PlayerStatus.Instance.isDeath)
         {
             Wings.SetActive(false);
         }
+
         GadgetMultiplierUpdate();
+        UpdateHighestScore();
+        CheckHeightQuest();
+
         _currentScore += (float)(Time.deltaTime * multiplier) * increaseAmount * InvulnerabilityMultiplier;
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
         MultiplierText.text = "x" + multiplier.ToString("F2");
@@ -93,19 +114,10 @@ public class ScoreManager : MonoBehaviour
         CoinText.text = "Coins: " + _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
 
-        UpdateHighestScore();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            OpenAndCloseMenu();
-        }
-
         if (Input.GetKeyDown(KeyCode.U))
         {
             _currentCoins += 1000;
         }
-
-        CheckHeightQuest();
     }
 
     public void AddScore(int coins)
@@ -123,7 +135,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            isPause = false;
+            isCountingDown = true;
             PauseMenu.SetActive(false);
         }
     }
@@ -224,6 +236,31 @@ public class ScoreManager : MonoBehaviour
         else
         {
             multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
+        }
+    }
+
+    public void CountDown()
+    {
+        countDownPanel.SetActive(true);
+        countDownText.text = i.ToString();
+
+        timer += Time.deltaTime;
+
+        if (timer >= 1f)
+        {
+            timer = 0f;
+
+            if (i <= 1)
+            {
+                countDownPanel.SetActive(false);
+                isCountingDown = false;
+                isPause = false;
+                i = 3;
+            }
+            else
+            {
+                i--;
+            }
         }
     }
 }

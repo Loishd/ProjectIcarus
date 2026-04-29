@@ -49,6 +49,8 @@ public class PlayerStatus : MonoBehaviour
 
     public void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
+        if (PlayerStatus.Instance.isDeath) return;
         speedIncrease += Time.deltaTime / 2000;
         if (gadgetIndex == 0)
         {

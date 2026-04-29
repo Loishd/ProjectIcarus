@@ -54,8 +54,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        SetPlayerHotColdNormalStatus();
+        if (ScoreManager.Instance.isPause) return;
         if (PlayerStatus.Instance.isDeath) return;
+        SetPlayerHotColdNormalStatus();
         InvulnerabilityVisual();
         MagnetVisual();
         HeatShieldVisual();

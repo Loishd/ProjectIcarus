@@ -42,6 +42,7 @@ public class CoinSpawning : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         if ((currentPattern < PatternMax) && mapSpawner.CurrentPattern != PatternMax)
         {
             AutoSpawn();

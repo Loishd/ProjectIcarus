@@ -24,6 +24,7 @@ public class RewardManager : MonoBehaviour
 
     private void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         if (Input.GetKeyDown(KeyCode.U))
         {
             PlayerPrefs.SetInt("IcarusArrogance", 0);

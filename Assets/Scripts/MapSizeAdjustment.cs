@@ -19,6 +19,7 @@ public class MapSizeAdjustment : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (ScoreManager.Instance.isPause) return;
         AutoWalk();
     }
 

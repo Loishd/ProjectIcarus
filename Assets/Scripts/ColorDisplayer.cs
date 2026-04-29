@@ -13,6 +13,7 @@ public class ColorDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         gameObject.transform.position = new Vector3(
             _player.transform.position.x,
             _player.transform.position.y,

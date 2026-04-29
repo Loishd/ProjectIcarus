@@ -37,6 +37,7 @@ public class MapSpawner : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
         if (isChangingScene)
         {
             TimerChangeMap(2);
