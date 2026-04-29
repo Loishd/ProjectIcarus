@@ -9,6 +9,9 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] TMP_Text CoinText;
     private float overallCoin;
 
+    public List<GameObject> BuffPages = new List<GameObject>();
+    public List<GameObject> GadgetPages = new List<GameObject>();
+
     [SerializeField] TMP_Text invulnerabilityPriceText;
     [SerializeField] TMP_Text attractionPriceText;
     [SerializeField] TMP_Text heatShieldPriceText;
@@ -19,13 +22,14 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] TMP_Text invulnerabilityAmountText;
     [SerializeField] TMP_Text attractionAmountText;
     [SerializeField] TMP_Text heatShieldAmountText;
+
+    [SerializeField] TMP_Text flapEquipText;
+    [SerializeField] TMP_Text diveEquipText;
+    [SerializeField] TMP_Text planeEquipText;
+
     int invulreabilityAmount;
     int attractionAmount;
     int heatShieldAmount;
-
-    [SerializeField] Button equipbutton1;
-    [SerializeField] Button equipbutton2;
-    [SerializeField] Button equipbutton3;
 
     public bool equipGadget1;
     public bool equipGadget2;
@@ -39,8 +43,15 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] int diveModulePrice;
     [SerializeField] int planeModulePrice;
 
+    private int currentPage;
+    private bool isBuff;
+    private bool isGadget;
+
     void Start()
     {
+        currentPage = 0;
+        isBuff = true;
+
         overallCoin = PlayerPrefs.GetFloat("CoinAmount");
         UpdateCoinText();
 
@@ -65,6 +76,84 @@ public class ShopSystem : MonoBehaviour
     void UpdateCoinText()
     {
         CoinText.text = "Your Coins : " + overallCoin.ToString();
+    }
+
+    public void NextPage()
+    {
+        if (isBuff)
+        {
+            BuffPages[currentPage].SetActive(false);
+            currentPage++;
+
+            if (currentPage >= BuffPages.Count)
+            {
+                currentPage = 0;
+            }
+
+            BuffPages[currentPage].SetActive(true);
+        }
+
+        else if (isGadget)
+        {
+            GadgetPages[currentPage].SetActive(false);
+            currentPage++;
+
+            if (currentPage >= GadgetPages.Count)
+            {
+                currentPage = 0;
+            }
+
+            GadgetPages[currentPage].SetActive(true);
+        }
+    }
+
+    public void PreviousPage()
+    {
+        if (isBuff)
+        {
+            BuffPages[currentPage].SetActive(false);
+            currentPage--;
+
+            if (currentPage < 0)
+            {
+                currentPage = BuffPages.Count - 1;
+            }
+
+            BuffPages[currentPage].SetActive(true);
+        }
+
+        else if (isGadget)
+        {
+            GadgetPages[currentPage].SetActive(false);
+            currentPage--;
+
+            if (currentPage < 0)
+            {
+                currentPage = GadgetPages.Count - 1;
+            }
+
+            GadgetPages[currentPage].SetActive(true);
+        }
+    }
+
+    public void BuffButton()
+    {
+        isGadget = false;
+        GadgetPages[currentPage].SetActive(false);
+
+        isBuff = true;
+        currentPage = 0;
+        BuffPages[currentPage].SetActive(true);
+    }
+
+    public void GadgetButton()
+    {
+        isBuff = false;
+        BuffPages[currentPage].SetActive(false);
+
+        isGadget = true;
+        currentPage = 0;
+        GadgetPages[currentPage].SetActive(true);
     }
 
     public void Buy(int itemIndex)
@@ -185,29 +274,25 @@ public class ShopSystem : MonoBehaviour
         RevealEquipButton();
 
     }
+    
 
     public void RevealEquipButton()
     {
         if (PlayerPrefs.GetInt("CanEquipFlapModule") == 1)
         {
-            equipbutton1.gameObject.SetActive(true);
-
             if (PlayerPrefs.GetInt("EquippedFlapModule") == 1)
             {
-                Image image = equipbutton1.GetComponent<Image>();
-                image.color = Color.red;
+                flapEquipText.text = "UNEQUIP";
                 equipGadget1 = true;
             }
         }
 
         if (PlayerPrefs.GetInt("CanEquipDiveModule") == 1)
         {
-            equipbutton2.gameObject.SetActive(true);
 
             if (PlayerPrefs.GetInt("EquippedDiveModule") == 1)
             {
-                Image image = equipbutton2.GetComponent<Image>();
-                image.color = Color.red;
+                diveEquipText.text = "UNEQUIP";
                 equipGadget2 = true;
             }
 
@@ -215,12 +300,10 @@ public class ShopSystem : MonoBehaviour
 
         if (PlayerPrefs.GetInt("CanEquipPlaneModule") == 1)
         {
-            equipbutton3.gameObject.SetActive(true);
 
             if (PlayerPrefs.GetInt("EquippedPlaneModule") == 1)
             {
-                Image image = equipbutton3.GetComponent<Image>();
-                image.color = Color.red;
+                planeEquipText.text = "UNEQUIP";
                 equipGadget3 = true;
             }
         }
@@ -231,63 +314,75 @@ public class ShopSystem : MonoBehaviour
         
         if (gadgetIndex == 0 && PlayerPrefs.GetInt("CanEquipFlapModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedFlapModule") == 0 && !equipGadget2 && !equipGadget3)
+            if (PlayerPrefs.GetInt("EquippedFlapModule") == 0)
             {
+                UnequipAllGadget();
                 PlayerPrefs.SetInt("EquippedFlapModule", 1);
 
-                Image image = equipbutton1.GetComponent<Image>();
-                image.color = Color.red;
+                flapEquipText.text = "UNEQUIP";
                 equipGadget1 = true;
             }
             else
             {
                 PlayerPrefs.SetInt("EquippedFlapModule", 0);
 
-                Image image = equipbutton1.GetComponent<Image>();
-                image.color = Color.green;
+                flapEquipText.text = "EQUIP";
                 equipGadget1 = false;
             }
         }
 
         if (gadgetIndex == 1 && PlayerPrefs.GetInt("CanEquipDiveModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedDiveModule") == 0 && !equipGadget1 && !equipGadget3)
+            if (PlayerPrefs.GetInt("EquippedDiveModule") == 0)
             {
+                UnequipAllGadget();
                 PlayerPrefs.SetInt("EquippedDiveModule", 1);
 
-                Image image = equipbutton2.GetComponent<Image>();
-                image.color = Color.red;
+                diveEquipText.text = "UNEQUIP";
                 equipGadget2 = true;
             }
             else
             {
                 PlayerPrefs.SetInt("EquippedDiveModule", 0);
 
-                Image image = equipbutton2.GetComponent<Image>();
-                image.color = Color.green;
+                diveEquipText.text = "EQUIP";
                 equipGadget2 = false;
             }
         }
 
         if (gadgetIndex == 2 && PlayerPrefs.GetInt("CanEquipPlaneModule") == 1)
         {
-            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 0 && !equipGadget1 && !equipGadget2)
+            if (PlayerPrefs.GetInt("EquippedPlaneModule") == 0)
             {
+                UnequipAllGadget();
                 PlayerPrefs.SetInt("EquippedPlaneModule", 1);
 
-                Image image = equipbutton3.GetComponent<Image>();
-                image.color = Color.red;
+                planeEquipText.text = "UNEQUIP";
                 equipGadget3 = true;
             }
             else
             {
                 PlayerPrefs.SetInt("EquippedPlaneModule", 0);
 
-                Image image = equipbutton3.GetComponent<Image>();
-                image.color = Color.green;
+                planeEquipText.text = "EQUIP";
                 equipGadget3 = false;
             }
         }
+    }
+
+    void UnequipAllGadget()
+    {
+        equipGadget1 = false;
+        equipGadget2 = false;
+        equipGadget3 = false;
+
+        flapEquipText.text = "EQUIP";
+        diveEquipText.text = "EQUIP";
+        planeEquipText.text = "EQUIP";
+
+        PlayerPrefs.SetInt("EquippedFlapModule", 0);
+        PlayerPrefs.SetInt("EquippedDiveModule", 0);
+        PlayerPrefs.SetInt("EquippedPlaneModule", 0);
     }
 
     void UpdateCoin()
