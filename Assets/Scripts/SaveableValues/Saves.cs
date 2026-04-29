@@ -32,7 +32,6 @@ public class Saves : MonoBehaviour
             PlayerPrefs.SetInt("HoarderNextToPlutus", 0);
             PlayerPrefs.SetInt("IcarusArrogance", 0);
             PlayerPrefs.SetInt("VolatileFlight", 0);
-            PlayerPrefs.SetInt("ZeusCantCatchMe", 0);
             PlayerPrefs.SetInt("SeekingForPoseidon", 0);
             PlayerPrefs.SetInt("AggressiveTyphoon", 0);
 
