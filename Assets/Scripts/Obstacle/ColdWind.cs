@@ -40,11 +40,6 @@ public class ColdWind : MonoBehaviour
                 StartCoroutine(RewardManager.Instance.PopUpQuest("Aggressive Typhoon"));
             }
         }
-
-        if (collision.gameObject.CompareTag("Wing"))
-        {
-            StartCoroutine(PlayerStatus.Instance.TriggerNearMiss(nearMissIncreaseScore));
-        }
     }
     void Move()
     {
