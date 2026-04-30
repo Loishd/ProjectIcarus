@@ -27,9 +27,9 @@ public class ShopSystem : MonoBehaviour
     [SerializeField] TMP_Text diveEquipText;
     [SerializeField] TMP_Text planeEquipText;
 
-    int invulreabilityAmount;
-    int attractionAmount;
-    int heatShieldAmount;
+    [SerializeField] int invulreabilityAmount;
+    [SerializeField] int attractionAmount;
+    [SerializeField] int heatShieldAmount;
 
     public bool equipGadget1;
     public bool equipGadget2;
@@ -190,21 +190,23 @@ public class ShopSystem : MonoBehaviour
         if (itemIndex == 0)
         {
             Debug.Log("Give Invulnerability!");
-            PlayerPrefs.SetInt("BoughtInvulnerability", invulreabilityAmount++);
+            invulreabilityAmount++;
+            PlayerPrefs.SetInt("BoughtInvulnerability", invulreabilityAmount);
             invulnerabilityAmountText.text = "x" + invulreabilityAmount.ToString();
-            
         }
         else if (itemIndex == 1)
         {
             Debug.Log("Give Attraction!");
-            PlayerPrefs.SetInt("BoughtAttraction", attractionAmount++);
+            attractionAmount++;
+            PlayerPrefs.SetInt("BoughtAttraction", attractionAmount);
             attractionAmountText.text = "x" + attractionAmount.ToString();
             
         }
         else if (itemIndex == 2)
         {
             Debug.Log("Give HeatShield!");
-            PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount++);
+            heatShieldAmount++;
+            PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount);
             heatShieldAmountText.text = "x" + heatShieldAmount.ToString();
 
         }

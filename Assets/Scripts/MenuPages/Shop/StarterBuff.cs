@@ -11,7 +11,7 @@ public class StarterBuff : MonoBehaviour
     public GameObject menu;
     public int invulnerabilityAmount;
     public int attractionAmount;
-    public int heatShieldAmount;
+    public int heatShieldAmount;    
 
     private void Start()
     {
@@ -61,6 +61,7 @@ public class StarterBuff : MonoBehaviour
         {
             PlayerStatus.Instance.isInvulnerability = true;
             PlayerPrefs.SetInt("BoughtInvulnerability", invulnerabilityAmount - 1);
+            Debug.Log(gameObject + "Used");
             menu.SetActive(false);
         }
             
