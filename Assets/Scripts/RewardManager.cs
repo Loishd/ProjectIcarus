@@ -14,6 +14,8 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private float distance = 20f;
     [SerializeField] GameObject targetpos;
 
+    [SerializeField] private bool isDebugging = false;
+
     public static RewardManager Instance { get; private set; }
 
     private void Awake()
@@ -25,15 +27,25 @@ public class RewardManager : MonoBehaviour
     private void Update()
     {
         if (ScoreManager.Instance.isPause) return;
+        if (!isDebugging) return;
+
         if (Input.GetKeyDown(KeyCode.U))
         {
+            PlayerPrefs.SetInt("HoarderNextToPlutus", 0);
             PlayerPrefs.SetInt("IcarusArrogance", 0);
+            PlayerPrefs.SetInt("VolatileFlight", 0);
+            PlayerPrefs.SetInt("SeekingForPoseidon", 0);
+            PlayerPrefs.SetInt("AggressiveTyphoon", 0);
         }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log(PlayerPrefs.GetInt("IcarusArrogance"));
-            StartCoroutine(PopUpQuest("Test Quest"));
+            Debug.Log("Plutus : " + PlayerPrefs.GetInt("HoarderNextToPlutus"));
+            Debug.Log("IcarusArrogance : " + PlayerPrefs.GetInt("IcarusArrogance"));
+            Debug.Log("Volatile Filight : " + PlayerPrefs.GetInt("VolatileFlight"));
+            Debug.Log("Seeking Poseidon : " + PlayerPrefs.GetInt("SeekingForPoseidon"));
+            Debug.Log("Typhoon : " + PlayerPrefs.GetInt("AggressiveTyphoon"));
+
         }
     }
 
