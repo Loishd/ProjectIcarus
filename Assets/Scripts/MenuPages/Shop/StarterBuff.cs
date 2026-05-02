@@ -29,6 +29,9 @@ public class StarterBuff : MonoBehaviour
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
+        if (PlayerStatus.Instance.isDeath) return;
+
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
