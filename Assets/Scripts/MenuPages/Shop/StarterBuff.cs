@@ -2,13 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StarterBuff : MonoBehaviour
 {
     public float timeRemaining = 20;
     public bool timerIsRunning = false;
+
     public TMP_Text timeText;
+
+    public TMP_Text buff1Text;
+    public TMP_Text buff2Text;
+    public TMP_Text buff3Text;
+
+    public Button buff1Button;
+    public Button buff2Button;
+    public Button buff3Button;
+
     public GameObject menu;
+
+
+
     public int invulnerabilityAmount;
     public int attractionAmount;
     public int heatShieldAmount;    
@@ -24,11 +38,27 @@ public class StarterBuff : MonoBehaviour
         attractionAmount = PlayerPrefs.GetInt("BoughtAttraction");
         heatShieldAmount = PlayerPrefs.GetInt("BoughtHeatShield");
 
+        buff1Text.text = invulnerabilityAmount.ToString();
+        buff2Text.text = attractionAmount.ToString();
+        buff3Text.text = heatShieldAmount.ToString();
+
+        if (invulnerabilityAmount <= 0)
+            buff1Button.interactable = false;
+
+        if (attractionAmount <= 0)
+            buff2Button.interactable = false;
+
+        if (heatShieldAmount <= 0)
+            buff3Button.interactable = false;
+
         StarterGadget();
     }
 
     void Update()
     {
+        if (ScoreManager.Instance.isPause) return;
+        if (PlayerStatus.Instance.isDeath) return;
+
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
