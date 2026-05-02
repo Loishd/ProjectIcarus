@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,14 +18,22 @@ public class SoundManager : MonoBehaviour
     [Header("Music List")]
     [SerializeField] private List<AudioClip> musicList = new List<AudioClip>();
 
+    [Header("Audio Mixer")]
+    [SerializeField] AudioMixer mixer;
+
+    float masterVolume = 1f;
+    float musicVolume = 0.05f;
+    float sfxVolume = 1f;
+
     private int currentTrack = 0;
 
     void Awake()
     {
-        // Singleton
+        // Singleton + DontDestroy
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -33,34 +42,26 @@ public class SoundManager : MonoBehaviour
         }
 
         // Force 2D audio
-        musicSource.spatialBlend = 0f;
-        sfxSource.spatialBlend = 0f;
-        SetMusicVolume(0.05f);
-        SetSFXVolume(1);
+        if (musicSource != null) musicSource.spatialBlend = 0f;
+        if (sfxSource != null) sfxSource.spatialBlend = 0f;
     }
 
     void Start()
     {
-
+        LoadVolume();
+        PlayCurrentMusic(); // 🔥 auto play
     }
 
     void Update()
     {
-        if (ScoreManager.Instance.isPause) return;
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            NextTrack();
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            PreviousTrack();
-        }
+        // กัน null
+        if (ScoreManager.Instance != null && ScoreManager.Instance.isPause) return;
     }
 
+    // ================= MUSIC =================
     public void PlayCurrentMusic()
     {
-        if (musicList.Count == 0) return;
+        if (musicList.Count == 0 || musicSource == null) return;
 
         musicSource.Stop();
         musicSource.clip = musicList[currentTrack];
@@ -68,40 +69,110 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
-    void NextTrack()
+    public void NextTrack()
     {
         currentTrack++;
-
         if (currentTrack >= musicList.Count)
             currentTrack = 0;
 
         PlayCurrentMusic();
     }
 
-    void PreviousTrack()
+    public void PreviousTrack()
     {
         currentTrack--;
-
         if (currentTrack < 0)
             currentTrack = musicList.Count - 1;
 
         PlayCurrentMusic();
     }
 
-    // SFX
+    // ================= SFX =================
     public void PlaySFX(AudioClip clip)
     {
+        if (sfxSource == null || clip == null) return;
         sfxSource.PlayOneShot(clip);
     }
 
-    // Volume control
-    public void SetMusicVolume(float volume)
+    // ================= VOLUME =================
+    float ToDB(float value)
     {
-        musicSource.volume = volume;
+        return Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
     }
 
-    public void SetSFXVolume(float volume)
+    public void SetMasterVolume(float value)
     {
-        sfxSource.volume = volume;
+        masterVolume = value;
+
+        if (mixer != null)
+        {
+            mixer.SetFloat("MasterVolume", ToDB(masterVolume));
+        }
+        else
+        {
+            ApplyFallbackVolume();
+        }
+
+        PlayerPrefs.SetFloat("MasterVolume", value);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        musicVolume = value;
+
+        if (mixer != null)
+        {
+            mixer.SetFloat("MusicVolume", ToDB(musicVolume));
+        }
+        else
+        {
+            ApplyFallbackVolume();
+        }
+
+        PlayerPrefs.SetFloat("MusicVolume", value);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        sfxVolume = value;
+
+        if (mixer != null)
+        {
+            mixer.SetFloat("SFXVolume", ToDB(sfxVolume));
+        }
+        else
+        {
+            ApplyFallbackVolume();
+        }
+
+        PlayerPrefs.SetFloat("SFXVolume", value);
+    }
+
+    // ================= LOAD =================
+    void LoadVolume()
+    {
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.05f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        SetMasterVolume(masterVolume);
+        SetMusicVolume(musicVolume);
+        SetSFXVolume(sfxVolume);
+    }
+
+    // ================= FALLBACK =================
+    void ApplyFallbackVolume()
+    {
+        if (musicSource != null)
+            musicSource.volume = musicVolume * masterVolume;
+
+        if (sfxSource != null)
+            sfxSource.volume = sfxVolume * masterVolume;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 }

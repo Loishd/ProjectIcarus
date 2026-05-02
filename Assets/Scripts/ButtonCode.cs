@@ -46,4 +46,14 @@ public class ButtonCode : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(sceneName);
     }
+
+    public void Options(GameObject soundMenu)
+    {
+        soundMenu.SetActive(true);
+    }
+
+    public void OffOptions(GameObject soundMenu)
+    {
+        soundMenu.SetActive(false);
+    }
 }
