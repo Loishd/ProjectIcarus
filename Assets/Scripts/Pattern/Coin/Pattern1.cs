@@ -24,10 +24,13 @@ public class Pattern1 : MonoBehaviour
             highestPos = HighestOne.position;
     }
 
+
     private void FixedUpdate()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         if (ScoreManager.Instance.isPause) return;
         AutoMove();
+        if (HighestOne == null) return;
     }
 
     public void AutoMove()
@@ -61,12 +64,17 @@ public class Pattern1 : MonoBehaviour
 
     public virtual Vector3 GetHighestPos()
     {
-        return HighestOne.position;
+        if (HighestOne != null)
+            return HighestOne.position;
+
+        return transform.position + Vector3.up * 5f;
     }
 
     protected virtual void Update()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         if (player == null) return;
+        if (HighestOne == null) return;
 
         float highestY = GetHighestPos().y;
 
@@ -82,13 +90,16 @@ public class Pattern1 : MonoBehaviour
         int result = Random.Range(0, 3);
         int itemPos = Random.Range(0, itemSpawnPos.Count);
         int itemNum = Random.Range(0, itemList.Count);
-        if ((result == 0))
-        {
-            GameObject spawnedItem = Instantiate(itemList[itemNum], itemSpawnPos[itemPos].transform.position, Quaternion.identity, this.transform);
-        }
-        else 
-        {
-            return;
-        }
+
+        if (result != 0) return;
+
+        GameObject spawnedItem = Instantiate(itemList[itemNum],itemSpawnPos[itemPos].position,Quaternion.identity);
+
+        // 🔥 บังคับ parent ชัวร์ ๆ
+        spawnedItem.transform.SetParent(this.transform, true);
+
+        // 🧪 debug เช็ค
+        Debug.Log("Spawned: " + spawnedItem.name);
+        Debug.Log("Parent: " + spawnedItem.transform.parent);
     }
 }

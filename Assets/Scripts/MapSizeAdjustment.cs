@@ -9,6 +9,7 @@ public class MapSizeAdjustment : MonoBehaviour
 
     void Update()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         float currentZ = transform.position.z;
         float targetZ = heightSystem.CurrentHeight;
 
@@ -19,6 +20,7 @@ public class MapSizeAdjustment : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         if (ScoreManager.Instance.isPause) return;
         AutoWalk();
     }

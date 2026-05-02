@@ -92,6 +92,10 @@ public class ScoreManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (nameInputPanel.activeSelf)
+            {
+                return;
+            }
             OpenAndCloseMenu();
         }
 
@@ -101,6 +105,7 @@ public class ScoreManager : MonoBehaviour
         if (PlayerStatus.Instance.isDeath)
         {
             Wings.SetActive(false);
+            return;
         }
 
         GadgetMultiplierUpdate();
@@ -263,4 +268,6 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
+
 }

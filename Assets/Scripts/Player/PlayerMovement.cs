@@ -42,8 +42,10 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-    bool hasEnteredSkipper = false;
-    bool hasExitedSkipper = false;
+    //bool hasEnteredSkipper = false;
+    //bool hasExitedSkipper = false;
+
+    private Collider2D currentSkipper;
 
 
     private void Awake()
@@ -222,10 +224,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Skipper") && !hasEnteredSkipper)
+        if (collision.CompareTag("Skipper") && currentSkipper != collision)
         {
-            hasEnteredSkipper = true;
-            hasExitedSkipper = false;
+            currentSkipper = collision;
 
             Debug.Log("ENTER ONCE: " + collision.name);
 
@@ -243,24 +244,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 PlayerStatus.Instance.isCloud = true;
             }
+
             Destroy(collision.gameObject);
         }
-
-        //if (collision.CompareTag("Bird"))
-        //{
-        //    animator.SetTrigger()
-        //}
+        else if ((collision.TryGetComponent<Bird>(out Bird bird)) && ((PlayerStatus.Instance.isFever) || (PlayerStatus.Instance.isInvulnerability)))
+        {
+            animator.SetTrigger("HitPose");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Skipper") && !hasExitedSkipper)
+        if (collision.CompareTag("Skipper") && currentSkipper == collision)
         {
-            hasExitedSkipper = true;
-            hasEnteredSkipper = false;
-
             Debug.Log("EXIT ONCE: " + collision.name);
 
+            currentSkipper = null;
             mapSpawner.ResetPattern();
         }
     }
@@ -331,21 +330,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void ExtendItemInvulnerability()
     {
-        invulnerabilityTimer -= PlayerStatus.Instance.InvulnerabilityDuration;
+        invulnerabilityTimer = 0;
     }
 
     public void ExtendItemAttraction()
     {
-        attractionTimer -= PlayerStatus.Instance.MagnetDuration;
+        attractionTimer = 0;
     }
 
     public void ExtendItemHeatShield()
     {
-        heatShieldTimer -= PlayerStatus.Instance.HeatShieldDuration;
+        heatShieldTimer = 0;
     }
 
     public void ExtendCloud()
     {
-        cloudTime -= PlayerStatus.Instance.CloudDuration;
+        cloudTime = 0;
     }
 }

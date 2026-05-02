@@ -25,6 +25,7 @@ public class FeatherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStatus.Instance.isDeath) return;
         MagnetMethod();
         playerTarget = player.transform.position;
         if (player == null || coinSpawning == null) return;
