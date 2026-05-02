@@ -33,9 +33,6 @@ public class Bird : MonoBehaviour
         {
             spriteRenderer.enabled = false;
 
-            if (PlayerStatus.Instance.isFever)
-                return;
-
             if (PlayerStatus.Instance.isInvulnerability)
             {
                 PlayerStatus.Instance.isInvulnerability = false;
@@ -47,6 +44,9 @@ public class Bird : MonoBehaviour
                 if (player.godMode) return;
                 player.SetDeathAnimation();
             }
+
+            if (PlayerStatus.Instance.isFever)
+                return;   
         }
 
         if (collision.gameObject.CompareTag("Wing"))
