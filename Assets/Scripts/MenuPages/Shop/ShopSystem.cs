@@ -139,6 +139,7 @@ public class ShopSystem : MonoBehaviour
     public void BuffButton()
     {
         isGadget = false;
+        BuffPages[currentPage].SetActive(false);
         GadgetPages[currentPage].SetActive(false);
 
         isBuff = true;
@@ -149,6 +150,7 @@ public class ShopSystem : MonoBehaviour
     public void GadgetButton()
     {
         isBuff = false;
+        GadgetPages[currentPage].SetActive(false);
         BuffPages[currentPage].SetActive(false);
 
         isGadget = true;

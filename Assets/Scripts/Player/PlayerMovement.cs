@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     //bool hasExitedSkipper = false;
 
     private Collider2D currentSkipper;
+    [SerializeField] GameObject UItexts;
 
 
     private void Awake()
@@ -165,8 +166,8 @@ public class PlayerMovement : MonoBehaviour
         if (godMode) return;
 
         SetHighestScore();
+        UItexts.SetActive(false);
         deathScreen.SetActive(true);
-        Time.timeScale = 0f;
         PlayerStatus.Instance.isDeath = true;
         PlayerStatus.Instance.nearMissCount = 0;
         PlayerStatus.Instance.gadgetIndex = 0;

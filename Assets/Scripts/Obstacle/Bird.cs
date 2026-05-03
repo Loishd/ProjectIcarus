@@ -41,12 +41,14 @@ public class Bird : MonoBehaviour
             }
             else
             {
+                if (PlayerStatus.Instance.isFever)
+                    return;
+
                 if (player.godMode) return;
                 player.SetDeathAnimation();
             }
 
-            if (PlayerStatus.Instance.isFever)
-                return;   
+            
         }
 
         if (collision.gameObject.CompareTag("Wing"))
