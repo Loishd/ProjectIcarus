@@ -103,6 +103,8 @@ public class SoundManager : MonoBehaviour
     public void SetMasterVolume(float value)
     {
         masterVolume = value;
+        musicSource.volume = musicVolume * masterVolume;
+        sfxSource.volume = sfxVolume * masterVolume;
 
         if (mixer != null)
         {
@@ -119,6 +121,7 @@ public class SoundManager : MonoBehaviour
     public void SetMusicVolume(float value)
     {
         musicVolume = value;
+        musicSource.volume = musicVolume;
 
         if (mixer != null)
         {
@@ -135,6 +138,7 @@ public class SoundManager : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         sfxVolume = value;
+        sfxSource.volume = sfxVolume;
 
         if (mixer != null)
         {
