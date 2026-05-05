@@ -227,19 +227,19 @@ public class ScoreManager : MonoBehaviour
     {
         if (PlayerStatus.Instance.gadgetIndex == 1)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier1 * _feverSystem.FeverMultiplier;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier1 * _feverSystem.UseFeverMultiplier;
         }
         else if (PlayerStatus.Instance.gadgetIndex == 2)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier2 * _feverSystem.FeverMultiplier;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier2 * _feverSystem.UseFeverMultiplier;
         }
         else if (PlayerStatus.Instance.gadgetIndex == 3)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier3 * _feverSystem.FeverMultiplier;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier3 * _feverSystem.UseFeverMultiplier;
         }
         else
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * _feverSystem.FeverMultiplier;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * _feverSystem.UseFeverMultiplier;
         }
     }
 
