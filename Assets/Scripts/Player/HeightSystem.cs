@@ -14,8 +14,6 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private float decreaseSpeed = 1f;
     [SerializeField] private float gadgetIncreaseAmount;
     [SerializeField] float fallSpeed;
-    private float dangerHeatZone = 100f;
-    private float dangerFreezeZone = 0f;
     private float maxHeight = 100f;
     private float minHeight = 0f;
     [SerializeField] private SpriteRenderer sprite;

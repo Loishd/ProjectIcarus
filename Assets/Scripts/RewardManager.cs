@@ -10,8 +10,6 @@ public class RewardManager : MonoBehaviour
     [SerializeField] private TMP_Text questNameText;
     [SerializeField] private GameObject questUI;
     [SerializeField] private float popUpDuration = 2f;
-    [SerializeField] private float popUpSpeed = 2f;
-    [SerializeField] private float distance = 20f;
     [SerializeField] GameObject targetpos;
 
     [SerializeField] private bool isDebugging = false;

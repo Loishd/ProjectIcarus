@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("MVP")]
     [SerializeField] string _mvpName = "SomChai";
-    [SerializeField] float _mvpHighestScore;
+    [SerializeField] float _playerHighestScore;
 
     [Header("UI")]
     [SerializeField] GameObject Wings;
@@ -159,11 +159,6 @@ public class ScoreManager : MonoBehaviour
         {
             _mvpName = PlayerPrefs.GetString("MVPName");
             HighestScoreText.text = _mvpName + ": " + ((int)_highestScore).ToString();
-        }
-            
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            PlayerPrefs.SetFloat("HighestScore", 200);
         }
     }
 
