@@ -236,6 +236,14 @@ public class PlayerMovement : MonoBehaviour
         else
             cloudBlocker.SetActive(false);
     }
+    public void RemoveInvulBar()
+    {
+        if (activeInvulBar != null)
+        {
+            Destroy(activeInvulBar.gameObject);
+            activeInvulBar = null;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -261,6 +269,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
             Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("Bird"))
+        {
+            RemoveInvulBar();
         }
 
         if (collision.CompareTag("Magnet"))
