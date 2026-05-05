@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] MapSpawner mapSpawner;
     [SerializeField] StarterBuff starterBuff;
     [SerializeField] HeightSystem heightSystem;
+    [SerializeField] DeathUIScript deathUISystem;
 
     [Header("Debug Mode")]
     public bool godMode = false;
@@ -166,8 +167,10 @@ public class PlayerMovement : MonoBehaviour
         if (godMode) return;
 
         SetHighestScore();
+        
         UItexts.SetActive(false);
         deathScreen.SetActive(true);
+        deathUISystem.UpdateDeathUIText();
         PlayerStatus.Instance.isDeath = true;
         PlayerStatus.Instance.nearMissCount = 0;
         PlayerStatus.Instance.gadgetIndex = 0;

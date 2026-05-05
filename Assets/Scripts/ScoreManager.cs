@@ -117,13 +117,8 @@ public class ScoreManager : MonoBehaviour
         //MultiplierText.text = "x" + Mathf.Round(1+math.abs((heightSystem.CurrentHeight-50) / 10)).ToString();
         MultiplierText.text = "x" + multiplier.ToString("F2");
         ScoreText.text = playerName + ": " + ((int)_currentScore).ToString();
-        CoinText.text = "Coins: " + _currentCoins.ToString();
+        CoinText.text = _currentCoins.ToString();
         //currentScore = playerStats.currentscore 
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            _currentCoins += 1000;
-        }
     }
 
     public void AddScore(int coins)
