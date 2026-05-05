@@ -41,6 +41,9 @@ public class PlayerStatus : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    [Header("Quest")]
+    [SerializeField] int featherReach = 3000;
+
     public static PlayerStatus Instance { get; private set; }
 
     private void Awake()
@@ -85,7 +88,7 @@ public class PlayerStatus : MonoBehaviour
 
         PlayerPrefs.SetFloat("CoinAmount", amount + overallCoin);
 
-        if ((PlayerPrefs.GetInt("HoarderNextToPlutus") != 1) && overallCoin >= 9999)
+        if ((PlayerPrefs.GetInt("HoarderNextToPlutus") != 1) && overallCoin >= featherReach)
         {
             PlayerPrefs.SetInt("HoarderNextToPlutus", 1);
             StartCoroutine(RewardManager.Instance.PopUpQuest("Hoarder Next To Plutus"));
