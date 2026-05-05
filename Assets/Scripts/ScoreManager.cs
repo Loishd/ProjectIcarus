@@ -57,6 +57,7 @@ public class ScoreManager : MonoBehaviour
     int i = 3;
     float timer = 0f;
     public bool isPause;
+    [SerializeField] FeverSystem _feverSystem;
     public int CurrentCoins => _currentCoins;
     bool isCountingDown;
     // Start is called before the first frame update
@@ -228,19 +229,19 @@ public class ScoreManager : MonoBehaviour
     {
         if (PlayerStatus.Instance.gadgetIndex == 1)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier1;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier1 * _feverSystem.FeverMultiplier;
         }
         else if (PlayerStatus.Instance.gadgetIndex == 2)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier2;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier2 * _feverSystem.FeverMultiplier;
         }
         else if (PlayerStatus.Instance.gadgetIndex == 3)
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier3;
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * gadgetMultiplier3 * _feverSystem.FeverMultiplier;
         }
         else
         {
-            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f);
+            multiplier = 1 + Mathf.Abs((heightSystem.CurrentHeight - 50f) / 10f) * _feverSystem.FeverMultiplier;
         }
     }
 

@@ -27,5 +27,15 @@ public class SkiPSceneScript : MonoBehaviour
         Vector3 movement = new Vector3(0f, -1f, 0f).normalized;
 
         transform.Translate(movement * PlayerStatus.Instance.MoveSpeedRef * Time.deltaTime * PlayerStatus.Instance.speedIncrease);
+
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Destroy(gameObject, 10);
+        }
     }
 }

@@ -6,7 +6,9 @@ public class FeverSystem : MonoBehaviour
 {
     [SerializeField] private float feverMeter;
     [SerializeField] private float feverDuration = 10f;
-    [SerializeField] private float feverMultiplier = 2f;
+    [SerializeField] private float feverMultiplier;
+    public float FeverMultiplier => feverMultiplier;
+
     private float feverMeterMax = 100f;
     private float feverMeterMin = 0f;
     public List<GameObject> feverBarList = new List<GameObject>();
