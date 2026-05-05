@@ -9,6 +9,8 @@ public class FeverSystem : MonoBehaviour
     [SerializeField] private float feverMultiplier;
     public float FeverMultiplier => feverMultiplier;
 
+    private float useFeverMultiplier;
+    public float UseFeverMultiplier => useFeverMultiplier;
     private float feverMeterMax = 100f;
     private float feverMeterMin = 0f;
     public List<GameObject> feverBarList = new List<GameObject>();
@@ -24,6 +26,14 @@ public class FeverSystem : MonoBehaviour
         if (feverMeter >= feverMeterMax && !PlayerStatus.Instance.isFever)
             StartCoroutine(ActiveFever());
         
+        if (PlayerStatus.Instance.isFever)
+        {
+            useFeverMultiplier = feverMultiplier;
+        }
+        else
+        {
+            useFeverMultiplier = 1;
+        }
     }
 
     public void IncreaseFever(float feverGain)
