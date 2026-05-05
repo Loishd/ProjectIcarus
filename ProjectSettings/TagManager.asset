@@ -9,6 +9,8 @@ TagManager:
   - Cloud
   - Skipper
   - Bird
+  - HeatShield
+  - Invulnerability
   layers:
   - Default
   - TransparentFX

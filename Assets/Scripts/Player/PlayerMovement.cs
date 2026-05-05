@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] MapSpawner mapSpawner;
     [SerializeField] StarterBuff starterBuff;
     [SerializeField] HeightSystem heightSystem;
-    [SerializeField] DeathUIScript deathUISystem;
 
     [Header("Debug Mode")]
     public bool godMode = false;
@@ -38,6 +37,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float heatShieldTimer;
     [SerializeField] float invulnerabilityTimer;
     [SerializeField] float cloudTime;
+
+    [Header("UI Bar Settings")]
+    [SerializeField] GameObject barPrefab;
+    [SerializeField] Transform barContainer;
+
+    [Header("Item Icons")]
+    public Sprite magnetIcon;
+    public Sprite shieldIcon;
+    public Sprite invulIcon;
+
+    // ตัวแปรเก็บอ้างอิงบาร์ที่กำลังแสดงผล (เหลือแค่ 3 อันหลัก)
+    private ItemUI activeMagnetBar;
+    private ItemUI activeShieldBar;
+    private ItemUI activeInvulBar;
 
     public float InvulnerabilityTimer => invulnerabilityTimer;
 
@@ -167,10 +180,8 @@ public class PlayerMovement : MonoBehaviour
         if (godMode) return;
 
         SetHighestScore();
-        
         UItexts.SetActive(false);
         deathScreen.SetActive(true);
-        deathUISystem.UpdateDeathUIText();
         PlayerStatus.Instance.isDeath = true;
         PlayerStatus.Instance.nearMissCount = 0;
         PlayerStatus.Instance.gadgetIndex = 0;
@@ -251,9 +262,60 @@ public class PlayerMovement : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
-        else if ((collision.TryGetComponent<Bird>(out Bird bird)) && ((PlayerStatus.Instance.isFever) || (PlayerStatus.Instance.isInvulnerability)))
+
+        if (collision.CompareTag("Magnet"))
         {
-            animator.SetTrigger("HitPose");
+            PlayerStatus.Instance.isMagnetic = true;
+            // attractionTimer = 0; // ใส่ตัวนับเวลาของพี่ตรงนี้
+
+            if (activeMagnetBar != null)
+            {
+                activeMagnetBar.ResetTimer();
+            }
+            else
+            {
+                GameObject go = Instantiate(barPrefab, barContainer);
+                // บรรทัดนี้จะไม่แดงแล้ว เพราะชื่อคลาสข้างบนคือ ItemUI
+                activeMagnetBar = go.GetComponent<ItemUI>();
+                activeMagnetBar.Setup(PlayerStatus.Instance.MagnetDuration, magnetIcon);
+            }
+            Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("HeatShield"))
+        {
+            PlayerStatus.Instance.isHeatShield = true;
+            // heatShieldTimer = 0; // รีเซ็ตเวลาใน Player script ของพี่
+
+            if (activeShieldBar != null)
+            {
+                activeShieldBar.ResetTimer(); // บาร์เดิมที่มีอยู่จะเด้งกลับมาเต็ม
+            }
+            else
+            {
+                GameObject ItemUIObj = Instantiate(barPrefab, barContainer);
+                activeShieldBar = ItemUIObj.GetComponent<ItemUI>();
+                activeShieldBar.Setup(PlayerStatus.Instance.HeatShieldDuration, shieldIcon);
+            }
+            Destroy(collision.gameObject);
+        }
+
+        // --- 3. INVULNERABILITY (อมตะ) ---
+        else if (collision.CompareTag("Invulnerability"))
+        {
+            PlayerStatus.Instance.isInvulnerability = true;
+            // invulnerabilityTimer = 0; // รีเซ็ตเวลาใน Player script ของพี่
+
+            if (activeInvulBar != null)
+            {
+                activeInvulBar.ResetTimer(); // บาร์เดิมที่มีอยู่จะเด้งกลับมาเต็ม
+            }
+            else
+            {
+                GameObject ItemUIObj = Instantiate(barPrefab, barContainer);
+                activeInvulBar = ItemUIObj.GetComponent<ItemUI>();
+                activeInvulBar.Setup(PlayerStatus.Instance.InvulnerabilityDuration, invulIcon);
+            }
+            Destroy(collision.gameObject);
         }
     }
 
@@ -265,6 +327,39 @@ public class PlayerMovement : MonoBehaviour
 
             currentSkipper = null;
             mapSpawner.ResetPattern();
+        }
+    }
+
+    public void SpawnMagnetBarExternal()
+    {
+        if (activeMagnetBar != null) activeMagnetBar.ResetTimer();
+        else
+        {
+            GameObject ItemUI = Instantiate(barPrefab, barContainer);
+            activeMagnetBar = ItemUI.GetComponent<ItemUI>();
+            activeMagnetBar.Setup(PlayerStatus.Instance.MagnetDuration, magnetIcon);
+        }
+    }
+
+    public void SpawnShieldBarExternal()
+    {
+        if (activeShieldBar != null) activeShieldBar.ResetTimer();
+        else
+        {
+            GameObject ItemUI = Instantiate(barPrefab, barContainer);
+            activeShieldBar = ItemUI.GetComponent<ItemUI>();
+            activeShieldBar.Setup(PlayerStatus.Instance.HeatShieldDuration, shieldIcon);
+        }
+    }
+
+    public void SpawnInvulBarExternal()
+    {
+        if (activeInvulBar != null) activeInvulBar.ResetTimer();
+        else
+        {
+            GameObject ItemUI = Instantiate(barPrefab, barContainer);
+            activeInvulBar = ItemUI.GetComponent<ItemUI>();
+            activeInvulBar.Setup(PlayerStatus.Instance.InvulnerabilityDuration, invulIcon);
         }
     }
 
@@ -282,7 +377,7 @@ public class PlayerMovement : MonoBehaviour
     {
         attractionTimer += Time.deltaTime;
         if (attractionTimer >= duration)
-        {
+        {   
             attractionTimer = 0;
             PlayerStatus.Instance.isMagnetic = false;
         }

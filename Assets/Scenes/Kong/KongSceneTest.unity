@@ -246,12 +246,16 @@ MonoBehaviour:
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
   heightSystem: {fileID: 1205335990}
-  deathUISystem: {fileID: 903251189}
   godMode: 0
   attractionTimer: 0
   heatShieldTimer: 0
   invulnerabilityTimer: 0
   cloudTime: 0
+  barPrefab: {fileID: 8113245342321038606, guid: 87b208e28e7e3e244aa304bc54d5e05f, type: 3}
+  barContainer: {fileID: 750305865}
+  magnetIcon: {fileID: 21300000, guid: 8714112bf59e75647a8780cf43c6e583, type: 3}
+  shieldIcon: {fileID: 21300000, guid: 7fd6aca4747d3504889abfa4b9a2fc67, type: 3}
+  invulIcon: {fileID: 21300000, guid: fd8d61f95a857c743a85a3d9fd6e1629, type: 3}
   UItexts: {fileID: 1463282847}
 --- !u!61 &12504710
 BoxCollider2D:
@@ -3719,6 +3723,68 @@ RectTransform:
   m_AnchoredPosition: {x: -5.0000153, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &750305864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750305865}
+  - component: {fileID: 750305866}
+  m_Layer: 5
+  m_Name: Item Duration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &750305865
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750305864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1380985018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -931, y: -109}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &750305866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750305864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 602.9
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &765969323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,6 +4627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b952ff915e28a754c9694a205db295f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 12504709}
   timeRemaining: 20
   timerIsRunning: 0
   timeText: {fileID: 991888426}
@@ -6681,7 +6748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -792.8861, y: 796.9457}
+  m_AnchoredPosition: {x: -221, y: -126}
   m_SizeDelta: {x: 697.5395, y: 106.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1229926602
@@ -6713,8 +6780,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288190027
-  m_fontColor: {r: 0.2943663, g: 0.588214, b: 0.5943396, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6738,7 +6805,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8066,6 +8133,7 @@ RectTransform:
   - {fileID: 1782162101}
   - {fileID: 1463282848}
   - {fileID: 1902759386}
+  - {fileID: 750305865}
   - {fileID: 1791024629}
   - {fileID: 903251185}
   - {fileID: 1383487510}
@@ -8097,7 +8165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1383487510
 RectTransform:
   m_ObjectHideFlags: 0

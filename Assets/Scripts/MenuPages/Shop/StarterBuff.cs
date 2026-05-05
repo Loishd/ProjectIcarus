@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StarterBuff : MonoBehaviour
 {
+    public PlayerMovement playerMovement;
     public float timeRemaining = 20;
     public bool timerIsRunning = false;
 
@@ -87,25 +88,39 @@ public class StarterBuff : MonoBehaviour
     {
         if (PlayerStatus.Instance.isDeath) return;
 
+        // --- 1. อมตะ (Invulnerability) ---
         if (itemIndex == 0 && PlayerPrefs.GetInt("BoughtInvulnerability") >= 1 && !PlayerStatus.Instance.isInvulnerability)
         {
             PlayerStatus.Instance.isInvulnerability = true;
             PlayerPrefs.SetInt("BoughtInvulnerability", invulnerabilityAmount - 1);
-            Debug.Log(gameObject + "Used");
+
+            // สั่ง Spawn UI บาร์อมตะ
+            playerMovement.SpawnInvulBarExternal();
+
             menu.SetActive(false);
         }
-            
+
+        // --- 2. แม่เหล็ก (Attraction/Magnet) ---
         if (itemIndex == 1 && PlayerPrefs.GetInt("BoughtAttraction") >= 1 && !PlayerStatus.Instance.isMagnetic)
         {
             PlayerStatus.Instance.isMagnetic = true;
             PlayerPrefs.SetInt("BoughtAttraction", attractionAmount - 1);
+
+            // สั่ง Spawn UI บาร์แม่เหล็ก
+            playerMovement.SpawnMagnetBarExternal();
+
             menu.SetActive(false);
         }
-            
+
+        // --- 3. โล่ (HeatShield) ---
         if (itemIndex == 2 && PlayerPrefs.GetInt("BoughtHeatShield") >= 1 && !PlayerStatus.Instance.isHeatShield)
         {
             PlayerStatus.Instance.isHeatShield = true;
             PlayerPrefs.SetInt("BoughtHeatShield", heatShieldAmount - 1);
+
+            // สั่ง Spawn UI บาร์โล่
+            playerMovement.SpawnShieldBarExternal();
+
             menu.SetActive(false);
         }
     }
