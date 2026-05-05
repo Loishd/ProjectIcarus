@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     Rigidbody2D rb2d;
     SpriteRenderer rb2dSprite;
+    [SerializeField] DeathUIScript deathUIscript;
 
     [Header("ItemTimer")]
     [SerializeField] float attractionTimer;
@@ -182,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         SetHighestScore();
         UItexts.SetActive(false);
         deathScreen.SetActive(true);
+        deathUIscript.UpdateDeathUIText();
         PlayerStatus.Instance.isDeath = true;
         PlayerStatus.Instance.nearMissCount = 0;
         PlayerStatus.Instance.gadgetIndex = 0;
