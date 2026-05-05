@@ -30,7 +30,9 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Quests")]
     [SerializeField] float volatileFlightReachTime = 360f;
+    float volatileTimer = 0f;
     [SerializeField] float seekingForPoseidonReachTime = 480f;
+    float poseidonTimer = 0f;
 
     [Header("NameReceive")]
     public GameObject nameInputPanel;
@@ -164,13 +166,13 @@ public class ScoreManager : MonoBehaviour
         if (questMultiplier >= 4)
         {
             //Volatile Flight
-            float timer = 0f;
-            timer += Time.deltaTime;
+
+            volatileTimer += Time.deltaTime;
 
             if (questMultiplier < 4)
-                timer = 0f;
+                volatileTimer = 0f;
 
-            if (timer >= volatileFlightReachTime && (PlayerPrefs.GetInt("VolatileFlight") != 1))
+            if (volatileTimer >= volatileFlightReachTime && (PlayerPrefs.GetInt("VolatileFlight") != 1))
             {
                 PlayerPrefs.SetInt("VolatileFlight", 1);
                 StartCoroutine(RewardManager.Instance.PopUpQuest("Volatile Flight"));
@@ -180,13 +182,12 @@ public class ScoreManager : MonoBehaviour
 
         else if (questMultiplier <= -4)
         {
-            float timer = 0f;
-            timer += Time.deltaTime;
+            poseidonTimer += Time.deltaTime;
 
             if (questMultiplier > -4)
-                timer = 0f;
+                poseidonTimer = 0f;
 
-            if (timer >= seekingForPoseidonReachTime && (PlayerPrefs.GetInt("SeekingForPoseidon") != 1))
+            if (poseidonTimer >= seekingForPoseidonReachTime && (PlayerPrefs.GetInt("SeekingForPoseidon") != 1))
             {
                 PlayerPrefs.SetInt("SeekingForPoseidon", 1);
                 StartCoroutine(RewardManager.Instance.PopUpQuest("Seeking for Poseidon"));
