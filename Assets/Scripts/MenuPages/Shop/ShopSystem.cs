@@ -75,7 +75,7 @@ public class ShopSystem : MonoBehaviour
 
     void UpdateCoinText()
     {
-        CoinText.text = "Your Coins : " + overallCoin.ToString();
+        CoinText.text = overallCoin.ToString();
     }
 
     public void NextPage()

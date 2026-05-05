@@ -8,11 +8,16 @@ public class BadgeCard : MonoBehaviour
     [SerializeField] Sprite newSprite;
     [SerializeField] string getPlayerPrefs;
     private Image badgeImage;
+    [SerializeField] Image badgeBG;
     void Start()
     {
         badgeImage = GetComponent<Image>();
 
         if (PlayerPrefs.GetInt(getPlayerPrefs) >= 1)
-            badgeImage.sprite = newSprite;  
+        {
+            badgeImage.sprite = newSprite;
+            badgeBG.color = Color.white;
+        }
+            
     }
 }

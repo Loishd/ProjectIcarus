@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -258,8 +258,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -392,8 +392,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Path to Plutus
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -526,8 +526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Medium
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -662,8 +662,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -798,8 +798,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -898,7 +898,7 @@ Transform:
   m_GameObject: {fileID: 371455243}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -963.2402, y: -116, z: -2.5727096}
+  m_LocalPosition: {x: -963.2402, y: -140, z: -2.5727096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -961,6 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: 85e4577a840a2cd4da5e39633953f1f3, type: 3}
   getPlayerPrefs: HoarderNextToPlutus
+  badgeBG: {fileID: 950099711}
 --- !u!114 &472769549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +1052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: b5713c75df69ff542804f2a054225751, type: 3}
   getPlayerPrefs: IcarusArrogance
+  badgeBG: {fileID: 1631963096}
 --- !u!114 &507947223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,6 +1143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: 17c407f87160fc6429cbbd8d81dadf79, type: 3}
   getPlayerPrefs: VolatileFlight
+  badgeBG: {fileID: 979097203}
 --- !u!114 &529954884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,7 +1207,7 @@ Transform:
   m_GameObject: {fileID: 534835368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -374, y: -116, z: -2.5727096}
+  m_LocalPosition: {x: -374, y: -140, z: -2.5727096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1275,8 +1278,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Volatile Flight
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1402,6 +1405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: d812d49700a75ed4d905f966cdc8412b, type: 3}
   getPlayerPrefs: AggressiveTyphoon
+  badgeBG: {fileID: 633593888}
 --- !u!114 &595027620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,7 +1494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1952,8 +1956,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fly into 45 winds in a single run
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2077,7 +2081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2152,7 +2156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2202,7 +2206,7 @@ Transform:
   m_GameObject: {fileID: 1033492585}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 220, y: -116, z: -2.5727096}
+  m_LocalPosition: {x: 220, y: -140, z: -2.5727096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2273,8 +2277,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Aggressive Typhoon
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2475,8 +2479,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Reward: Flap module\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2609,8 +2613,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Get close to the ocean and stay above 4X multiplier for 8 minutes straight
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2709,7 +2713,7 @@ Transform:
   m_GameObject: {fileID: 1248772898}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67, y: 210, z: -2.5727096}
+  m_LocalPosition: {x: -67, y: 165, z: -2.5727096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2746,7 +2750,7 @@ Transform:
   m_GameObject: {fileID: 1264578647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -662, y: 210, z: -2.5727096}
+  m_LocalPosition: {x: -662, y: 165, z: -2.5727096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2816,8 +2820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Collect a total of 9,999 feathers\r "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2950,8 +2954,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Reward: Dive module'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3159,7 +3163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3243,8 +3247,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3377,8 +3381,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Icarus Arrogance
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3504,6 +3508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: fb367b7e08b90c844af85a81a9d213da, type: 3}
   getPlayerPrefs: SeekingForPoseidon
+  badgeBG: {fileID: 4793154}
 --- !u!114 &1763624199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3601,8 +3606,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Medium
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3735,8 +3740,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Get close to the sun and stay above 4X multiplier for 6 minutes straight
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3869,8 +3874,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4003,8 +4008,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Seeking Poseidon
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4137,8 +4142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Reward: Plane mode'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
+  m_sharedMaterial: {fileID: 8787493464709710453, guid: 7e034ef12deff724383dc56ef9a939e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4246,7 +4251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -378, y: -71}
+  m_AnchoredPosition: {x: -378, y: -134}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001173202
@@ -4271,8 +4276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Achievement
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 215ca7ec1e22d114485d96b70ef78b02, type: 2}
+  m_sharedMaterial: {fileID: -7971313325131877919, guid: 215ca7ec1e22d114485d96b70ef78b02, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
