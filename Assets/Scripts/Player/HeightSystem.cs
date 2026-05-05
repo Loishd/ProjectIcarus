@@ -19,6 +19,7 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private float rainbowSpeed = 2f;
     [SerializeField] private float descentDecreaseSpeed;
+    [SerializeField] float rainbowAlpha;
 
     Color normalColor = Color.white;
     Color redColor = Color.red;
@@ -112,8 +113,9 @@ public class HeightSystem : MonoBehaviour
         if (PlayerStatus.Instance.isFever)
         {
             float hue = (Time.time * rainbowSpeed) % 1.0f;
-
-            sprite.color = Color.HSVToRGB(hue, 0.8f, 1f);
+            Color rainbowColor = Color.HSVToRGB(hue, 0.8f, 1f);
+            rainbowColor.a = rainbowAlpha;
+            sprite.color = rainbowColor;
         }
         else if (PlayerStatus.Instance.isDeath)
         {
