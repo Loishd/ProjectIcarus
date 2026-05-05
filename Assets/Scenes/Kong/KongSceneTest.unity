@@ -351,6 +351,8 @@ MonoBehaviour:
   gadgetIncreaseAmount: 0
   fallSpeed: 0
   sprite: {fileID: 12504707}
+  rainbowSpeed: 2
+  descentDecreaseSpeed: 0
   playerStatus: {fileID: 12504713}
 --- !u!114 &12504713
 MonoBehaviour:
@@ -6697,8 +6699,10 @@ MonoBehaviour:
   increaseSpeed: 9
   decreaseSpeed: 6
   gadgetIncreaseAmount: 15
-  fallSpeed: 100
+  fallSpeed: 25
   sprite: {fileID: 12504707}
+  rainbowSpeed: 1
+  descentDecreaseSpeed: 1
   playerStatus: {fileID: 12504713}
 --- !u!4 &1205335991
 Transform:

@@ -17,6 +17,8 @@ public class HeightSystem : MonoBehaviour
     private float maxHeight = 100f;
     private float minHeight = 0f;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private float rainbowSpeed = 2f;
+    [SerializeField] private float descentDecreaseSpeed;
 
     Color normalColor = Color.white;
     Color redColor = Color.red;
@@ -109,7 +111,9 @@ public class HeightSystem : MonoBehaviour
 
         if (PlayerStatus.Instance.isFever)
         {
-            sprite.color = feverColor;
+            float hue = (Time.time * rainbowSpeed) % 1.0f;
+
+            sprite.color = Color.HSVToRGB(hue, 0.8f, 1f);
         }
         else if (PlayerStatus.Instance.isDeath)
         {
@@ -153,7 +157,7 @@ public class HeightSystem : MonoBehaviour
                 {
                     decreaseSpeed = 6;
                 }
-                decreaseSpeed -= Time.deltaTime * 0.5f;
+                decreaseSpeed -= Time.deltaTime * descentDecreaseSpeed;
             }
         }
     }
