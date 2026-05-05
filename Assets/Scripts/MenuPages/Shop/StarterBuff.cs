@@ -10,8 +10,6 @@ public class StarterBuff : MonoBehaviour
     public float timeRemaining = 20;
     public bool timerIsRunning = false;
 
-    public TMP_Text timeText;
-
     public TMP_Text buff1Text;
     public TMP_Text buff2Text;
     public TMP_Text buff3Text;
@@ -81,7 +79,6 @@ public class StarterBuff : MonoBehaviour
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void GetBuff(int itemIndex)
