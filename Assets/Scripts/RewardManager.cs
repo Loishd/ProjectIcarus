@@ -36,6 +36,10 @@ public class RewardManager : MonoBehaviour
             PlayerPrefs.SetInt("VolatileFlight", 0);
             PlayerPrefs.SetInt("SeekingForPoseidon", 0);
             PlayerPrefs.SetInt("AggressiveTyphoon", 0);
+
+            PlayerPrefs.SetInt("CanEquipFlapModule", 0);
+            PlayerPrefs.SetInt("CanEquipDiveModule", 0);
+            PlayerPrefs.SetInt("CanEquipPlaneModule", 0);
         }
 
         if (Input.GetKeyDown(KeyCode.I))

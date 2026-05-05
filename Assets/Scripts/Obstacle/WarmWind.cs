@@ -37,6 +37,9 @@ public class WarmWind1 : MonoBehaviour
             {
                 PlayerPrefs.SetInt("AggressiveTyphoon", 1);
                 StartCoroutine(RewardManager.Instance.PopUpQuest("Aggressive Typhoon"));
+
+                if (PlayerPrefs.GetInt("CanEquipPlaneModule") != 1)
+                    PlayerPrefs.SetInt("CanEquipPlaneModule", 1);
             }
         }
     }

@@ -200,6 +200,9 @@ public class ScoreManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("SeekingForPoseidon", 1);
                 StartCoroutine(RewardManager.Instance.PopUpQuest("Seeking for Poseidon"));
+
+                if (PlayerPrefs.GetInt("CanEquipDiveModule") != 1)
+                    PlayerPrefs.SetInt("CanEquipDiveModule", 1);
             }
 
         }

@@ -101,6 +101,9 @@ public class PlayerStatus : MonoBehaviour
         {
             PlayerPrefs.SetInt("IcarusArrogance", 1);
             StartCoroutine(RewardManager.Instance.PopUpQuest("Icarus Arrogance"));
+
+            if (PlayerPrefs.GetInt("CanEquipFlapModule") != 1)
+                PlayerPrefs.SetInt("CanEquipFlapModule", 1);
         }
         nearMissVisual.SetActive(true);
         yield return new WaitForSeconds(nearMissShowtime);
