@@ -4200,13 +4200,13 @@ MonoBehaviour:
   musicSource: {fileID: 1439751187}
   sfxSource: {fileID: 170628305}
   warningSource: {fileID: 1284356388}
-  birdSfx: {fileID: 0}
-  deathSfx: {fileID: 0}
-  wingflapSfx: {fileID: 0}
-  hotWingSfx: {fileID: 0}
-  wetWingSfx: {fileID: 0}
-  windHitSfx: {fileID: 0}
-  cloudHitSfx: {fileID: 0}
+  birdSfx: {fileID: 8300000, guid: eda5c0c338b6197419f825eff28ed0ca, type: 3}
+  deathSfx: {fileID: 8300000, guid: cb9ca74303c03bc41af684fe50787067, type: 3}
+  wingflapSfx: {fileID: 8300000, guid: e823f4d046383c7419e4fe4501f0b022, type: 3}
+  hotWingSfx: {fileID: 8300000, guid: fbef97d49708b484580445d6fb35259c, type: 3}
+  wetWingSfx: {fileID: 8300000, guid: af31147246070514998df83ce7453434, type: 3}
+  windHitSfx: {fileID: 8300000, guid: 6ce27b0f47ca13647b19d2be75543362, type: 3}
+  cloudHitSfx: {fileID: 8300000, guid: 144ffe058f8daf948a3c11557ce938cb, type: 3}
   coinSfx: {fileID: 8300000, guid: 93348d9a44b17274daf47dc506099473, type: 3}
   dashSfx: {fileID: 8300000, guid: 84cf48780a5848646964a78e272b1496, type: 3}
   musicList:
