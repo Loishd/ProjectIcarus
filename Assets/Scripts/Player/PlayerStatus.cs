@@ -1,10 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [Header("GadgetUI")]
+    [SerializeField] List<Sprite> wingSprite = new List<Sprite>();
+    [SerializeField] Image LeftWing;
+    [SerializeField] Image RightWing;
+    [SerializeField] RectTransform FeverGear;
+    [SerializeField] List<RectTransform> FeverGearPos = new List<RectTransform>();
+
     [Header("ItemDuration")]
     [SerializeField] float _magnetDuration;
     [SerializeField] float _heatShieldDuration;
@@ -71,6 +80,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (ScoreManager.Instance.isPause) return;
         if (PlayerStatus.Instance.isDeath) return;
+        GadgetVisual();
         speedIncrease += Time.deltaTime / 2000;
         if (gadgetIndex == 0)
         {
@@ -113,5 +123,32 @@ public class PlayerStatus : MonoBehaviour
         nearMissVisual.SetActive(false);
 
         
+    }
+    public void GadgetVisual()
+    {
+        if (gadgetIndex == 0)
+        {
+            FeverGear.position = FeverGearPos[0].position;
+            LeftWing.sprite = wingSprite[0];
+            RightWing.sprite = wingSprite[1];
+        }
+        else if (gadgetIndex == 1)
+        {
+            FeverGear.position = FeverGearPos[1].position;
+            LeftWing.sprite = wingSprite[2];
+            RightWing.sprite = wingSprite[3];
+        }
+        else if (gadgetIndex == 2)
+        {
+            FeverGear.position = FeverGearPos[2].position;
+            LeftWing.sprite = wingSprite[4];
+            RightWing.sprite = wingSprite[5];
+        }
+        else if (gadgetIndex == 3)
+        {
+            FeverGear.position = FeverGearPos[3].position;
+            LeftWing.sprite = wingSprite[6];
+            RightWing.sprite = wingSprite[7];
+        }
     }
 }
