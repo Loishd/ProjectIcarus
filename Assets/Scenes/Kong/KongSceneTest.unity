@@ -406,7 +406,7 @@ MonoBehaviour:
   nearMissShowtime: 1
   nearMissCount: 0
   touchWindCount: 0
-  gadgetIndex: 3
+  gadgetIndex: 0
   featherReach: 3000
 --- !u!95 &12504714
 Animator:
