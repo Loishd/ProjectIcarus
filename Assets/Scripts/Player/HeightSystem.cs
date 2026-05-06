@@ -149,18 +149,8 @@ public class HeightSystem : MonoBehaviour
 
     void HeightVisual()
     {
-        if (PlayerStatus.Instance.isFever)
-        {
-            feverVisual.SetActive(true);
-        }
-        else
-        {
-            feverVisual.SetActive(false);
-        }
-
         if ((currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield) || currentHeight <= 0f)
         {
-            // สั่งหยุดเสียงทันทีแบบไม่ต้อง Fade (หรือจะ Fade ก็ได้ถ้าชอบ)
             if (SoundManager.Instance != null)
             {
                 SoundManager.Instance.StopWarningImmediate();
@@ -168,6 +158,7 @@ public class HeightSystem : MonoBehaviour
             player.Death();
         }
 
+        // ส่วนเปลี่ยนสี Sprite ตัวละคร (คงไว้เหมือนเดิม)
         if (PlayerStatus.Instance.isDeath)
         {
             sprite.color = deathColor;
