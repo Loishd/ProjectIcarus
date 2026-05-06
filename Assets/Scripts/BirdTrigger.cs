@@ -11,7 +11,7 @@ public class BirdTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Bird"))
         {
-            Debug.Log(collision.name);
+            Debug.Log("Wassup bro" + collision.gameObject.name);
             if (Time.time >= lastBirdTime + birdCooldown)
             {
                 // เรียกตรงไปที่ AudioSource เลยจะไวที่สุด (ถ้าทำได้)
