@@ -180,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (godMode) return;
 
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
         SetHighestScore();
         UItexts.SetActive(false);
         deathScreen.SetActive(true);

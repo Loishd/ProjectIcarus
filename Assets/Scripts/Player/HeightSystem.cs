@@ -100,13 +100,13 @@ public class HeightSystem : MonoBehaviour
     {
         if (currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield)
         {
-            
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
             player.Death();
         }
 
         if (currentHeight <= 0f)
         {
-            
+            SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
             player.Death();
         }
 

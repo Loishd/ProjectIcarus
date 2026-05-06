@@ -246,7 +246,7 @@ MonoBehaviour:
   mapSpawner: {fileID: 723235876}
   starterBuff: {fileID: 869243846}
   heightSystem: {fileID: 1205335990}
-  godMode: 1
+  godMode: 0
   deathUIscript: {fileID: 903251189}
   attractionTimer: 0
   heatShieldTimer: 0
@@ -3920,7 +3920,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1632451351}
   sfxSource: {fileID: 398100084}
-  jumpSfx: {fileID: 0}
+  birdSfx: {fileID: 8300000, guid: 4d7e0715881927547a28627f0495d20e, type: 3}
+  deathSfx: {fileID: 8300000, guid: cb9ca74303c03bc41af684fe50787067, type: 3}
+  wingflapSfx: {fileID: 8300000, guid: e823f4d046383c7419e4fe4501f0b022, type: 3}
+  hotWingSfx: {fileID: 8300000, guid: fbef97d49708b484580445d6fb35259c, type: 3}
+  wetWingSfx: {fileID: 8300000, guid: af31147246070514998df83ce7453434, type: 3}
+  windHitSfx: {fileID: 8300000, guid: 6ce27b0f47ca13647b19d2be75543362, type: 3}
+  cloudHitSfx: {fileID: 8300000, guid: 144ffe058f8daf948a3c11557ce938cb, type: 3}
   coinSfx: {fileID: 8300000, guid: 93348d9a44b17274daf47dc506099473, type: 3}
   dashSfx: {fileID: 8300000, guid: 84cf48780a5848646964a78e272b1496, type: 3}
   musicList:

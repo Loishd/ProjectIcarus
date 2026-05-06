@@ -11,7 +11,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource sfxSource;
 
     [Header("SFX List")]
-    public AudioClip jumpSfx;
+    public AudioClip birdSfx;
+    public AudioClip deathSfx;
+    public AudioClip wingflapSfx;
+    public AudioClip hotWingSfx;
+    public AudioClip wetWingSfx;
+    public AudioClip windHitSfx;
+    public AudioClip cloudHitSfx;
     public AudioClip coinSfx;
     public AudioClip dashSfx;
 
@@ -24,6 +30,9 @@ public class SoundManager : MonoBehaviour
     float masterVolume = 1f;
     float musicVolume = 0.05f;
     float sfxVolume = 1f;
+
+    private float lastPlayTime;
+    public float minTimeBetweenSFX = 0.05f;
 
     private int currentTrack = 0;
 
@@ -91,7 +100,12 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         if (sfxSource == null || clip == null) return;
+
+        // ถ้าเวลาที่ผ่านไปยังไม่ถึงค่าที่กำหนด ไม่ต้องเล่น
+        if (Time.time - lastPlayTime < minTimeBetweenSFX) return;
+
         sfxSource.PlayOneShot(clip);
+        lastPlayTime = Time.time;
     }
 
     // ================= VOLUME =================
