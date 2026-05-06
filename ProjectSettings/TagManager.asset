@@ -12,6 +12,9 @@ TagManager:
   - HeatShield
   - Invulnerability
   - Wind
+  - Map
+  - Hot
+  - Cold
   layers:
   - Default
   - TransparentFX
@@ -24,8 +27,8 @@ TagManager:
   - Wing
   - Bird
   - BirdTrigger
-  - 
-  - 
+  - SoundCheck
+  - Map
   - 
   - 
   - 

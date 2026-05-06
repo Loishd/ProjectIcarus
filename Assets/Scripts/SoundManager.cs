@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -9,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
-    public AudioSource heightWarningSource;
+    public AudioSource warningSource;
 
     [Header("SFX List")]
     public AudioClip birdSfx;
@@ -35,7 +36,7 @@ public class SoundManager : MonoBehaviour
     private float lastPlayTime;
     public float minTimeBetweenSFX = 0.05f;
     private bool isDeathSoundPlayed = false;
-
+    private Coroutine fadeCoroutine;
     private int currentTrack = 0;
 
     void Awake()
@@ -80,22 +81,60 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void NextTrack()
+    public void PlayWarning(AudioClip clip)
     {
-        currentTrack++;
-        if (currentTrack >= musicList.Count)
-            currentTrack = 0;
-
-        PlayCurrentMusic();
+        if (clip == null) return;
+        warningSource.clip = clip;
+        warningSource.Play();
     }
 
-    public void PreviousTrack()
+    // Method สำหรับสั่ง "ดับเสียง" ทันที
+    public void StopWarning()
     {
-        currentTrack--;
-        if (currentTrack < 0)
-            currentTrack = musicList.Count - 1;
+        if (warningSource.isPlaying)
+        {
+            warningSource.Stop();
+        }
+    }
 
-        PlayCurrentMusic();
+    public void PlayWarningFade(AudioClip clip, float duration)
+    {
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        warningSource.clip = clip;
+        warningSource.Play();
+        fadeCoroutine = StartCoroutine(FadeSource(warningSource, 0.3f, duration));
+    }
+
+    public void StopWarningFade(float duration)
+    {
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(FadeSource(warningSource, 0f, duration, true));
+    }
+
+    private IEnumerator FadeSource(AudioSource source, float targetVolume, float duration, bool stopAtEnd = false)
+    {
+        float startVolume = source.volume;
+        float time = 0;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, targetVolume, time / duration);
+            yield return null;
+        }
+
+        source.volume = targetVolume;
+        if (stopAtEnd && targetVolume <= 0) source.Stop();
+    }
+
+    public void StopWarningImmediate()
+    {
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        warningSource.Stop();
+        warningSource.volume = 0f; // รีเซ็ต Volume กลับเป็น 0 สำหรับครั้งถัดไป
+
+        // อย่าลืมรีเซ็ตตัวแปรใน HeightSystem ด้วย ถ้าจะให้เกิดใหม่แล้วเล่นใหม่ได้
     }
 
     // ================= SFX =================
@@ -156,24 +195,6 @@ public class SoundManager : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("MusicVolume", value);
-    }
-
-    public void PlayWarningSFX(AudioClip clip)
-    {
-        if (clip == null || heightWarningSource == null) return;
-
-        heightWarningSource.clip = clip;
-        heightWarningSource.loop = true; // ให้มันดังวนไปตราบใดที่ยังไม่เปลี่ยนโซน
-        heightWarningSource.Play();
-    }
-
-    public void StopWarningSFX()
-    {
-        if (heightWarningSource != null)
-        {
-            heightWarningSource.Stop();
-            heightWarningSource.clip = null;
-        }
     }
 
     public void ResetDeathSound()

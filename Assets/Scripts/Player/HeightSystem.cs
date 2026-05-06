@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +21,13 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private float descentDecreaseSpeed;
     [SerializeField] float rainbowAlpha;
     [SerializeField] GameObject feverVisual;
+    [SerializeField] private float fadeDuration = 0.5f;
+
+    [Header("Sound Trigger Settings")]
+    [SerializeField] private float hotThreshold = 70f;
+    [SerializeField] private float coldThreshold = 30f;
+    private bool hasPlayedHot = false;
+    private bool hasPlayedCold = false;
 
     Color normalColor = Color.white;
     Color redColor = Color.red;
@@ -40,6 +47,44 @@ public class HeightSystem : MonoBehaviour
         HeightManager();
         BackgroundColor();
         HeightVisual();
+        CheckHeightSound();
+    }
+
+    void CheckHeightSound()
+    {
+        if (PlayerStatus.Instance.isDeath) return;
+        // --- โซนร้อน (70+) ---
+        if (currentHeight >= 70f)
+        {
+            if (!hasPlayedHot)
+            {
+                SoundManager.Instance.PlayWarningFade(SoundManager.Instance.hotWingSfx, fadeDuration);
+                hasPlayedHot = true;
+                hasPlayedCold = false;
+            }
+        }
+
+        // --- โซนหนาว (30-) ---
+        else if (currentHeight <= 30f)
+        {
+            if (!hasPlayedCold)
+            {
+                SoundManager.Instance.PlayWarningFade(SoundManager.Instance.wetWingSfx, fadeDuration);
+                hasPlayedCold = true;
+                hasPlayedHot = false;
+            }
+        }
+
+        // --- โซนปกติ (31-69): ค่อยๆ เบาเสียงจนดับ ---
+        else
+        {
+            if (hasPlayedHot || hasPlayedCold)
+            {
+                SoundManager.Instance.StopWarningFade(fadeDuration);
+                hasPlayedHot = false;
+                hasPlayedCold = false;
+            }
+        }
     }
 
     void HeightManager()
@@ -113,13 +158,13 @@ public class HeightSystem : MonoBehaviour
             feverVisual.SetActive(false);
         }
 
-        if (currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield)
+        if ((currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield) || currentHeight <= 0f)
         {
-            player.Death();
-        }
-
-        if (currentHeight <= 0f)
-        {
+            // สั่งหยุดเสียงทันทีแบบไม่ต้อง Fade (หรือจะ Fade ก็ได้ถ้าชอบ)
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.StopWarningImmediate();
+            }
             player.Death();
         }
 

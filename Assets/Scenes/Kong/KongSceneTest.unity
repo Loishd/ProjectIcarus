@@ -358,6 +358,9 @@ MonoBehaviour:
   descentDecreaseSpeed: 0
   rainbowAlpha: 0
   feverVisual: {fileID: 0}
+  fadeDuration: 0.5
+  hotThreshold: 70
+  coldThreshold: 30
   playerStatus: {fileID: 12504713}
 --- !u!114 &12504713
 MonoBehaviour:
@@ -2987,7 +2990,7 @@ RectTransform:
   m_Father: {fileID: 805551091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -4.399994, y: -0.000015258789}
   m_SizeDelta: {x: 31.9292, y: -122.1185}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3378,7 +3381,7 @@ RectTransform:
   m_Father: {fileID: 844956144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -4.399994, y: -0.000015258789}
   m_SizeDelta: {x: 31.9292, y: -122.1185}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3661,9 +3664,9 @@ GameObject:
   - component: {fileID: 723235874}
   - component: {fileID: 723235877}
   - component: {fileID: 723235876}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MAP
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3691,7 +3694,7 @@ Transform:
   m_GameObject: {fileID: 723235873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -424, z: 100}
+  m_LocalPosition: {x: 0, y: -424, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3941,7 +3944,7 @@ RectTransform:
   m_Father: {fileID: 726015038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6622,6 +6625,9 @@ MonoBehaviour:
   descentDecreaseSpeed: 20
   rainbowAlpha: 1
   feverVisual: {fileID: 1821452396}
+  fadeDuration: 0.5
+  hotThreshold: 70
+  coldThreshold: 30
   playerStatus: {fileID: 12504713}
 --- !u!4 &1205335991
 Transform:
@@ -6804,8 +6810,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1345328758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.471, y: 0}
-  m_AnchorMax: {x: 0.471, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -4.399994, y: -0.000015258789}
   m_SizeDelta: {x: 31.9292, y: -122.1185}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8832,7 +8838,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.078
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10037,9 +10043,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1817385708}
   - component: {fileID: 1817385709}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10393,7 +10399,7 @@ RectTransform:
   m_Father: {fileID: 740324206}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10622,7 +10628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1910249938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11673,7 +11679,7 @@ RectTransform:
   m_Father: {fileID: 1917964116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.471, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12014,7 +12020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1632591661}
   sfxSource: {fileID: 1417154346}
-  heightWarningSource: {fileID: 1469629550}
+  warningSource: {fileID: 1469629550}
   birdSfx: {fileID: 8300000, guid: eda5c0c338b6197419f825eff28ed0ca, type: 3}
   deathSfx: {fileID: 8300000, guid: cb9ca74303c03bc41af684fe50787067, type: 3}
   wingflapSfx: {fileID: 8300000, guid: e823f4d046383c7419e4fe4501f0b022, type: 3}
