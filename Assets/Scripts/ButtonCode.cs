@@ -26,6 +26,10 @@ public class ButtonCode : MonoBehaviour
 
     public void Retry(string name)
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.ResetAllSounds();
+        }
         Time.timeScale = 1.0f;
         deathScreen.SetActive(false);
         LoadingScene(name);

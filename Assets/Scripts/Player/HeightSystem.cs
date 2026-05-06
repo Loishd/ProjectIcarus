@@ -37,7 +37,15 @@ public class HeightSystem : MonoBehaviour
 
     private void Start()
     {
-        currentHeight = 50;
+        currentHeight = 50f;
+        hasPlayedHot = false;
+        hasPlayedCold = false;
+
+        // สั่งหยุดเสียงที่อาจจะค้างมาจากรอบที่แล้ว
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.ResetAllSounds();
+        }
     }
 
     void Update()

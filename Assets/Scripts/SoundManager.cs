@@ -69,7 +69,14 @@ public class SoundManager : MonoBehaviour
         // กัน null
         if (ScoreManager.Instance != null && ScoreManager.Instance.isPause) return;
     }
+    public void ResetAllSounds()
+    {
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
 
+        warningSource.Stop();
+        warningSource.volume = 0f;
+        warningSource.clip = null;
+    }
     // ================= MUSIC =================
     public void PlayCurrentMusic()
     {
