@@ -56,4 +56,16 @@ public class ButtonCode : MonoBehaviour
     {
         soundMenu.SetActive(false);
     }
+
+    public void OpenTutorial(GameObject tutorialMenu)
+    {
+        tutorialMenu.SetActive(true);
+    }
+
+    public void CloseTutorial(GameObject tutorialMenu)
+    {
+        tutorialMenu.SetActive(false);
+    }
+
+
 }
