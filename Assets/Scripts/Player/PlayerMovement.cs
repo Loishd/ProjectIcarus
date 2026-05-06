@@ -53,9 +53,15 @@ public class PlayerMovement : MonoBehaviour
     private ItemUI activeShieldBar;
     private ItemUI activeInvulBar;
 
+    private bool hasPlayedHotSound = false;
+    private bool hasPlayedWetSound = false;
+
+
+
+    private Collider2D lastWindCollider;
     public float InvulnerabilityTimer => invulnerabilityTimer;
 
-    
+
 
     //bool hasEnteredSkipper = false;
     //bool hasExitedSkipper = false;
@@ -72,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.ResetDeathSound();
         PlayerStatus.Instance.isInvulnerability = false;
         speedIncrease = 1;
     }
@@ -179,8 +186,12 @@ public class PlayerMovement : MonoBehaviour
     public void Death()
     {
         if (godMode) return;
-
+        
         SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
+
+        
+        PlayerStatus.Instance.isDeath = true;
+
         SetHighestScore();
         UItexts.SetActive(false);
         deathScreen.SetActive(true);
@@ -264,15 +275,27 @@ public class PlayerMovement : MonoBehaviour
         {
             if (PlayerStatus.Instance.isCloud)
             {
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.cloudHitSfx);
                 ExtendCloud();
             }
             else
             {
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.cloudHitSfx);
                 PlayerStatus.Instance.isCloud = true;
             }
 
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("Wind"))
+        {
+            if (lastWindCollider != collision)
+            {
+                SoundManager.Instance.PlaySFX(SoundManager.Instance.windHitSfx);
+                lastWindCollider = collision;
+            }
+        }
+
 
         if (collision.CompareTag("Bird"))
         {

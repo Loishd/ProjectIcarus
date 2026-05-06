@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 653941297248327640}
   m_Layer: 0
   m_Name: Warm Wind
-  m_TagString: Untagged
+  m_TagString: Wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
+    public AudioSource heightWarningSource;
 
     [Header("SFX List")]
     public AudioClip birdSfx;
@@ -33,6 +34,7 @@ public class SoundManager : MonoBehaviour
 
     private float lastPlayTime;
     public float minTimeBetweenSFX = 0.05f;
+    private bool isDeathSoundPlayed = false;
 
     private int currentTrack = 0;
 
@@ -101,8 +103,15 @@ public class SoundManager : MonoBehaviour
     {
         if (sfxSource == null || clip == null) return;
 
-        // ถ้าเวลาที่ผ่านไปยังไม่ถึงค่าที่กำหนด ไม่ต้องเล่น
-        if (Time.time - lastPlayTime < minTimeBetweenSFX) return;
+        // 🛡️ ถ้าเป็นเสียงตาย และเคยเล่นไปแล้วในรอบนี้ ให้ "เงียบ" ไปเลย
+        if (clip == deathSfx)
+        {
+            if (isDeathSoundPlayed) return; // ถ้าเคยดังแล้ว จบ ไม่ต้องเล่นซ้ำ
+            isDeathSoundPlayed = true;    // ถ้ายังไม่เคยดัง ให้จำไว้ว่าดังแล้วนะ
+        }
+
+        // ส่วนของเสียงทั่วไป (เช่น เหรียญ หรือ Dash) ให้เว้นระยะนิดหน่อยกันเสียงแตก
+        if (clip != deathSfx && Time.time - lastPlayTime < minTimeBetweenSFX) return;
 
         sfxSource.PlayOneShot(clip);
         lastPlayTime = Time.time;
@@ -147,6 +156,29 @@ public class SoundManager : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("MusicVolume", value);
+    }
+
+    public void PlayWarningSFX(AudioClip clip)
+    {
+        if (clip == null || heightWarningSource == null) return;
+
+        heightWarningSource.clip = clip;
+        heightWarningSource.loop = true; // ให้มันดังวนไปตราบใดที่ยังไม่เปลี่ยนโซน
+        heightWarningSource.Play();
+    }
+
+    public void StopWarningSFX()
+    {
+        if (heightWarningSource != null)
+        {
+            heightWarningSource.Stop();
+            heightWarningSource.clip = null;
+        }
+    }
+
+    public void ResetDeathSound()
+    {
+        isDeathSoundPlayed = false;
     }
 
     public void SetSFXVolume(float value)

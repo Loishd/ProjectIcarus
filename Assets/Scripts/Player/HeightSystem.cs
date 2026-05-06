@@ -20,12 +20,18 @@ public class HeightSystem : MonoBehaviour
     [SerializeField] private float rainbowSpeed = 2f;
     [SerializeField] private float descentDecreaseSpeed;
     [SerializeField] float rainbowAlpha;
+    [SerializeField] GameObject feverVisual;
 
     Color normalColor = Color.white;
     Color redColor = Color.red;
     Color blueColor = Color.blue;
 
     [SerializeField] PlayerStatus playerStatus;
+
+    private void Start()
+    {
+        currentHeight = 50;
+    }
 
     void Update()
     {
@@ -98,26 +104,26 @@ public class HeightSystem : MonoBehaviour
 
     void HeightVisual()
     {
+        if (PlayerStatus.Instance.isFever)
+        {
+            feverVisual.SetActive(true);
+        }
+        else
+        {
+            feverVisual.SetActive(false);
+        }
+
         if (currentHeight >= 100f && !PlayerStatus.Instance.isHeatShield)
         {
-            SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
             player.Death();
         }
 
         if (currentHeight <= 0f)
         {
-            SoundManager.Instance.PlaySFX(SoundManager.Instance.deathSfx);
             player.Death();
         }
 
-        if (PlayerStatus.Instance.isFever)
-        {
-            float hue = (Time.time * rainbowSpeed) % 1.0f;
-            Color rainbowColor = Color.HSVToRGB(hue, 0.8f, 1f);
-            rainbowColor.a = rainbowAlpha;
-            sprite.color = rainbowColor;
-        }
-        else if (PlayerStatus.Instance.isDeath)
+        if (PlayerStatus.Instance.isDeath)
         {
             sprite.color = deathColor;
         }
